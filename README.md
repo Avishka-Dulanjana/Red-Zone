@@ -16,3 +16,9 @@ For help getting started with Flutter development, view the
 samples, guidance on mobile development, and a full API reference.
 
 # Project Start 2024.01.23
+
+```agsl
+ flutter pub run flutter_native_splash:create --path=splash.yaml
+```
+
+For the Splash screen size is 460 x Width & Height where as the icon inside is only 250 x width & height. This means, the icon should have a space around it. For the Onboarding you can use any size because we are making sure to assign only 60% width to the total screen.
