@@ -1,7 +1,8 @@
 class TImages {
   static const String lightRedZoneLogo =
-      'assets/images/logos/redzone-light.png';
-  static const String darkRedZoneLogo = 'assets/images/logos/redzone-dark.png';
+      'assets/images/logos/t-store-splash-logo-white.png';
+  static const String darkRedZoneLogo =
+      'assets/images/logos/t-store-splash-logo-black.png';
 
   static const String onBoardingImage1 =
       'assets/images/on_boarding_images/sammy-line-searching.gif';

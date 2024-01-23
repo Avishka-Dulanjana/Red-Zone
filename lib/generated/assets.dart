@@ -2,41 +2,15 @@
 class Assets {
   Assets._();
 
-  static const String fontsCoolveticaRegular =
-      'assets/fonts/coolvetica_regular.otf';
-  static const String fontsCoolveticaRegularItalic =
-      'assets/fonts/coolvetica_regular_italic.otf';
-  static const String fontsPoppinsBold = 'assets/fonts/Poppins-Bold.ttf';
-  static const String fontsPoppinsBoldItalic =
-      'assets/fonts/Poppins-BoldItalic.ttf';
-  static const String fontsPoppinsItalic = 'assets/fonts/Poppins-Italic.ttf';
-  static const String fontsPoppinsLight = 'assets/fonts/Poppins-Light.ttf';
-  static const String fontsPoppinsLightItalic =
-      'assets/fonts/Poppins-LightItalic.ttf';
-  static const String fontsPoppinsMedium = 'assets/fonts/Poppins-Medium.ttf';
-  static const String fontsPoppinsMediumItalic =
-      'assets/fonts/Poppins-MediumItalic.ttf';
-  static const String fontsPoppinsRegular = 'assets/fonts/Poppins-Regular.ttf';
-  static const String fontsPoppinsSemiBold =
-      'assets/fonts/Poppins-SemiBold.ttf';
-  static const String fontsPoppinsSemiBoldItalic =
-      'assets/fonts/Poppins-SemiBoldItalic.ttf';
-  static const String logosFacebookIcon =
-      'assets/images/logos/facebook-icon.png';
-  static const String logosGoogleIcon = 'assets/images/logos/google-icon.png';
-  static const String logosRedzoneDark = 'assets/images/logos/redzone-dark.png';
-  static const String logosRedzoneLight =
-      'assets/images/logos/redzone-light.png';
-  static const String logosTStoreSplashLogoBlack =
-      'assets/images/logos/t-store-splash-logo-black.png';
-  static const String logosTStoreSplashLogoWhite =
-      'assets/images/logos/t-store-splash-logo-white.png';
-  static const String onBoardingImagesSammyLineDelivery =
-      'assets/images/on_boarding_images/sammy-line-delivery.gif';
-  static const String onBoardingImagesSammyLineNoConnection =
-      'assets/images/on_boarding_images/sammy-line-no-connection.gif';
-  static const String onBoardingImagesSammyLineSearching =
-      'assets/images/on_boarding_images/sammy-line-searching.gif';
-  static const String onBoardingImagesSammyLineShopping =
-      'assets/images/on_boarding_images/sammy-line-shopping.gif';
+  static const String logosFacebookIcon = 'assets/logos/facebook-icon.png';
+  static const String logosGoogleIcon = 'assets/logos/google-icon.png';
+  static const String logosRedzoneDark = 'assets/logos/redzone-dark.png';
+  static const String logosRedzoneLight = 'assets/logos/redzone-light.png';
+  static const String logosTStoreSplashLogoBlack = 'assets/logos/t-store-splash-logo-black.png';
+  static const String logosTStoreSplashLogoWhite = 'assets/logos/t-store-splash-logo-white.png';
+  static const String onBoardingImagesSammyLineDelivery = 'assets/images/on_boarding_images/sammy-line-delivery.gif';
+  static const String onBoardingImagesSammyLineNoConnection = 'assets/images/on_boarding_images/sammy-line-no-connection.gif';
+  static const String onBoardingImagesSammyLineSearching = 'assets/images/on_boarding_images/sammy-line-searching.gif';
+  static const String onBoardingImagesSammyLineShopping = 'assets/images/on_boarding_images/sammy-line-shopping.gif';
+
 }
