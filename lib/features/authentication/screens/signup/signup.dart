@@ -3,7 +3,7 @@ import 'package:get/get_utils/get_utils.dart';
 
 import 'package:red_zone/common/widgets/login_signup/form_devider.dart';
 import 'package:red_zone/common/widgets/login_signup/social_buttons.dart';
-import 'package:red_zone/features/screens/signup/widgets/signup_form.dart';
+import 'package:red_zone/features/authentication/screens/signup/widgets/signup_form.dart';
 import 'package:red_zone/utils/constants/sizes.dart';
 import 'package:red_zone/utils/constants/text_strings.dart';
 

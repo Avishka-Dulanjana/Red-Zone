@@ -1,11 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:red_zone/common/widgets/success_screen/success_screen.dart';
 import 'package:red_zone/utils/constants/image_strings.dart';
 import 'package:red_zone/utils/constants/text_strings.dart';
-import '../../../utils/constants/sizes.dart';
-import '../../../utils/helpers/helper_functions.dart';
+
+import '../../../../utils/constants/sizes.dart';
+import '../../../../utils/helpers/helper_functions.dart';
 
 class ResetPasswordScreen extends StatelessWidget {
   const ResetPasswordScreen({super.key});

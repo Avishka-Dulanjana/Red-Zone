@@ -3,7 +3,7 @@ import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:red_zone/utils/constants/text_strings.dart';
 import 'package:red_zone/utils/theme/theme.dart';
 
-import 'features/screens/onboarding/onboarding.dart';
+import 'features/authentication/screens/onboarding/onboarding.dart';
 
 class App extends StatelessWidget {
   const App({super.key});

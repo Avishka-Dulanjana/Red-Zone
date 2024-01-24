@@ -2,8 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:red_zone/features/authentication/controllers.onboarding/onboarding_controler.dart';
 
-import '../../../../utils/constants/sizes.dart';
-import '../../../../utils/device/device_utility.dart';
+import '../../../../../utils/constants/sizes.dart';
+import '../../../../../utils/device/device_utility.dart';
 
 class OnBoardingSkip extends StatelessWidget {
   const OnBoardingSkip({

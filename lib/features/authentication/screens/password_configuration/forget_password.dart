@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
-import 'package:red_zone/features/screens/password_configuration/reset_password.dart';
+import 'package:red_zone/features/authentication/screens/password_configuration/reset_password.dart';
 import 'package:red_zone/utils/constants/sizes.dart';
 import 'package:get/get.dart';
 
-import '../../../utils/constants/text_strings.dart';
+import '../../../../utils/constants/text_strings.dart';
 
 class ForgetPasswordScreen extends StatelessWidget {
   const ForgetPasswordScreen({super.key});

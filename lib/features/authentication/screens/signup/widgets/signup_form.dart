@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
 import 'package:get/get.dart';
+import 'package:red_zone/features/authentication/screens/signup/widgets/terms_conditions_checkbox.dart';
 
-import 'package:red_zone/features/screens/signup/widgets/terms_conditions_checkbox.dart';
-import '../../../../utils/constants/sizes.dart';
-import '../../../../utils/constants/text_strings.dart';
-import '../../../../utils/helpers/helper_functions.dart';
+import '../../../../../utils/constants/sizes.dart';
+import '../../../../../utils/constants/text_strings.dart';
+import '../../../../../utils/helpers/helper_functions.dart';
 import '../verify_email.dart';
 
 class TSignupForm extends StatelessWidget {

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../../../../utils/constants/colors.dart';
-import '../../../../utils/constants/sizes.dart';
-import '../../../../utils/constants/text_strings.dart';
-import '../../../../utils/helpers/helper_functions.dart';
+import '../../../../../utils/constants/colors.dart';
+import '../../../../../utils/constants/sizes.dart';
+import '../../../../../utils/constants/text_strings.dart';
+import '../../../../../utils/helpers/helper_functions.dart';
 
 class TTermsAndConditionCheckbox extends StatelessWidget {
   const TTermsAndConditionCheckbox({
@@ -30,10 +30,10 @@ class TTermsAndConditionCheckbox extends StatelessWidget {
               TextSpan(
                 text: TTexts.privacyPolicy,
                 style: Theme.of(context).textTheme.bodySmall!.apply(
-                  color: dark ? TColors.white : TColors.primary,
-                  decoration: TextDecoration.underline,
-                  decorationColor: dark ? TColors.white : TColors.primary,
-                ),
+                      color: dark ? TColors.white : TColors.primary,
+                      decoration: TextDecoration.underline,
+                      decorationColor: dark ? TColors.white : TColors.primary,
+                    ),
               ),
               TextSpan(
                   text: ' ${TTexts.and} ',
@@ -41,10 +41,10 @@ class TTermsAndConditionCheckbox extends StatelessWidget {
               TextSpan(
                 text: TTexts.termsOfUse,
                 style: Theme.of(context).textTheme.bodySmall!.apply(
-                  color: dark ? TColors.white : TColors.primary,
-                  decoration: TextDecoration.underline,
-                  decorationColor: dark ? TColors.white : TColors.primary,
-                ),
+                      color: dark ? TColors.white : TColors.primary,
+                      decoration: TextDecoration.underline,
+                      decorationColor: dark ? TColors.white : TColors.primary,
+                    ),
               ),
             ],
           ),

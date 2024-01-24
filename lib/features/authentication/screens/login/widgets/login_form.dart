@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
-import 'package:red_zone/features/authentication/controllers.onboarding/onboarding_controler.dart';
-
-import '../../../../utils/constants/sizes.dart';
-import '../../../../utils/constants/text_strings.dart';
+import 'package:red_zone/navigation_menu.dart';
+import '../../../../../utils/constants/sizes.dart';
+import '../../../../../utils/constants/text_strings.dart';
 import '../../password_configuration/forget_password.dart';
 import '../../signup/signup.dart';
 
@@ -59,7 +58,7 @@ class TLoginForm extends StatelessWidget {
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () => Get.to(() => const NavigationMenu()),
                 child: const Text(TTexts.signIn),
               ),
             ),
