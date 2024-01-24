@@ -6,14 +6,12 @@ import 'package:red_zone/common/widgets/login_signup/social_buttons.dart';
 import 'package:red_zone/features/screens/signup/widgets/signup_form.dart';
 import 'package:red_zone/utils/constants/sizes.dart';
 import 'package:red_zone/utils/constants/text_strings.dart';
-import '../../../utils/helpers/helper_functions.dart';
 
 class SignupScreen extends StatelessWidget {
   const SignupScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final dark = THelperFunctions.isDarkMode(context);
     return Scaffold(
       appBar: AppBar(),
       body: SingleChildScrollView(
