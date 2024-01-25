@@ -22,3 +22,37 @@ samples, guidance on mobile development, and a full API reference.
 ```
 
 For the Splash screen size is 460 x Width & Height where as the icon inside is only 250 x width & height. This means, the icon should have a space around it. For the Onboarding you can use any size because we are making sure to assign only 60% width to the total screen.
+
+# Primary_header_container.dart - Special Note
+
+- <b>We cannot create more than one POSITIONED() widget inside the STACK() widget. It will error occurred. So that we wrap STACK() with SIZEDBOX(); widget to get rid of this error.</b>
+
+```agsl
+ @override
+  Widget build(BuildContext context) {
+    return TCustomCurvedWidget(
+      child: Container(
+        color: TColors.primary,
+        padding: const EdgeInsets.all(0),
+        /// -- If [size.isFinite': is not true.in stack] error occurred -> Read README.md file
+        child: SizedBox(
+          height: 400,
+          child: Stack(
+            children: [
+              Positioned(
+                  top: -150,
+                  right: -250,
+                  child: TCircularContainer(
+                      backgroundColor: TColors.textWhite.withOpacity(0.1))),
+              Positioned(
+                  top: 100,
+                  right: -300,
+                  child: TCircularContainer(
+                      backgroundColor: TColors.textWhite.withOpacity(0.1))),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+```
