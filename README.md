@@ -91,3 +91,13 @@ For the Splash screen size is 460 x Width & Height where as the icon inside is o
     );
   }
 ```
+
+# Quick fix dart errors command
+
+- It can used to remove unused imports, add necessary const keywords.
+
+```agsl
+
+dart fix --apply
+
+```

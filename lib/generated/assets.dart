@@ -84,4 +84,5 @@ class Assets {
       'assets/images/on_boarding_images/sammy-line-searching.gif';
   static const String onBoardingImagesSammyLineShopping =
       'assets/images/on_boarding_images/sammy-line-shopping.gif';
+  static const String userUser = 'assets/images/user/user.png';
 }
