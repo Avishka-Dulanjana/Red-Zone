@@ -20,7 +20,7 @@ class TPrimaryHeaderContainer extends StatelessWidget {
         padding: const EdgeInsets.only(bottom: 0),
 
         /// -- If [size.isFinite': is not true.in stack] error occurred -> Read README.md file
-        constraints: const BoxConstraints(minHeight: 400),
+        //constraints: const BoxConstraints(minHeight: 400),
 
         child: Stack(
           children: [

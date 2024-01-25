@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
 import 'package:red_zone/features/disaster_main/screens/home/home.dart';
+import 'package:red_zone/features/personalization/screens/settings/settings.dart';
 import 'package:red_zone/utils/constants/colors.dart';
 import 'package:red_zone/utils/helpers/helper_functions.dart';
 
@@ -46,6 +47,6 @@ class NavigationController extends GetxController {
     const HomeScreen(),
     Container(color: Colors.green),
     Container(color: Colors.orange),
-    Container(color: Colors.pink)
+    const SettingsScreen(),
   ];
 }
