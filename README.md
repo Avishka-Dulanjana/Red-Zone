@@ -27,6 +27,8 @@ For the Splash screen size is 460 x Width & Height where as the icon inside is o
 
 - <b>We cannot create more than one POSITIONED() widget inside the STACK() widget. It will error occurred. So that we wrap STACK() with SIZEDBOX(); widget to get rid of this error.</b>
 
+## Before
+
 ```agsl
  @override
   Widget build(BuildContext context) {
@@ -51,6 +53,39 @@ For the Splash screen size is 460 x Width & Height where as the icon inside is o
                       backgroundColor: TColors.textWhite.withOpacity(0.1))),
             ],
           ),
+        ),
+      ),
+    );
+  }
+```
+
+## After
+
+```agsl
+@override
+  Widget build(BuildContext context) {
+    return TCustomCurvedWidget(
+      child: Container(
+        color: TColors.primary,
+        padding: const EdgeInsets.only(bottom: 0),
+
+        /// -- If [size.isFinite': is not true.in stack] error occurred -> Read README.md file
+        constraints: const BoxConstraints(minHeight: 400),
+        
+        child: Stack(
+          children: [
+            Positioned(
+                top: -150,
+                right: -250,
+                child: TCircularContainer(
+                    backgroundColor: TColors.textWhite.withOpacity(0.1))),
+            Positioned(
+                top: 100,
+                right: -300,
+                child: TCircularContainer(
+                    backgroundColor: TColors.textWhite.withOpacity(0.1))),
+            child,
+          ],
         ),
       ),
     );

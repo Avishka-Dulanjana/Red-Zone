@@ -17,25 +17,25 @@ class TPrimaryHeaderContainer extends StatelessWidget {
     return TCustomCurvedWidget(
       child: Container(
         color: TColors.primary,
-        padding: const EdgeInsets.all(0),
+        padding: const EdgeInsets.only(bottom: 0),
 
         /// -- If [size.isFinite': is not true.in stack] error occurred -> Read README.md file
-        child: SizedBox(
-          height: 400,
-          child: Stack(
-            children: [
-              Positioned(
-                  top: -150,
-                  right: -250,
-                  child: TCircularContainer(
-                      backgroundColor: TColors.textWhite.withOpacity(0.1))),
-              Positioned(
-                  top: 100,
-                  right: -300,
-                  child: TCircularContainer(
-                      backgroundColor: TColors.textWhite.withOpacity(0.1))),
-            ],
-          ),
+        constraints: const BoxConstraints(minHeight: 400),
+
+        child: Stack(
+          children: [
+            Positioned(
+                top: -150,
+                right: -250,
+                child: TCircularContainer(
+                    backgroundColor: TColors.textWhite.withOpacity(0.1))),
+            Positioned(
+                top: 100,
+                right: -300,
+                child: TCircularContainer(
+                    backgroundColor: TColors.textWhite.withOpacity(0.1))),
+            child,
+          ],
         ),
       ),
     );
