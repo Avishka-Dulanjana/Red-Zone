@@ -101,3 +101,24 @@ For the Splash screen size is 460 x Width & Height where as the icon inside is o
 dart fix --apply
 
 ```
+
+# Image Carousel design
+
+```agsl
+
+pub add carousel_slider
+
+```
+### Image container set
+```agsl
+
+Padding(
+  padding: const EdgeInsets.all(TSizes.defaultSpace),
+  child: Container(
+    decoration: BoxDecoration(borderRadius: BorderRadius.circular(TSizes.md)),
+    child: ClipRRect(borderRadius: BorderRadius.circular(TSizes.md),
+       child: const Image( image: AssetImage(TImages.banner1)),
+       ),
+    ),
+)
+```
