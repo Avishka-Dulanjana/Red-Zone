@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:red_zone/features/authentication/controllers.onboarding/onboarding_controler.dart';
 import 'package:red_zone/features/authentication/screens/onboarding/widgets/onBoarding_next.dart';
 import 'package:red_zone/features/authentication/screens/onboarding/widgets/onboarding_dot_naviigation.dart';
 import 'package:red_zone/features/authentication/screens/onboarding/widgets/onboarding_page.dart';
 import 'package:red_zone/features/authentication/screens/onboarding/widgets/onboarding_skip.dart';
 import 'package:red_zone/utils/constants/image_strings.dart';
 import 'package:red_zone/utils/constants/text_strings.dart';
+
+import '../../controllers/onboarding/onboarding_controler.dart';
 
 class OnBoardingScreen extends StatelessWidget {
   const OnBoardingScreen({super.key});
