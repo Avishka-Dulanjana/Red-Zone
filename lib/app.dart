@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:red_zone/utils/constants/colors.dart';
 import 'package:red_zone/utils/constants/text_strings.dart';
 import 'package:red_zone/utils/theme/theme.dart';
 
@@ -16,8 +17,9 @@ class App extends StatelessWidget {
       theme: TAppTheme.lightTheme,
       darkTheme: TAppTheme.darkTheme,
       debugShowCheckedModeBanner: false,
-      // initialBinding: GeneralBindings(),
-      home: const OnBoardingScreen(),
+
+      /// Show leader or circular progress indicator meanwhile Authentication repository is deciding to show relevant screen
+      home: const Scaffold(backgroundColor: TColors.primary, body: Center(child: CircularProgressIndicator(color: Colors.white))),
     );
   }
 }
