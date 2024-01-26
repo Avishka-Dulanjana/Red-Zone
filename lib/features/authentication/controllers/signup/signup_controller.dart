@@ -10,6 +10,9 @@ class SignupController extends GetxController {
   static SignupController get instance => Get.find();
 
   // Variables
+
+  final hidePassword = true.obs; // Observable for hiding/showing password
+  final privacyPolicy = true.obs; // Observable for privacy policy checkbox
   final email = TextEditingController(); // Controller for email input
   final firstName = TextEditingController(); // Controller for first name input
   final lastName = TextEditingController(); // Controller for last name input
@@ -33,6 +36,13 @@ class SignupController extends GetxController {
       if (signupFormKey.currentState!.validate()) return;
 
       // TODO: Privacy Policy Check
+      if (!privacyPolicy.value) {
+        TLoaders.warningSnackBar(
+          title: 'Acceptance Required',
+          message: 'In order to proceed, you must read and accept our Privacy Policy and Terms & Conditions.',
+        );
+        return;
+      }
 
       // TODO: Register user in the Firebase Authentication & save user data in Firebase
 
