@@ -27,6 +27,9 @@ dependencies:
   # State Management
   get: ^4.6.6
 
+  # State Management
+  firebase_core: ^2.24.2
+
   #--------------- ./ PACKAGES END ------------------#
 
 dev_dependencies:
