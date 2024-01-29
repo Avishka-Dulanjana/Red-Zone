@@ -81,7 +81,7 @@ class SignupController extends GetxController {
       TLoaders.successSnackBar(title: 'Congratulations!', message: 'Your account has been created successfully! Verify your email to continue.');
 
       // Move to Verify Email Screen
-      Get.to(() => const VerifyEmailScreen());
+      Get.to(() => VerifyEmailScreen(email: email.text.trim()));
 
       // Show some generic errors to the user
     } catch (e) {

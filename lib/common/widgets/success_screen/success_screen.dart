@@ -1,18 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:red_zone/common/styles/spacing_styles.dart';
 import 'package:red_zone/utils/constants/sizes.dart';
 import 'package:red_zone/utils/helpers/helper_functions.dart';
 import '../../../utils/constants/text_strings.dart';
 
 class SuccessScreen extends StatelessWidget {
-  const SuccessScreen(
-      {super.key,
-      required this.image,
-      required this.title,
-      required this.subTitle,
-      required this.onpressed});
+  const SuccessScreen({super.key, required this.animation, required this.title, required this.subTitle, required this.onpressed});
 
-  final String image, title, subTitle;
+  final String animation, title, subTitle;
   final VoidCallback onpressed;
 
   @override
@@ -24,9 +20,7 @@ class SuccessScreen extends StatelessWidget {
           child: Column(
             children: [
               // Image
-              Image(
-                  image: AssetImage(image),
-                  width: THelperFunctions.screenWidth() * 0.6),
+              Lottie.asset(animation, width: MediaQuery.of(context).size.width * 0.6),
               const SizedBox(
                 height: TSizes.spaceBtwSections,
               ),
@@ -48,8 +42,7 @@ class SuccessScreen extends StatelessWidget {
               // Buttons
               SizedBox(
                 width: double.infinity,
-                child: ElevatedButton(
-                    onPressed: onpressed, child: const Text(TTexts.tContinue)),
+                child: ElevatedButton(onPressed: onpressed, child: const Text(TTexts.tContinue)),
               ),
             ],
           ),
