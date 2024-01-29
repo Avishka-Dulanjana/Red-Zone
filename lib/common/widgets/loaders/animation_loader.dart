@@ -17,7 +17,7 @@ class TAnimationLoaderWidget extends StatelessWidget {
     super.key,
     required this.text,
     required this.animation,
-    this.showAction = true,
+    this.showAction = false,
     this.actionText,
     this.onActionPressed,
   });

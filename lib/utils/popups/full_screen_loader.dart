@@ -27,10 +27,7 @@ class TFullScreenLoader {
           child: Column(
             children: [
               const SizedBox(height: 250), // Adjust the height of the dialog
-              TAnimationLoaderWidget(
-                text: text,
-                animation: animation,
-              )
+              TAnimationLoaderWidget(text: text, animation: animation)
             ],
           ),
         ),

@@ -18,7 +18,7 @@ Future<void> main() async {
   /// Await splash screen until other items load
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
 
-  // Todo: Initialize the Firebase
+  // Initialize the Firebase
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform).then(
     (FirebaseApp value) => Get.put(AuthenticationRepository()),
   );
