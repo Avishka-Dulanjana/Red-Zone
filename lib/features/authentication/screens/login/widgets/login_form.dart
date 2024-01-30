@@ -17,22 +17,17 @@ class TLoginForm extends StatelessWidget {
   Widget build(BuildContext context) {
     return Form(
       child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: TSizes.spaceBtwSections),
+        padding: const EdgeInsets.symmetric(vertical: TSizes.spaceBtwItems),
         child: Column(
           children: [
             // Email
             TextFormField(
-              decoration: const InputDecoration(
-                  prefixIcon: Icon(Iconsax.direct_right),
-                  labelText: TTexts.email),
+              decoration: const InputDecoration(prefixIcon: Icon(Iconsax.direct_right), labelText: TTexts.email),
             ),
             const SizedBox(height: TSizes.spaceBtwInputFields),
             // password
             TextFormField(
-              decoration: const InputDecoration(
-                  prefixIcon: Icon(Iconsax.password_check),
-                  labelText: TTexts.password,
-                  suffixIcon: Icon(Iconsax.eye_slash)),
+              decoration: const InputDecoration(prefixIcon: Icon(Iconsax.password_check), labelText: TTexts.password, suffixIcon: Icon(Iconsax.eye_slash)),
             ),
             const SizedBox(height: TSizes.spaceBtwInputFields / 2),
             // Remember me & Forget Password
