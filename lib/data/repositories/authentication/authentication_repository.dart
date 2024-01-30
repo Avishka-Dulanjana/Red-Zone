@@ -35,14 +35,17 @@ class AuthenticationRepository extends GetxController {
     final user = _auth.currentUser;
 
     if (user != null) {
+      // if user is already logged in
       if (user.emailVerified) {
         Get.offAll(() => const NavigationMenu());
       } else {
+        // if the user's email is not verified, redirect to verify email screen
         Get.offAll(() => VerifyEmailScreen(email: _auth.currentUser?.email));
       }
     } else {
       // Local storage
       deviceStorage.writeIfNull('isFirstTime', true);
+
       // check if its the first time launching the app
       deviceStorage.read('isFirstTime') != true
           ? Get.offAll(() => const LoginScreen()) // Redirect to Login Screen if not the first time
@@ -60,6 +63,21 @@ class AuthenticationRepository extends GetxController {
   /* ------------------------Email & Password sign in ------------------------ */
 
   // [EmailAuthentication] - SignIn
+  Future<UserCredential> loginWithEmailAndPassword(String email, String password) async {
+    try {
+      return await _auth.signInWithEmailAndPassword(email: email, password: password);
+    } on FirebaseAuthException catch (e) {
+      throw TFirebaseAuthException(e.code).message;
+    } on FirebaseException catch (e) {
+      throw TFirebaseException(e.code).message;
+    } on FormatException catch (_) {
+      throw const TFormatException();
+    } on PlatformException catch (e) {
+      throw TPlatformException(e.code).message;
+    } catch (e) {
+      throw 'Something went wrong! Please try again!';
+    }
+  }
 
   // [EmailAuthentication] - REGISTER
   Future<UserCredential> registerWithEmailAndPassword(String email, String password) async {
