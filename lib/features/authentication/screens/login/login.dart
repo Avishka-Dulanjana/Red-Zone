@@ -5,7 +5,6 @@ import 'package:red_zone/features/authentication/screens/login/widgets/login_for
 import 'package:red_zone/features/authentication/screens/login/widgets/login_header.dart';
 import 'package:red_zone/utils/constants/sizes.dart';
 import 'package:red_zone/utils/constants/text_strings.dart';
-import 'package:red_zone/utils/helpers/helper_functions.dart';
 
 import '../../../../common/widgets/login_signup/form_devider.dart';
 import '../../../../common/widgets/login_signup/social_buttons.dart';

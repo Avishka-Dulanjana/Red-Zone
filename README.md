@@ -122,3 +122,15 @@ Padding(
     ),
 )
 ```
+
+# Google SignIn adding
+
+```agsl
+flutter pub add google_sign_in   
+```
+
+# SHA1, SHA256
+
+```agsl
+keytool -list -v -keystore "C:\Users\Avishka Dulanjana\.android\debug.keystore" -alias androiddebugkey -storepass android -keypass android
+```
