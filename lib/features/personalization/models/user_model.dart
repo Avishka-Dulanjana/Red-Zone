@@ -30,13 +30,13 @@ class UserModel {
   String get formattedPhoneNumber => TFormatter.formatPhoneNumber(phoneNumber);
 
   // Static function to split full name into first and last name
-  static List<String> nameParts(fullName) => fullName.split('');
+  static List<String> nameParts(fullName) => fullName.split(" ");
 
   // Static function to generate a username for the full name.
   static String generateUserName(fullName) {
-    List<String> nameParts = fullName.split(' ');
+    List<String> nameParts = fullName.split(" ");
     String firstName = nameParts[0].toLowerCase();
-    String lastName = nameParts.length > 1 ? nameParts[1].toLowerCase() : '';
+    String lastName = nameParts.length > 1 ? nameParts[1].toLowerCase() : "";
 
     String camelCaseUsername = "$firstName$lastName"; // Combine first and last name
     String usernameWithPrefix = "cwt_$camelCaseUsername"; // Add "cwt_" prefix
@@ -50,7 +50,7 @@ class UserModel {
   Map<String, dynamic> toJson() {
     return {
       'FirstName': firstName,
-      'LatsName': lastName,
+      'LastName': lastName,
       'Username': username,
       'Email': email,
       'PhoneNumber': phoneNumber,
