@@ -5,10 +5,10 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+
 import 'package:red_zone/features/authentication/screens/login/login.dart';
 import 'package:red_zone/features/authentication/screens/onboarding/onboarding.dart';
 import 'package:red_zone/navigation_menu.dart';
-
 import '../../../features/authentication/screens/signup/verify_email.dart';
 import '../../../utils/exceptions/firebase_auth_exceptions.dart';
 import '../../../utils/exceptions/firebase_exceptions.dart';
@@ -119,6 +119,22 @@ class AuthenticationRepository extends GetxController {
   // [ReAuthentication] - ReAuthentication User
 
   // [EmailAuthentication] - FORGOT PASSWORD
+
+  Future<void> sendPasswordResetEmail(String email) async {
+    try {
+      await _auth.sendPasswordResetEmail(email: email);
+    } on FirebaseAuthException catch (e) {
+      throw TFirebaseAuthException(e.code).message;
+    } on FirebaseException catch (e) {
+      throw TFirebaseException(e.code).message;
+    } on FormatException catch (_) {
+      throw const TFormatException();
+    } on PlatformException catch (e) {
+      throw TPlatformException(e.code).message;
+    } catch (e) {
+      throw 'Something went wrong! Please try again!';
+    }
+  }
 
   /* -------------------- Federated identity & social sign-in -------------------- */
 
