@@ -60,7 +60,7 @@ class UpdateNameController extends GetxController {
       TFullScreenLoader.stopLoading();
 
       // Show success message
-      TLoaders.successSnackBar(title: 'Success', message: 'Your name has been updated successfully!');
+      TLoaders.successSnackBar(title: 'Congratulations!!!', message: 'Your name has been updated successfully!');
 
       // Move to Previous Screen
       Get.off(() => const ProfileScreen());

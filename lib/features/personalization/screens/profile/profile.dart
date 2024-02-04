@@ -9,7 +9,7 @@ import 'package:red_zone/utils/constants/image_strings.dart';
 
 import '../../../../utils/constants/sizes.dart';
 import '../../controller/user_controller.dart';
-import 'change_name.dart';
+import 'widgets/change_name.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -66,7 +66,7 @@ class ProfileScreen extends StatelessWidget {
 
               Center(
                 child: TextButton(
-                  onPressed: () {},
+                  onPressed: () => controller.deleteAccountWarningPopup(),
                   child: const Text(
                     'Close Account',
                     style: TextStyle(color: Colors.red),

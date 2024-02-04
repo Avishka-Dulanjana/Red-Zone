@@ -5,8 +5,8 @@ import 'package:get/get.dart';
 import 'package:red_zone/utils/constants/text_strings.dart';
 import 'package:red_zone/utils/validators/validation.dart';
 
-import '../../../../utils/constants/sizes.dart';
-import '../../controller/update_name_controller.dart';
+import '../../../../../utils/constants/sizes.dart';
+import '../../../controller/update_name_controller.dart';
 
 class ChangeName extends StatelessWidget {
   const ChangeName({super.key});
