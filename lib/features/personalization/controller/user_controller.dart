@@ -2,10 +2,12 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:red_zone/data/repositories/authentication/authentication_repository.dart';
 
 import 'package:red_zone/features/personalization/models/user_model.dart';
-import 'package:red_zone/features/personalization/screens/profile/widgets/re_suthenticate_user_login_form.dart';
+import 'package:red_zone/features/personalization/screens/profile/widgets/re_authenticate_user_login_form.dart';
 import 'package:red_zone/utils/constants/loaders.dart';
 import 'package:red_zone/utils/constants/sizes.dart';
 import 'package:red_zone/utils/popups/full_screen_loader.dart';
@@ -21,6 +23,7 @@ class UserController extends GetxController {
   Rx<UserModel> user = UserModel.empty().obs;
 
   final hidePassword = false.obs;
+  final imageUploading = false.obs;
   final verifyEmail = TextEditingController();
   final verifyPassword = TextEditingController();
   final userRepository = Get.put(UserRepository());
@@ -48,26 +51,32 @@ class UserController extends GetxController {
   // Save user Record from any Registration provider
   Future<void> saveUserRecord(UserCredential? userCredential) async {
     try {
-      if (userCredential != null) {
-        // Convert name to First and Last name
-        final nameParts = UserModel.nameParts(userCredential.user!.displayName ?? '');
-        final username = UserModel.generateUserName(userCredential.user!.displayName ?? '');
+      // First update Rx user and then check if user data is already stored. If not, store it as new data
+      await fetchUserRecord();
 
-        // Map Data
-        final user = UserModel(
-            id: userCredential.user!.uid,
-            firstName: nameParts[0],
-            lastName: nameParts.length > 1 ? nameParts.sublist(1).join(' ') : '',
-            username: username,
-            email: userCredential.user!.email ?? '',
-            phoneNumber: userCredential.user!.phoneNumber ?? '',
-            profilePicture: userCredential.user!.photoURL ?? '');
+      // Check if user data is already stored
+      if (user.value.id.isEmpty) {
+        if (userCredential != null) {
+          // Convert name to First and Last name
+          final nameParts = UserModel.nameParts(userCredential.user!.displayName ?? '');
+          final username = UserModel.generateUserName(userCredential.user!.displayName ?? '');
 
-        // Debugging: Print user data
-        print('User data before saving: $user');
+          // Map Data
+          final user = UserModel(
+              id: userCredential.user!.uid,
+              firstName: nameParts[0],
+              lastName: nameParts.length > 1 ? nameParts.sublist(1).join(' ') : '',
+              username: username,
+              email: userCredential.user!.email ?? '',
+              phoneNumber: userCredential.user!.phoneNumber ?? '',
+              profilePicture: userCredential.user!.photoURL ?? '');
 
-        // save user data
-        await userRepository.saveUserRecord(user);
+          // Debugging: Print user data
+          print('User data before saving: $user');
+
+          // save user data
+          await userRepository.saveUserRecord(user);
+        }
       }
     } catch (e) {
       TLoaders.warningSnackBar(
@@ -98,6 +107,7 @@ class UserController extends GetxController {
     );
   }
 
+  // Delete User Account
   void deleteUserAccount() async {
     try {
       TFullScreenLoader.openLoadingDialog(text: 'Processing', animation: TImages.docerAnimation);
@@ -125,6 +135,7 @@ class UserController extends GetxController {
     }
   }
 
+  // Re-Authenticate Email and Password before deleting
   Future<void> reAuthenticateEmailAndPasswordUser() async {
     try {
       TFullScreenLoader.openLoadingDialog(text: 'Processing', animation: TImages.docerAnimation);
@@ -148,6 +159,31 @@ class UserController extends GetxController {
     } catch (e) {
       TFullScreenLoader.stopLoading();
       TLoaders.warningSnackBar(title: 'Oops!', message: 'Something went wrong while re-authenticating your account.');
+    }
+  }
+
+  // Upload Profile Picture
+  Future<void> uploadUserProfilePicture() async {
+    try {
+      final image = await ImagePicker().pickImage(source: ImageSource.gallery, imageQuality: 70, maxHeight: 512, maxWidth: 512);
+      if (image != null) {
+        imageUploading.value = true;
+        // Upload Image
+        final imageUrl = await userRepository.uploadImage('Users/Images/Profile/', image);
+
+        // Update User Image Record
+        Map<String, dynamic> json = {'profilePicture': imageUrl};
+        await userRepository.updateSingleField(json);
+
+        user.value.profilePicture = imageUrl;
+        user.refresh();
+
+        TLoaders.successSnackBar(title: 'Congrats!', message: 'Your profile picture has been uploaded successfully!');
+      }
+    } catch (e) {
+      TLoaders.errorSnackBar(title: 'Error', message: 'Something went wrong while uploading your profile picture: $e');
+    } finally {
+      imageUploading.value = false;
     }
   }
 }

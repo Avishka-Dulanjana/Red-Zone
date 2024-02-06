@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
+import 'package:red_zone/utils/constants/shimmer.dart';
+import 'widgets/change_name.dart';
+
 import 'package:red_zone/common/widgets/appbar/appbar.dart';
 import 'package:red_zone/common/widgets/custom_shapes/containers/circular_image.dart';
 import 'package:red_zone/common/widgets/custom_shapes/containers/section_heading.dart';
 import 'package:red_zone/features/personalization/screens/profile/widgets/profile_menu.dart';
 import 'package:red_zone/utils/constants/image_strings.dart';
-
 import '../../../../utils/constants/sizes.dart';
 import '../../controller/user_controller.dart';
-import 'widgets/change_name.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -29,8 +30,23 @@ class ProfileScreen extends StatelessWidget {
                 width: double.infinity,
                 child: Column(
                   children: [
-                    const TCircularImage(image: TImages.user, width: 80, height: 80),
-                    TextButton(onPressed: () {}, child: const Text('Change Profile Picture')),
+                    Obx(() {
+                      final networkImage = controller.user.value.profilePicture;
+                      final image = networkImage.isNotEmpty ? networkImage : TImages.user;
+                      return controller.imageUploading.value
+                          ? const TShimmerEffect(
+                              width: 80,
+                              height: 80,
+                              radius: 80,
+                            )
+                          : TCircularImage(
+                              image: image,
+                              width: 80,
+                              height: 80,
+                              isNetworkImage: networkImage.isNotEmpty,
+                            );
+                    }),
+                    TextButton(onPressed: () => controller.uploadUserProfilePicture(), child: const Text('Change Profile Picture')),
                   ],
                 ),
               ),
