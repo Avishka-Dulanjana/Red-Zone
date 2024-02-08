@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:red_zone/features/disaster_main/screens/new_disaster/add_disaster.dart';
 import 'package:red_zone/features/personalization/controller/user_controller.dart';
+import 'package:red_zone/utils/constants/sizes.dart';
 
 import '../../../../../common/widgets/appbar/appbar.dart';
 import '../../../../../common/widgets/products/cart/cart_menu_icon.dart';
@@ -21,13 +23,15 @@ class THomeAppBar extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(TTexts.homeAppbarTitle, style: Theme.of(context).textTheme.labelMedium!.apply(color: TColors.grey)),
-          Obx(() {
-            if (controller.profileLoading.value) {
-              return const TShimmerEffect(width: 80, height: 15);
-            } else {
-              return Text(controller.user.value.fullName, style: Theme.of(context).textTheme.headlineSmall!.apply(color: TColors.white));
-            }
-          }),
+          Obx(
+            () {
+              if (controller.profileLoading.value) {
+                return const TShimmerEffect(width: 80, height: 15);
+              } else {
+                return Text(controller.user.value.fullName, style: Theme.of(context).textTheme.headlineSmall!.apply(color: TColors.white));
+              }
+            },
+          ),
         ],
       ),
       actions: [TCartCounterIcon(onPressed: () {}, iconColor: TColors.white)],

@@ -89,7 +89,7 @@ class UserController extends GetxController {
   // Delete Account Warning Dialog
   void deleteAccountWarningPopup() {
     Get.defaultDialog(
-      contentPadding: EdgeInsets.all(TSizes.md),
+      contentPadding: const EdgeInsets.all(TSizes.md),
       title: 'Delete Account',
       middleText: 'Are you sure you want to delete your account permanently? This action cannot be undone.',
       confirm: ElevatedButton(
