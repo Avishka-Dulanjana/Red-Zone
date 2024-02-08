@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:red_zone/common/widgets/appbar/appbar.dart';
-import 'package:red_zone/features/disaster_main/screens/new_disaster/widgets/add_disaster.dart';
+import 'package:red_zone/features/disaster_main/screens/new_disaster/widgets/add_disaster_form.dart';
 import 'package:red_zone/utils/constants/text_strings.dart';
 import '../../../../utils/constants/sizes.dart';
 
