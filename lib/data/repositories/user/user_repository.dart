@@ -6,9 +6,9 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:red_zone/data/repositories/authentication/authentication_repository.dart';
-import 'package:red_zone/features/personalization/models/user_model.dart';
 
+import 'package:red_zone/features/personalization/models/user_model.dart';
+import 'package:red_zone/data/repositories/authentication/authentication_repository.dart';
 import '../../../utils/exceptions/firebase_auth_exceptions.dart';
 import '../../../utils/exceptions/firebase_exceptions.dart';
 import '../../../utils/exceptions/format_exceptions.dart';

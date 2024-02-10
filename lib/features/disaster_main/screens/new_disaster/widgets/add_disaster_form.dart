@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:red_zone/features/disaster_main/controller/disaster_controller.dart';
 
 import '../../../../../utils/constants/sizes.dart';
 import '../../../../../utils/constants/text_strings.dart';
@@ -8,17 +9,20 @@ import '../../../../../utils/validators/validation.dart';
 
 class AddDisasterForm extends StatelessWidget {
   const AddDisasterForm({
-    super.key,
-  });
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final controller = DisasterController.instance;
     return Form(
       child: Column(children: [
         // Dropdown Disaster Type
         DropdownButtonFormField(
           decoration: const InputDecoration(labelText: TTexts.disasterType, prefixIcon: Icon(Iconsax.sort_copy)),
-          onChanged: (value) {},
+          onChanged: (value) {
+            DisasterController.instance.disasterType.value = value.toString();
+          },
           items: ["Flood", "Land Slide", "Earthquake", "Tsunami", "Storm"]
               .map(
                 (option) => DropdownMenuItem(value: option, child: Text(option)),
@@ -31,7 +35,9 @@ class AddDisasterForm extends StatelessWidget {
           padding: const EdgeInsets.only(top: TSizes.spaceBtwInputFields),
           child: DropdownButtonFormField(
             decoration: const InputDecoration(labelText: TTexts.disasterProvince, prefixIcon: Icon(Iconsax.sort_copy)),
-            onChanged: (value) {},
+            onChanged: (value) {
+              DisasterController.instance.disasterProvince.value = value.toString();
+            },
             items: [
               "Central Province",
               "Eastern Province",
@@ -51,6 +57,7 @@ class AddDisasterForm extends StatelessWidget {
         ),
         const SizedBox(height: TSizes.spaceBtwInputFields),
         TextFormField(
+          controller: controller.disasterDescription,
           validator: (value) => TValidator.validateEmptyText(TTexts.username, value),
           expands: false,
           maxLines: 3,
@@ -87,7 +94,7 @@ class AddDisasterForm extends StatelessWidget {
               icon: const Icon(Iconsax.map, size: TSizes.iconMd),
               tooltip: TTexts.cancel,
               onPressed: () {
-                ImagePicker().pickImage(source: ImageSource.camera);
+                ImagePicker().pickImage(source: ImageSource.gallery);
               }),
         ),
         const SizedBox(height: TSizes.spaceBtwInputFields),
@@ -111,7 +118,7 @@ class AddDisasterForm extends StatelessWidget {
         SizedBox(
           width: double.infinity,
           child: ElevatedButton(
-            onPressed: () {},
+            onPressed: () => controller.saveDisasterRecord(),
             child: const Text(TTexts.addDisaster),
           ),
         ),
