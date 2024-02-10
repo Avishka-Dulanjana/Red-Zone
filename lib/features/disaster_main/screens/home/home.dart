@@ -4,8 +4,6 @@ import 'package:red_zone/features/disaster_main/screens/home/widgets/home_appbar
 import 'package:red_zone/features/disaster_main/screens/home/widgets/slider.dart';
 import 'package:get/get.dart';
 import 'package:red_zone/features/disaster_main/screens/new_disaster/add_disaster.dart';
-import 'package:red_zone/features/personalization/screens/profile/profile.dart';
-import 'package:red_zone/features/personalization/screens/profile/widgets/change_name.dart';
 import 'package:red_zone/utils/constants/image_strings.dart';
 import 'package:red_zone/utils/device/device_utility.dart';
 

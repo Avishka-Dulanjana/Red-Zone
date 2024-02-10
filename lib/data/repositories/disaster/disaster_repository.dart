@@ -12,6 +12,7 @@ import '../../../utils/exceptions/firebase_auth_exceptions.dart';
 import '../../../utils/exceptions/firebase_exceptions.dart';
 import '../../../utils/exceptions/format_exceptions.dart';
 import '../../../utils/exceptions/platform_exceptions.dart';
+import '../authentication/authentication_repository.dart';
 
 class DisasterRepository extends GetxController {
   static DisasterRepository get instance => Get.find();
@@ -42,6 +43,23 @@ class DisasterRepository extends GetxController {
       await ref.putFile(File(image.path));
       final url = await ref.getDownloadURL();
       return url;
+    } on FirebaseAuthException catch (e) {
+      throw TFirebaseAuthException(e.code).message;
+    } on FirebaseException catch (e) {
+      throw TFirebaseException(e.code).message;
+    } on FormatException catch (_) {
+      throw const TFormatException();
+    } on PlatformException catch (e) {
+      throw TPlatformException(e.code).message;
+    } catch (e) {
+      throw 'Something went wrong! Please try again!';
+    }
+  }
+
+  // Update any field in specific users collection
+  Future<void> updateSingleField(String documentId, Map<String, dynamic> json) async {
+    try {
+      await _db.collection('Disasters').doc(documentId).update(json);
     } on FirebaseAuthException catch (e) {
       throw TFirebaseAuthException(e.code).message;
     } on FirebaseException catch (e) {
