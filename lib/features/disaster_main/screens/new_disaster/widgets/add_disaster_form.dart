@@ -1,14 +1,10 @@
-import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
 import 'package:get/get.dart';
-import 'package:location/location.dart';
-import 'package:http/http.dart' as http;
 
 import 'package:red_zone/features/disaster_main/controller/disaster_controller.dart';
-import 'package:red_zone/features/disaster_main/models/disaster_model.dart';
 import '../../../../../utils/constants/sizes.dart';
 import '../../../../../utils/constants/text_strings.dart';
 import '../../../../../utils/validators/validation.dart';
@@ -116,9 +112,29 @@ class AddDisasterForm extends StatelessWidget {
           child: Obx(() {
             // Display the map image if location is selected
             if (controller.pickedLocation.value != null) {
-              return ClipRRect(
+              // Display the custom marker snapshot
+              if (controller.locationImage.value.isNotEmpty) {
+                return ClipRRect(
                   borderRadius: BorderRadius.circular(TSizes.cardRadiusLg),
-                  child: Image.network(controller.locationImage.value, fit: BoxFit.cover, width: double.infinity, height: TSizes.disasterImageSize));
+                  child: Image.network(
+                    controller.locationImage.value,
+                    fit: BoxFit.cover,
+                    width: double.infinity,
+                    height: TSizes.disasterImageSize,
+                  ),
+                );
+              }
+            } else if (controller.locationImage.value.isNotEmpty) {
+              // Display the current location image
+              return ClipRRect(
+                borderRadius: BorderRadius.circular(TSizes.cardRadiusLg),
+                child: Image.network(
+                  controller.locationImage.value,
+                  fit: BoxFit.cover,
+                  width: double.infinity,
+                  height: TSizes.disasterImageSize,
+                ),
+              );
             } else {
               // Display icon when no location is selected
               return IconButton(
@@ -129,6 +145,7 @@ class AddDisasterForm extends StatelessWidget {
                 },
               );
             }
+            return Container(); // or any other default widget
           }),
         ),
         const SizedBox(height: TSizes.spaceBtwInputFields),
@@ -142,7 +159,7 @@ class AddDisasterForm extends StatelessWidget {
           const SizedBox(width: TSizes.spaceBtwInputFields),
           Expanded(
               child: OutlinedButton(
-            onPressed: () {},
+            onPressed: () => controller.openGoogleMapScreen(),
             child: const Text(TTexts.selectOnMap),
           )),
         ]),

@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:red_zone/utils/constants/loaders.dart';
 import 'package:location/location.dart';
@@ -15,6 +16,8 @@ import '../../../utils/constants/image_strings.dart';
 import '../../../utils/helpers/network_manager.dart';
 import '../../../utils/popups/full_screen_loader.dart';
 import '../models/disaster_model.dart';
+import '../screens/new_disaster/widgets/add_disaster_form.dart';
+import '../screens/new_disaster/widgets/google_map_screen.dart'; // Import your GoogleMapScreen class
 
 class DisasterController extends GetxController {
   static DisasterController get instance => Get.find();
@@ -28,8 +31,10 @@ class DisasterController extends GetxController {
   final disasterLocation = TextEditingController();
   final disasterRepository = Get.put(DisasterRepository());
   final disasterImage = RxString('');
-  final pickedLocation = Rx<PlaceLocation?>(null);
   final locationImage = RxString('');
+  final pickedLocation = Rx<PlaceLocation?>(null);
+  final customMarkerLocation = Rx<LatLng?>(null);
+  final selectedMapAddress = RxString('');
   GlobalKey<FormState> addDisasterFormKey = GlobalKey<FormState>();
 
   final picker = ImagePicker();
@@ -145,6 +150,43 @@ class DisasterController extends GetxController {
     } catch (e) {
       TFullScreenLoader.stopLoading();
       TLoaders.errorSnackBar(title: 'Data not saved', message: e.toString());
+    }
+  }
+
+  // Save custom marker location
+  void saveCustomMarkerLocation(LatLng? markerLocation) {
+    customMarkerLocation.value = markerLocation;
+  }
+
+  /// Open Google Map Screen
+  void openGoogleMapScreen() {
+    Get.to(() => GoogleMapScreen(
+          location: PlaceLocation(latitude: 37.422, longitude: -122.084, address: ''), // Provide a default location if needed
+          isSelecting: true,
+          onSaveMarker: (selectedLocation) {
+            // Handle the selected location from the Google Map screen
+            customMarkerLocation.value = selectedLocation;
+          },
+          onSaveCustomMarkerCallback: onSaveCustomMarker, // Provide the callback
+        ));
+  }
+
+  // Save custom marker location
+  void onSaveCustomMarker() {
+    // Check if a custom marker location is selected
+    if (customMarkerLocation.value != null) {
+      // Update the pickedLocation value
+      pickedLocation.value = PlaceLocation(
+        latitude: customMarkerLocation.value!.latitude,
+        longitude: customMarkerLocation.value!.longitude,
+        address: selectedMapAddress.value, // You can update the address based on your logic
+      );
+      print(pickedLocation.value);
+      // Update other relevant form fields if needed
+      // For example: controller.disasterLocation.text = pickedLocation.value?.address ?? '';
+
+      // Navigate back to the form screen
+      Get.off(() => const AddDisasterForm());
     }
   }
 }
