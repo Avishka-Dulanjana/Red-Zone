@@ -1,11 +1,14 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:get/get.dart';
+import 'package:location/location.dart';
+import 'package:http/http.dart' as http;
 
 import 'package:red_zone/features/disaster_main/controller/disaster_controller.dart';
+import 'package:red_zone/features/disaster_main/models/disaster_model.dart';
 import '../../../../../utils/constants/sizes.dart';
 import '../../../../../utils/constants/text_strings.dart';
 import '../../../../../utils/validators/validation.dart';
@@ -73,7 +76,7 @@ class AddDisasterForm extends StatelessWidget {
 
         const SizedBox(height: TSizes.spaceBtwInputFields),
 
-        // Image
+        // Image on disaster
         GestureDetector(
           onTap: () {
             // Call pickImage method when the image button is pressed
@@ -102,7 +105,7 @@ class AddDisasterForm extends StatelessWidget {
         ),
         const SizedBox(height: TSizes.spaceBtwInputFields),
 
-        // Map
+        // Map details
         Container(
           decoration: BoxDecoration(
             border: Border.all(color: Colors.grey),
@@ -110,14 +113,30 @@ class AddDisasterForm extends StatelessWidget {
           ),
           width: double.infinity,
           height: TSizes.disasterImageSize,
-          child: IconButton(icon: const Icon(Iconsax.map, size: TSizes.iconMd), tooltip: TTexts.cancel, onPressed: () {}),
+          child: Obx(() {
+            // Display the map image if location is selected
+            if (controller.pickedLocation.value != null) {
+              return ClipRRect(
+                  borderRadius: BorderRadius.circular(TSizes.cardRadiusLg),
+                  child: Image.network(controller.locationImage.value, fit: BoxFit.cover, width: double.infinity, height: TSizes.disasterImageSize));
+            } else {
+              // Display icon when no location is selected
+              return IconButton(
+                icon: const Icon(Iconsax.map, size: TSizes.iconMd),
+                tooltip: TTexts.cancel,
+                onPressed: () {
+                  controller.getLocation();
+                },
+              );
+            }
+          }),
         ),
         const SizedBox(height: TSizes.spaceBtwInputFields),
 
         Row(children: [
           Expanded(
               child: OutlinedButton(
-            onPressed: () {},
+            onPressed: () => controller.getLocation(),
             child: const Text(TTexts.selectOnCurrentLocation),
           )),
           const SizedBox(width: TSizes.spaceBtwInputFields),

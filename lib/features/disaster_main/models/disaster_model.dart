@@ -9,7 +9,7 @@ class DisasterModel {
   final String disasterProvince;
   final String disasterDescription;
   String disasterImage;
-  final String disasterLocation;
+  final PlaceLocation disasterLocation;
   final DateTime createdAt = DateTime.now();
 
   DisasterModel({
@@ -22,7 +22,8 @@ class DisasterModel {
     required this.disasterLocation,
   });
 
-  static DisasterModel empty() => DisasterModel(id: '', disasterType: '', disasterProvince: '', disasterDescription: '', disasterImage: '', disasterLocation: '', userId: '');
+  static DisasterModel empty() =>
+      DisasterModel(id: '', disasterType: '', disasterProvince: '', disasterDescription: '', disasterImage: '', disasterLocation: PlaceLocation(latitude: 0, longitude: 0, address: ''), userId: '');
 
   Map<String, dynamic> toJson() {
     return {
@@ -31,8 +32,8 @@ class DisasterModel {
       'disasterProvince': disasterProvince,
       'disasterDescription': disasterDescription,
       'disasterImage': disasterImage,
-      'disasterLocation': disasterLocation,
       'createdAt': createdAt,
+      'disasterLocation': disasterLocation.toJson(),
     };
   }
 
@@ -41,7 +42,7 @@ class DisasterModel {
       final data = document.data()!;
       return DisasterModel(
         id: document.id,
-        disasterLocation: data['disasterLocation'] ?? '',
+        disasterLocation: PlaceLocation.fromJson(data['disasterLocation']),
         userId: data['userId'] ?? '',
         disasterType: data['disasterType'] ?? '',
         disasterProvince: data['disasterProvince'] ?? '',
@@ -50,5 +51,33 @@ class DisasterModel {
       );
     }
     return DisasterModel.empty();
+  }
+}
+
+class PlaceLocation {
+  final double latitude;
+  final double longitude;
+  final String address;
+
+  PlaceLocation({
+    required this.latitude,
+    required this.longitude,
+    required this.address,
+  });
+
+  Map<String, dynamic> toJson() {
+    return {
+      'latitude': latitude,
+      'longitude': longitude,
+      'address': address,
+    };
+  }
+
+  factory PlaceLocation.fromJson(Map<String, dynamic> json) {
+    return PlaceLocation(
+      latitude: json['latitude'] ?? 0.0,
+      longitude: json['longitude'] ?? 0.0,
+      address: json['address'] ?? '',
+    );
   }
 }
