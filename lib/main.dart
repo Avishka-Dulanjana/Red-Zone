@@ -30,11 +30,6 @@ Future<void> main() async {
     (FirebaseApp value) => Get.put(DisasterController()),
   );
 
-  // Initialize the Firebase Disaster Controller
-  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform).then(
-    (FirebaseApp value) => Get.put(GoogleMappingController()),
-  );
-
   // Load all the Material Design / Theme / Localizations / Bindings
   runApp(const App());
 }

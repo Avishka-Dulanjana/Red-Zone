@@ -32,7 +32,6 @@ class MapSelectionButtons extends StatelessWidget {
           child: OutlinedButton(
             onPressed: () async {
               var result = await Get.to(() => GoogleMapScreen(
-                    location: PlaceLocation(latitude: 37.422, longitude: -122.084, address: ''),
                     isSelecting: true,
                     onSaveCustomMarkerCallback: () {},
                     onLocationPicked: (PlaceLocation? pickedLocation) {
