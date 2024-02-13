@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import '../../../../../../utils/constants/sizes.dart';
 import '../../../../../../utils/constants/text_strings.dart';
@@ -20,7 +19,6 @@ class MapSelectionButtons extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        // on select current location button
         Expanded(
           child: OutlinedButton(
             onPressed: () => controller.getLocation(),
@@ -33,19 +31,20 @@ class MapSelectionButtons extends StatelessWidget {
         Expanded(
           child: OutlinedButton(
             onPressed: () async {
-              await Get.to(() => GoogleMapScreen(
-                    isSelecting: true,
+              var result = await Get.to(() => GoogleMapScreen(
                     location: PlaceLocation(latitude: 37.422, longitude: -122.084, address: ''),
-                    onLocationPicked: (LatLng? location) {
-                      if (location != null) {
-                        controller.pickedLocation.value = PlaceLocation(
-                          latitude: location.latitude,
-                          longitude: location.longitude,
-                          address: '',
-                        );
+                    isSelecting: true,
+                    onSaveCustomMarkerCallback: () {},
+                    onLocationPicked: (PlaceLocation? pickedLocation) {
+                      if (pickedLocation != null) {
+                        controller.pickedLocation.value = pickedLocation; // Use the updated location
                       }
                     },
                   ));
+
+              if (result != null && result is PlaceLocation) {
+                print('Picked location: ${result.latitude}, ${result.longitude}');
+              }
             },
             child: const Text(TTexts.selectOnMap),
           ),

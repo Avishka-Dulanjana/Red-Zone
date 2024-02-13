@@ -1,4 +1,3 @@
-// GoogleMapScreen class
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:get/get.dart';
@@ -20,9 +19,9 @@ class GoogleMapScreen extends StatelessWidget {
   final PlaceLocation location;
   final bool isSelecting;
   final VoidCallback? onSaveCustomMarkerCallback;
-  final void Function(LatLng?)? onLocationPicked;
+  final void Function(PlaceLocation?)? onLocationPicked;
 
-  final Rx<LatLng?> pickedLocation2 = Rx<LatLng?>(null);
+  final Rx<PlaceLocation?> pickedLocation2 = Rx<PlaceLocation?>(null);
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +50,11 @@ class GoogleMapScreen extends StatelessWidget {
             onTap: !isSelecting
                 ? null
                 : (position) async {
-                    pickedLocation2.value = position;
+                    pickedLocation2.value = PlaceLocation(
+                      latitude: position.latitude,
+                      longitude: position.longitude,
+                      address: '', // Update this based on your logic
+                    );
                     setState(() {});
                     // Pass the selected location back to the callback function
                     if (onLocationPicked != null) {
@@ -69,7 +72,7 @@ class GoogleMapScreen extends StatelessWidget {
                 ? {
                     Marker(
                       markerId: const MarkerId('picked_location'),
-                      position: pickedLocation2.value!,
+                      position: LatLng(pickedLocation2.value!.latitude, pickedLocation2.value!.longitude),
                       icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueRed),
                       visible: true,
                     ),
