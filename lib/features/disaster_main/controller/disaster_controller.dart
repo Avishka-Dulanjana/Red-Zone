@@ -1,8 +1,8 @@
 import 'dart:convert';
-import 'dart:io';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:image_picker/image_picker.dart';
@@ -16,7 +16,6 @@ import '../../../utils/constants/image_strings.dart';
 import '../../../utils/helpers/network_manager.dart';
 import '../../../utils/popups/full_screen_loader.dart';
 import '../models/disaster_model.dart';
-import '../screens/new_disaster/widgets/add_disaster_form.dart';
 import '../screens/new_disaster/widgets/google_map_screen.dart'; // Import your GoogleMapScreen class
 
 class DisasterController extends GetxController {
@@ -25,75 +24,17 @@ class DisasterController extends GetxController {
   final disasterLoading = false.obs;
   Rx<DisasterModel> disaster = DisasterModel.empty().obs;
 
+  // Form Fields
   final disasterType = RxString('');
   final disasterProvince = RxString('');
   final disasterDescription = TextEditingController();
-  final disasterLocation = TextEditingController();
   final disasterRepository = Get.put(DisasterRepository());
   final disasterImage = RxString('');
   final locationImage = RxString('');
   final pickedLocation = Rx<PlaceLocation?>(null);
-  final customMarkerLocation = Rx<LatLng?>(null);
-  final selectedMapAddress = RxString('');
+
+  // Add Disaster Form Key
   GlobalKey<FormState> addDisasterFormKey = GlobalKey<FormState>();
-
-  final picker = ImagePicker();
-
-  // Method to select an image
-  Future<void> pickImage() async {
-    final pickedFile = await picker.pickImage(source: ImageSource.camera);
-
-    if (pickedFile != null) {
-      // Update disasterImage with the path of the selected image
-      disasterImage.value = pickedFile.path;
-    }
-  }
-
-  // Get Current Location
-  Future<void> getLocation() async {
-    Location location = Location();
-
-    bool serviceEnabled;
-    PermissionStatus permissionGranted;
-    LocationData locationData;
-
-    serviceEnabled = await location.serviceEnabled();
-    if (!serviceEnabled) {
-      serviceEnabled = await location.requestService();
-      if (!serviceEnabled) {
-        return;
-      }
-    }
-
-    permissionGranted = await location.hasPermission();
-    if (permissionGranted == PermissionStatus.denied) {
-      permissionGranted = await location.requestPermission();
-      if (permissionGranted != PermissionStatus.granted) {
-        return;
-      }
-    }
-
-    locationData = await location.getLocation();
-    final lat = locationData.latitude;
-    final lng = locationData.longitude;
-
-    if (lat == null || lng == null) {
-      return;
-    }
-
-    print(locationData.longitude);
-    print(locationData.latitude);
-
-    final url = Uri.parse('https://maps.googleapis.com/maps/api/geocode/json?latlng=$lat,$lng&key=AIzaSyBt4iFeic3dBUU-GJNBWNJLqQ3xNOiuZfI');
-
-    final response = await http.get(url);
-    final resData = json.decode(response.body);
-    final address = resData['results'][0]['formatted_address'];
-
-    pickedLocation.value = PlaceLocation(latitude: lat, longitude: lng, address: address);
-    locationImage.value =
-        'https://maps.googleapis.com/maps/api/staticmap?center=$lat,$lng&zoom=16&size=600x300&maptype=roadmap&markers=color:red%7Clabel:A%7C$lat,$lng&key=AIzaSyBt4iFeic3dBUU-GJNBWNJLqQ3xNOiuZfI';
-  }
 
   // Save Disaster Record to Firestore
   Future<void> saveDisasterRecord() async {
@@ -153,40 +94,60 @@ class DisasterController extends GetxController {
     }
   }
 
-  // Save custom marker location
-  void saveCustomMarkerLocation(LatLng? markerLocation) {
-    customMarkerLocation.value = markerLocation;
-  }
+  // Method to select an image
+  final picker = ImagePicker();
 
-  /// Open Google Map Screen
-  void openGoogleMapScreen() {
-    Get.to(() => GoogleMapScreen(
-          location: PlaceLocation(latitude: 37.422, longitude: -122.084, address: ''), // Provide a default location if needed
-          isSelecting: true,
-          onSaveMarker: (selectedLocation) {
-            // Handle the selected location from the Google Map screen
-            customMarkerLocation.value = selectedLocation;
-          },
-          onSaveCustomMarkerCallback: onSaveCustomMarker, // Provide the callback
-        ));
-  }
+  Future<void> pickImage() async {
+    final pickedFile = await picker.pickImage(source: ImageSource.camera);
 
-  // Save custom marker location
-  void onSaveCustomMarker() {
-    // Check if a custom marker location is selected
-    if (customMarkerLocation.value != null) {
-      // Update the pickedLocation value
-      pickedLocation.value = PlaceLocation(
-        latitude: customMarkerLocation.value!.latitude,
-        longitude: customMarkerLocation.value!.longitude,
-        address: selectedMapAddress.value, // You can update the address based on your logic
-      );
-      print(pickedLocation.value);
-      // Update other relevant form fields if needed
-      // For example: controller.disasterLocation.text = pickedLocation.value?.address ?? '';
-
-      // Navigate back to the form screen
-      Get.off(() => const AddDisasterForm());
+    if (pickedFile != null) {
+      // Update disasterImage with the path of the selected image
+      disasterImage.value = pickedFile.path;
     }
+  }
+
+  // Get Current Location
+  Future<void> getLocation() async {
+    Location location = Location();
+    bool serviceEnabled;
+    PermissionStatus permissionGranted;
+    LocationData locationData;
+
+    serviceEnabled = await location.serviceEnabled();
+    if (!serviceEnabled) {
+      serviceEnabled = await location.requestService();
+      if (!serviceEnabled) {
+        return;
+      }
+    }
+
+    permissionGranted = await location.hasPermission();
+    if (permissionGranted == PermissionStatus.denied) {
+      permissionGranted = await location.requestPermission();
+      if (permissionGranted != PermissionStatus.granted) {
+        return;
+      }
+    }
+
+    locationData = await location.getLocation();
+    final lat = locationData.latitude;
+    final lng = locationData.longitude;
+
+    if (lat == null || lng == null) {
+      return;
+    }
+
+    print(locationData.longitude);
+    print(locationData.latitude);
+
+    final url = Uri.parse('https://maps.googleapis.com/maps/api/geocode/json?latlng=$lat,$lng&key=AIzaSyBt4iFeic3dBUU-GJNBWNJLqQ3xNOiuZfI');
+
+    final response = await http.get(url);
+    final resData = json.decode(response.body);
+    final address = resData['results'][0]['formatted_address'];
+
+    pickedLocation.value = PlaceLocation(latitude: lat, longitude: lng, address: address);
+    locationImage.value =
+        'https://maps.googleapis.com/maps/api/staticmap?center=$lat,$lng&zoom=16&size=600x300&maptype=roadmap&markers=color:red%7Clabel:A%7C$lat,$lng&key=AIzaSyBt4iFeic3dBUU-GJNBWNJLqQ3xNOiuZfI';
   }
 }

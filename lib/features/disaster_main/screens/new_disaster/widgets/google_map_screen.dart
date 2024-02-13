@@ -1,39 +1,28 @@
+// GoogleMapScreen class
 import 'package:flutter/material.dart';
-import 'package:geocoding/geocoding.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:get/get.dart';
 
-import '../../../models/disaster_model.dart';
 import '../../../controller/disaster_controller.dart';
+import '../../../models/disaster_model.dart';
 
 class GoogleMapScreen extends StatelessWidget {
+  final controller = Get.put(DisasterController());
+
   GoogleMapScreen({
     Key? key,
     required this.location,
     required this.isSelecting,
-    required this.onSaveMarker,
-    required this.onSaveCustomMarkerCallback,
+    this.onSaveCustomMarkerCallback,
+    this.onLocationPicked,
   }) : super(key: key);
 
   final PlaceLocation location;
   final bool isSelecting;
+  final VoidCallback? onSaveCustomMarkerCallback;
+  final void Function(LatLng?)? onLocationPicked;
 
-  final Function(LatLng?) onSaveMarker;
-  final VoidCallback onSaveCustomMarkerCallback;
-
-  final Rx<LatLng?> _pickedLocation = Rx<LatLng?>(null);
-
-  Future<String> getAddressFromLatLng(LatLng position) async {
-    try {
-      List<Placemark> placemarks = await placemarkFromCoordinates(position.latitude, position.longitude);
-      if (placemarks.isNotEmpty) {
-        return placemarks[0].street ?? '';
-      }
-    } catch (e) {
-      print('Error fetching address: $e');
-    }
-    return '';
-  }
+  final Rx<LatLng?> pickedLocation2 = Rx<LatLng?>(null);
 
   @override
   Widget build(BuildContext context) {
@@ -44,9 +33,13 @@ class GoogleMapScreen extends StatelessWidget {
           if (isSelecting)
             IconButton(
               icon: const Icon(Icons.save),
-              onPressed: () {
-                onSaveMarker(_pickedLocation.value);
-                onSaveCustomMarkerCallback(); // Call the callback provided by the parent
+              onPressed: () async {
+                if (onSaveCustomMarkerCallback != null) {
+                  onSaveCustomMarkerCallback!();
+                }
+                if (onLocationPicked != null) {
+                  onLocationPicked!(pickedLocation2.value);
+                }
                 Navigator.of(context).pop();
               },
             ),
@@ -58,12 +51,12 @@ class GoogleMapScreen extends StatelessWidget {
             onTap: !isSelecting
                 ? null
                 : (position) async {
-                    print('Tapped on the map at: $position');
-                    _pickedLocation.value = position;
-                    print('_pickedLocation: ${_pickedLocation.value}');
-                    setState(() {
-                      // Trigger a rebuild
-                    });
+                    pickedLocation2.value = position;
+                    setState(() {});
+                    // Pass the selected location back to the callback function
+                    if (onLocationPicked != null) {
+                      onLocationPicked!(pickedLocation2.value);
+                    }
                   },
             initialCameraPosition: CameraPosition(
               target: LatLng(
@@ -72,11 +65,11 @@ class GoogleMapScreen extends StatelessWidget {
               ),
               zoom: 16,
             ),
-            markers: _pickedLocation.value != null && isSelecting
+            markers: pickedLocation2.value != null && isSelecting
                 ? {
                     Marker(
                       markerId: const MarkerId('picked_location'),
-                      position: _pickedLocation.value!,
+                      position: pickedLocation2.value!,
                       icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueRed),
                       visible: true,
                     ),

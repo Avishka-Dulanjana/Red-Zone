@@ -8,9 +8,16 @@ import 'package:red_zone/features/disaster_main/controller/disaster_controller.d
 import '../../../../../utils/constants/sizes.dart';
 import '../../../../../utils/constants/text_strings.dart';
 import '../../../../../utils/validators/validation.dart';
+import '../../../models/disaster_model.dart';
+import 'form_fields/disaster_description_field.dart';
+import 'form_fields/disaster_image_pick.dart';
+import 'form_fields/disaster_map_selection.dart';
+import 'form_fields/disaster_map_selection_buttons.dart';
 
 class AddDisasterForm extends StatelessWidget {
-  const AddDisasterForm({super.key});
+  AddDisasterForm({super.key});
+
+  final pickedLocation = Rx<PlaceLocation?>(null);
 
   @override
   Widget build(BuildContext context) {
@@ -62,107 +69,19 @@ class AddDisasterForm extends StatelessWidget {
         const SizedBox(height: TSizes.spaceBtwInputFields),
 
         // Description
-        TextFormField(
-          controller: controller.disasterDescription,
-          validator: (value) => TValidator.validateEmptyText(TTexts.description, value),
-          expands: false,
-          maxLines: 3,
-          decoration: const InputDecoration(labelText: TTexts.description, prefixIcon: Icon(Iconsax.user_edit)),
-        ),
-
+        DisasterDescriptionField(controller: controller),
         const SizedBox(height: TSizes.spaceBtwInputFields),
 
         // Image on disaster
-        GestureDetector(
-          onTap: () {
-            // Call pickImage method when the image button is pressed
-            controller.pickImage();
-          },
-          child: Container(
-            decoration: BoxDecoration(
-              border: Border.all(color: Colors.grey),
-              borderRadius: BorderRadius.circular(TSizes.cardRadiusLg),
-            ),
-            width: double.infinity,
-            height: TSizes.disasterImageSize,
-            child: Obx(() {
-              // Check if an image is selected
-              if (controller.disasterImage.value.isNotEmpty) {
-                // Display the selected image
-                return ClipRRect(
-                    borderRadius: BorderRadius.circular(TSizes.cardRadiusLg),
-                    child: Image.file(File(controller.disasterImage.value), width: double.infinity, height: TSizes.disasterImageSize, fit: BoxFit.cover));
-              } else {
-                // Display icon when no image is selected
-                return const Icon(Iconsax.camera, size: TSizes.iconMd);
-              }
-            }),
-          ),
-        ),
+        DisasterImagePick(controller: controller),
         const SizedBox(height: TSizes.spaceBtwInputFields),
 
         // Map details
-        Container(
-          decoration: BoxDecoration(
-            border: Border.all(color: Colors.grey),
-            borderRadius: BorderRadius.circular(TSizes.cardRadiusLg),
-          ),
-          width: double.infinity,
-          height: TSizes.disasterImageSize,
-          child: Obx(() {
-            // Display the map image if location is selected
-            if (controller.pickedLocation.value != null) {
-              // Display the custom marker snapshot
-              if (controller.locationImage.value.isNotEmpty) {
-                return ClipRRect(
-                  borderRadius: BorderRadius.circular(TSizes.cardRadiusLg),
-                  child: Image.network(
-                    controller.locationImage.value,
-                    fit: BoxFit.cover,
-                    width: double.infinity,
-                    height: TSizes.disasterImageSize,
-                  ),
-                );
-              }
-            } else if (controller.locationImage.value.isNotEmpty) {
-              // Display the current location image
-              return ClipRRect(
-                borderRadius: BorderRadius.circular(TSizes.cardRadiusLg),
-                child: Image.network(
-                  controller.locationImage.value,
-                  fit: BoxFit.cover,
-                  width: double.infinity,
-                  height: TSizes.disasterImageSize,
-                ),
-              );
-            } else {
-              // Display icon when no location is selected
-              return IconButton(
-                icon: const Icon(Iconsax.map, size: TSizes.iconMd),
-                tooltip: TTexts.cancel,
-                onPressed: () {
-                  controller.getLocation();
-                },
-              );
-            }
-            return Container(); // or any other default widget
-          }),
-        ),
+        const DisasterMapSelection(),
         const SizedBox(height: TSizes.spaceBtwInputFields),
 
-        Row(children: [
-          Expanded(
-              child: OutlinedButton(
-            onPressed: () => controller.getLocation(),
-            child: const Text(TTexts.selectOnCurrentLocation),
-          )),
-          const SizedBox(width: TSizes.spaceBtwInputFields),
-          Expanded(
-              child: OutlinedButton(
-            onPressed: () => controller.openGoogleMapScreen(),
-            child: const Text(TTexts.selectOnMap),
-          )),
-        ]),
+        // Map selection buttons
+        MapSelectionButtons(controller: controller),
         const SizedBox(height: TSizes.spaceBtwInputFields),
 
         // Save button
@@ -179,7 +98,9 @@ class AddDisasterForm extends StatelessWidget {
         SizedBox(
           width: double.infinity,
           child: TextButton(
-            onPressed: () {},
+            onPressed: () {
+              Get.back();
+            },
             child: const Text(TTexts.cancel),
           ),
         ),

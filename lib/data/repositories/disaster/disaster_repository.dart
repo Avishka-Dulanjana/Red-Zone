@@ -12,7 +12,6 @@ import '../../../utils/exceptions/firebase_auth_exceptions.dart';
 import '../../../utils/exceptions/firebase_exceptions.dart';
 import '../../../utils/exceptions/format_exceptions.dart';
 import '../../../utils/exceptions/platform_exceptions.dart';
-import '../authentication/authentication_repository.dart';
 
 class DisasterRepository extends GetxController {
   static DisasterRepository get instance => Get.find();

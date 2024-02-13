@@ -25,7 +25,7 @@ class NewDisasterScreen extends StatelessWidget {
               const SizedBox(height: TSizes.spaceBtwSections),
 
               // Form
-              const AddDisasterForm(),
+              AddDisasterForm(),
             ],
           ),
         ),
