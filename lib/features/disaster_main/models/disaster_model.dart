@@ -8,7 +8,8 @@ class DisasterModel {
   final String disasterType;
   final String disasterProvince;
   final String disasterDescription;
-  String disasterImage;
+  final List<String> disasterImages;
+  List<Map<String, String>> disasterImageUrls;
   final PlaceLocation disasterLocation;
   final DateTime createdAt = DateTime.now();
 
@@ -18,12 +19,21 @@ class DisasterModel {
     required this.disasterType,
     required this.disasterProvince,
     required this.disasterDescription,
-    required this.disasterImage,
+    required this.disasterImages,
+    required this.disasterImageUrls,
     required this.disasterLocation,
   });
 
-  static DisasterModel empty() =>
-      DisasterModel(id: '', disasterType: '', disasterProvince: '', disasterDescription: '', disasterImage: '', disasterLocation: PlaceLocation(latitude: 0, longitude: 0, address: ''), userId: '');
+  static DisasterModel empty() => DisasterModel(
+        id: '',
+        disasterType: '',
+        disasterProvince: '',
+        disasterDescription: '',
+        disasterImages: [],
+        disasterImageUrls: [],
+        disasterLocation: PlaceLocation(latitude: 0, longitude: 0, address: ''),
+        userId: '',
+      );
 
   Map<String, dynamic> toJson() {
     return {
@@ -31,7 +41,8 @@ class DisasterModel {
       'disasterType': disasterType,
       'disasterProvince': disasterProvince,
       'disasterDescription': disasterDescription,
-      'disasterImage': disasterImage,
+      'disasterImages': disasterImages,
+      'disasterImageUrls': disasterImageUrls,
       'createdAt': createdAt,
       'disasterLocation': disasterLocation.toJson(),
     };
@@ -47,7 +58,8 @@ class DisasterModel {
         disasterType: data['disasterType'] ?? '',
         disasterProvince: data['disasterProvince'] ?? '',
         disasterDescription: data['disasterDescription'],
-        disasterImage: data['disasterImage'] ?? '',
+        disasterImages: List<String>.from(data['disasterImages'] ?? []),
+        disasterImageUrls: List<Map<String, String>>.from(data['disasterImageUrls'] ?? []),
       );
     }
     return DisasterModel.empty();

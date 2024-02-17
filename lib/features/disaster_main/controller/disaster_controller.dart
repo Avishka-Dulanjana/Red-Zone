@@ -29,9 +29,11 @@ class DisasterController extends GetxController {
   final disasterProvince = RxString('');
   final disasterDescription = TextEditingController();
   final disasterRepository = Get.put(DisasterRepository());
-  final disasterImage = RxString('');
   final locationImage = RxString('');
   final pickedLocation = Rx<PlaceLocation?>(null);
+
+  // List to hold selected image paths
+  final RxList<String> disasterImages = RxList<String>();
 
   // Add Disaster Form Key
   GlobalKey<FormState> addDisasterFormKey = GlobalKey<FormState>();
@@ -63,21 +65,28 @@ class DisasterController extends GetxController {
         disasterType: disasterType.value,
         disasterProvince: disasterProvince.value,
         disasterDescription: disasterDescription.text.trim(),
-        disasterImage: disasterImage.value,
+        disasterImages: disasterImages.toList(),
+        disasterImageUrls: [],
         disasterLocation: pickedLocation.value ?? newGoogleMapLocation.value ?? PlaceLocation(latitude: 0, longitude: 0, address: ''),
       );
 
       print(newDisaster.toJson());
 
-      // Upload image and get URL
-      final imageUrl = await disasterRepository.uploadDisasterImage('disaster_images', XFile(disasterImage.value));
+      // Upload images and get URLs
+      final List<Map<String, String>> imageUrls = [];
+      for (final imagePath in disasterImages) {
+        final imageUrl = await disasterRepository.uploadDisasterImage('disaster_images', XFile(imagePath));
+        imageUrls.add({
+          'imageId': 'image_${imageUrls.length + 1}', // Generate unique ID for each image
+          'imageUrl': imageUrl,
+        });
+      }
 
-      print('Image URL: $imageUrl'); // Add this line for debugging
+      print('Image URLs: $imageUrls'); // Add this line for debugging
 
-      // Update the newDisaster with the image URL
-      newDisaster.disasterImage = imageUrl;
+      newDisaster.disasterImageUrls = imageUrls;
 
-      // Save the disaster record with the image URL
+      // Save the disaster record with the image URLs
       await disasterRepository.saveDisasterRecord(newDisaster);
 
       // Remove Loader
@@ -85,6 +94,13 @@ class DisasterController extends GetxController {
 
       // Show success message
       TLoaders.successSnackBar(title: 'Successfully Added!!!', message: 'Your disaster report has been submitted successfully!');
+
+      // Clear the form fields
+      disasterType.value = '';
+      disasterProvince.value = '';
+      disasterDescription.clear();
+      disasterImages.clear();
+      pickedLocation.value = null;
 
       // Move to Previous Screen
       Get.off(() => const NavigationMenu());
@@ -94,15 +110,27 @@ class DisasterController extends GetxController {
     }
   }
 
-  // Method to select an image
-  final picker = ImagePicker();
+  // Pick multiple images
+  Future<void> pickImages() async {
+    try {
+      final int currentImagesCount = disasterImages.length;
+      final int remainingImagesCount = 5 - currentImagesCount;
+      if (remainingImagesCount <= 0) return;
 
-  Future<void> pickImage() async {
-    final pickedFile = await picker.pickImage(source: ImageSource.camera);
+      final List<XFile> images = await ImagePicker().pickMultiImage(
+        imageQuality: 50, // Adjust quality as needed
+        maxWidth: 800, // Adjust max width as needed
+      );
 
-    if (pickedFile != null) {
-      // Update disasterImage with the path of the selected image
-      disasterImage.value = pickedFile.path;
+      if (images.isNotEmpty) {
+        if (images.length > remainingImagesCount) {
+          disasterImages.addAll(images.sublist(0, remainingImagesCount).map((image) => image.path));
+        } else {
+          disasterImages.addAll(images.map((image) => image.path));
+        }
+      }
+    } catch (e) {
+      print('Error picking images: $e');
     }
   }
 
