@@ -8,6 +8,8 @@ import 'package:red_zone/utils/constants/image_strings.dart';
 import 'package:red_zone/utils/device/device_utility.dart';
 
 import '../../../../common/widgets/custom_shapes/containers/primary_header_container.dart';
+import '../../../../common/widgets/layout/grid_layout.dart';
+import '../../../../common/widgets/products/cards/card_vertical.dart';
 import '../../../../utils/constants/colors.dart';
 import '../../../../utils/constants/sizes.dart';
 
@@ -61,13 +63,18 @@ class HomeScreen extends StatelessWidget {
             ),
 
             // Slider
-            const Padding(
-              padding: EdgeInsets.all(TSizes.defaultSpace),
-              child: TSlider(
-                banners: [
-                  TImages.banner2,
-                  TImages.banner1,
-                  TImages.banner3,
+            Padding(
+              padding: const EdgeInsets.all(TSizes.defaultSpace),
+              child: Column(
+                children: [
+                  const TSlider(banners: [TImages.banner2, TImages.banner1, TImages.banner3]),
+                  const SizedBox(height: TSizes.spaceBtwSections),
+
+                  /// -- TODO: Disaster Cards --
+                  TGridLayout(
+                    itemCount: 10,
+                    itemBuilder: (context, index) => const TVerticalCard(),
+                  )
                 ],
               ),
             )
