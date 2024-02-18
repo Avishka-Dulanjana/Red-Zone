@@ -72,7 +72,7 @@ class HomeScreen extends StatelessWidget {
 
                   /// -- TODO: Disaster Cards --
                   TGridLayout(
-                    itemCount: 8,
+                    itemCount: 9,
                     itemBuilder: (context, index) => const TVerticalCard(),
                   )
                 ],
