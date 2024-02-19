@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:iconsax_flutter/iconsax_flutter.dart';
 
 import '../../../../../../common/widgets/appbar/appbar.dart';
 import '../../../../../../common/widgets/images/rounded_image.dart';
@@ -65,7 +66,7 @@ class TDisasterImageSlider extends StatelessWidget {
             showBackArrow: true,
             actions: [
               Icon(
-                Icons.share_rounded,
+                Iconsax.heart,
                 color: TColors.white,
               )
             ],
