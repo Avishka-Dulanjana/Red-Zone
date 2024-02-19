@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
 import 'package:red_zone/common/widgets/images/rounded_container.dart';
+import 'package:red_zone/features/disaster_main/screens/disaster_details/disaster_detail.dart';
 import 'package:red_zone/utils/constants/colors.dart';
 import 'package:red_zone/utils/constants/image_strings.dart';
 import 'package:red_zone/utils/helpers/helper_functions.dart';
@@ -20,7 +22,7 @@ class TVerticalCard extends StatelessWidget {
     final dark = THelperFunctions.isDarkMode(context);
 
     return GestureDetector(
-      onTap: () {},
+      onTap: () => Get.to(() => const DisasterDetails()),
       child: Container(
         width: double.infinity,
         padding: const EdgeInsets.all(1),
