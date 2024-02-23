@@ -1,6 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:red_zone/utils/constants/shimmer.dart';
+import 'package:red_zone/common/widgets/shimmers/shimmer.dart';
 import 'package:red_zone/utils/constants/sizes.dart';
 import 'package:red_zone/utils/helpers/helper_functions.dart';
 
