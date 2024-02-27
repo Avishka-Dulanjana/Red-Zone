@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
+import 'package:red_zone/features/disaster_main/controller/disaster_controller.dart';
+import 'package:red_zone/features/disaster_main/controller/disaster_fetch_controller.dart';
 import 'package:red_zone/features/disaster_main/screens/home/widgets/home_appbar.dart';
 import 'package:red_zone/features/disaster_main/screens/home/widgets/slider.dart';
 import 'package:get/get.dart';
@@ -10,6 +12,7 @@ import 'package:red_zone/utils/device/device_utility.dart';
 import '../../../../common/widgets/custom_shapes/containers/primary_header_container.dart';
 import '../../../../common/widgets/layout/grid_layout.dart';
 import '../../../../common/widgets/products/cards/card_vertical.dart';
+import '../../../../common/widgets/shimmers/vertical_disaster_shimmer.dart';
 import '../../../../utils/constants/colors.dart';
 import '../../../../utils/constants/sizes.dart';
 
@@ -18,6 +21,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(DisasterFetchController());
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -67,14 +71,23 @@ class HomeScreen extends StatelessWidget {
               padding: const EdgeInsets.all(TSizes.defaultSpace),
               child: Column(
                 children: [
-                  const TSlider(banners: [TImages.banner2, TImages.banner1, TImages.banner3]),
+                  const TSlider(banners: [TImages.bannersRedZone_01, TImages.bannersRedZone_02, TImages.bannersRedZone_03]),
                   const SizedBox(height: TSizes.spaceBtwSections),
 
                   /// -- TODO: Disaster Cards --
-                  TGridLayout(
-                    itemCount: 9,
-                    itemBuilder: (context, index) => const TVerticalCard(),
-                  )
+                  Obx(
+                    () {
+                      if (controller.isLoading.value) return const TVerticalDisasterShimmer();
+
+                      if (controller.disasterList.isEmpty) {
+                        return Center(child: Text('No Disasters Found', style: Theme.of(context).textTheme.bodyMedium));
+                      }
+                      return TGridLayout(
+                        itemCount: controller.disasterList.length,
+                        itemBuilder: (context, index) => TVerticalCard(disaster: controller.disasterList[index]),
+                      );
+                    },
+                  ),
                 ],
               ),
             )
