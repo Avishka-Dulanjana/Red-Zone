@@ -3,6 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:red_zone/features/disaster_main/controller/disaster_controller.dart';
 import 'package:red_zone/features/disaster_main/controller/disaster_fetch_controller.dart';
+import 'package:red_zone/features/previous_disaster/controller/prediction_controller.dart';
 import 'data/repositories/authentication/authentication_repository.dart';
 import 'firebase_options.dart';
 import 'package:get/get.dart';
