@@ -16,7 +16,7 @@ import '../../../utils/exceptions/platform_exceptions.dart';
 class DisasterRepository extends GetxController {
   static DisasterRepository get instance => Get.find();
 
-  final FirebaseFirestore _db = FirebaseFirestore.instance;
+  final _db = FirebaseFirestore.instance;
 
   // Function to save new disaster record to firestore.
   Future<void> saveDisasterRecord(DisasterModel disasterModel) async {
@@ -59,6 +59,24 @@ class DisasterRepository extends GetxController {
   Future<void> updateSingleField(String documentId, Map<String, dynamic> json) async {
     try {
       await _db.collection('Disasters').doc(documentId).update(json);
+    } on FirebaseAuthException catch (e) {
+      throw TFirebaseAuthException(e.code).message;
+    } on FirebaseException catch (e) {
+      throw TFirebaseException(e.code).message;
+    } on FormatException catch (_) {
+      throw const TFormatException();
+    } on PlatformException catch (e) {
+      throw TPlatformException(e.code).message;
+    } catch (e) {
+      throw 'Something went wrong! Please try again!';
+    }
+  }
+
+  // Get disaster details
+  Future<List<DisasterModel>> getDisasterDetails() async {
+    try {
+      final snapShot = await _db.collection('Disasters').limit(10).get();
+      return snapShot.docs.map((e) => DisasterModel.fromSnapshot(e)).toList();
     } on FirebaseAuthException catch (e) {
       throw TFirebaseAuthException(e.code).message;
     } on FirebaseException catch (e) {

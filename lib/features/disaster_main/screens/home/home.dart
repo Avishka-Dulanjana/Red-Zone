@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
-import 'package:red_zone/features/disaster_main/controller/disaster_controller.dart';
 import 'package:red_zone/features/disaster_main/controller/disaster_fetch_controller.dart';
 import 'package:red_zone/features/disaster_main/screens/home/widgets/home_appbar.dart';
 import 'package:red_zone/features/disaster_main/screens/home/widgets/slider.dart';
@@ -22,6 +21,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(DisasterFetchController());
+
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -84,7 +84,7 @@ class HomeScreen extends StatelessWidget {
                       }
                       return TGridLayout(
                         itemCount: controller.disasterList.length,
-                        itemBuilder: (context, index) => TVerticalCard(disaster: controller.disasterList[index]),
+                        itemBuilder: (_, index) => TVerticalCard(disaster: controller.disasterList[index]),
                       );
                     },
                   ),

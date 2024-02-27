@@ -65,7 +65,6 @@ class DisasterController extends GetxController {
         disasterType: disasterType.value,
         disasterProvince: disasterProvince.value,
         disasterDescription: disasterDescription.text.trim(),
-        disasterImages: disasterImages.toList(),
         disasterImageUrls: [],
         disasterLocation: pickedLocation.value ?? newGoogleMapLocation.value ?? PlaceLocation(latitude: 0, longitude: 0, address: ''),
       );
@@ -73,13 +72,16 @@ class DisasterController extends GetxController {
       print(newDisaster.toJson());
 
       // Upload images and get URLs
-      final List<Map<String, String>> imageUrls = [];
+
+      // final List<Map<String, String>> imageUrls = [];
+      final List<String> imageUrls = [];
       for (final imagePath in disasterImages) {
         final imageUrl = await disasterRepository.uploadDisasterImage('disaster_images', XFile(imagePath));
-        imageUrls.add({
-          'imageId': 'image_${imageUrls.length + 1}', // Generate unique ID for each image
-          'imageUrl': imageUrl,
-        });
+        // imageUrls.add({
+        //   'imageId': 'image_${imageUrls.length + 1}', // Generate unique ID for each image
+        //   'imageUrl': imageUrl,
+        // });
+        imageUrls.add(imageUrl);
       }
 
       print('Image URLs: $imageUrls'); // Add this line for debugging
