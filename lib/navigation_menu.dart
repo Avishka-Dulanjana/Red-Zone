@@ -7,7 +7,7 @@ import 'package:red_zone/utils/constants/colors.dart';
 import 'package:red_zone/utils/helpers/helper_functions.dart';
 
 import 'features/disaster_main/screens/emergency_contacts/emergency_contacts.dart';
-import 'features/disaster_main/screens/previous_disasters/previous_disasters.dart';
+import 'features/previous_disaster/screens/previous_disasters/previous_disasters.dart';
 
 class NavigationMenu extends StatelessWidget {
   const NavigationMenu({super.key});

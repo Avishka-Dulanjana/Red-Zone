@@ -2,8 +2,6 @@ import 'package:get/get.dart';
 import 'package:red_zone/utils/constants/loaders.dart';
 
 import '../../../data/repositories/disaster/disaster_repository.dart';
-import '../../../utils/helpers/network_manager.dart';
-import '../../../utils/popups/full_screen_loader.dart';
 import '../models/disaster_model.dart';
 
 class DisasterFetchController extends GetxController {

@@ -68,4 +68,6 @@ class TTexts {
   static const String addDisaster = "Add Disaster";
   static const String selectOnCurrentLocation = "Current Location";
   static const String selectOnMap = "Select on Map";
+  static const String month = "Month";
+  static const String prediction = "Prediction";
 }
