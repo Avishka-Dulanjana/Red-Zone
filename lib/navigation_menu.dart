@@ -6,6 +6,9 @@ import 'package:red_zone/features/personalization/screens/settings/settings.dart
 import 'package:red_zone/utils/constants/colors.dart';
 import 'package:red_zone/utils/helpers/helper_functions.dart';
 
+import 'features/disaster_main/screens/emergency_contacts/emergency_contacts.dart';
+import 'features/disaster_main/screens/previous_disasters/previous_disasters.dart';
+
 class NavigationMenu extends StatelessWidget {
   const NavigationMenu({super.key});
 
@@ -20,16 +23,13 @@ class NavigationMenu extends StatelessWidget {
           height: 80,
           elevation: 0,
           selectedIndex: controller.selectedIndex.value,
-          onDestinationSelected: (index) =>
-              controller.selectedIndex.value = index,
+          onDestinationSelected: (index) => controller.selectedIndex.value = index,
           backgroundColor: darkMode ? TColors.black : TColors.white,
-          indicatorColor: darkMode
-              ? TColors.white.withOpacity(0.1)
-              : TColors.black.withOpacity(0.1),
+          indicatorColor: darkMode ? TColors.white.withOpacity(0.1) : TColors.black.withOpacity(0.1),
           destinations: const [
             NavigationDestination(icon: Icon(Iconsax.home), label: 'Home'),
-            NavigationDestination(icon: Icon(Iconsax.shop), label: 'Store'),
-            NavigationDestination(icon: Icon(Iconsax.heart), label: 'Wishlist'),
+            NavigationDestination(icon: Icon(Iconsax.map_1), label: 'Disasters'),
+            NavigationDestination(icon: Icon(Iconsax.call_add), label: 'Emergency'),
             NavigationDestination(icon: Icon(Iconsax.user), label: 'Profile'),
           ],
         ),
@@ -44,8 +44,8 @@ class NavigationController extends GetxController {
 
   final screens = [
     const HomeScreen(),
-    Container(color: Colors.green),
-    Container(color: Colors.orange),
+    const PreviousDisasters(),
+    const EmergencyContacts(),
     const SettingsScreen(),
   ];
 }
