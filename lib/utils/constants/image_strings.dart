@@ -161,6 +161,10 @@ class TImages {
   static const String banner7 = "assets/images/banners/banner_7.jpg";
   static const String banner8 = "assets/images/banners/banner_8.jpg";
 
+  static const String bannersRedZone_01 = "assets/images/banners/banner_9.jpg";
+  static const String bannersRedZone_02 = 'assets/images/banners/banner_10.jpg';
+  static const String bannersRedZone_03 = 'assets/images/banners/banner_11.jpg';
+
   //Profile
   static const String user = "assets/images/user/user.png";
 
@@ -177,5 +181,4 @@ class TImages {
 
   // -- Disaster Images
   static const String disasterImage = "assets/images/products/img.png";
-
 }
