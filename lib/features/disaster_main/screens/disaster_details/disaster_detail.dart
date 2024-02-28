@@ -12,15 +12,15 @@ class DisasterDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: SingleChildScrollView(
         child: Column(
           children: [
             // Disaster Image Slider
-            TDisasterImageSlider(),
+            TDisasterImageSlider(disaster: disaster),
 
             // Disaster Details
-            Padding(
+            const Padding(
               padding: EdgeInsets.only(right: TSizes.defaultSpace, left: TSizes.defaultSpace, bottom: TSizes.defaultSpace),
               child: Column(children: [
                 // Disaster Ratings and Share

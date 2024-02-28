@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
-import 'package:red_zone/features/disaster_main/controller/disaster_fetch_controller.dart';
+import 'package:red_zone/features/disaster_main/controller/disasters/disaster_fetch_controller.dart';
 import 'package:red_zone/features/disaster_main/screens/home/widgets/home_appbar.dart';
 import 'package:red_zone/features/disaster_main/screens/home/widgets/slider.dart';
 import 'package:get/get.dart';
@@ -21,9 +21,25 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(DisasterFetchController());
+    final scrollController = ScrollController();
+
+    // Refresh function to be called when user scrolls to the top
+    void refreshPage() {
+      // Implement your refresh logic here
+      controller.fetchDisasterList();
+    }
+
+    // Listen to scroll events and trigger refresh when user scrolls to the top
+    scrollController.addListener(() {
+      if (scrollController.offset <= scrollController.position.minScrollExtent) {
+        refreshPage();
+      }
+    });
 
     return Scaffold(
       body: SingleChildScrollView(
+        controller: scrollController,
+        physics: const BouncingScrollPhysics(),
         child: Column(
           children: [
             // Header

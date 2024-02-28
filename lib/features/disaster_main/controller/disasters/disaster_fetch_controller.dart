@@ -1,8 +1,8 @@
 import 'package:get/get.dart';
 import 'package:red_zone/utils/constants/loaders.dart';
 
-import '../../../data/repositories/disaster/disaster_repository.dart';
-import '../models/disaster_model.dart';
+import '../../../../data/repositories/disaster/disaster_repository.dart';
+import '../../models/disaster_model.dart';
 
 class DisasterFetchController extends GetxController {
   static DisasterFetchController get instance => Get.find();
@@ -30,7 +30,7 @@ class DisasterFetchController extends GetxController {
       disasterList.assignAll(disasters);
 
       // Show success message
-      TLoaders.successSnackBar(title: 'Success', message: 'Disaster data fetched successfully');
+      //TLoaders.successSnackBar(title: 'Success', message: 'Disaster data fetched successfully');
     } catch (e) {
       TLoaders.errorSnackBar(title: 'Oh Snap', message: 'Something went wrong! Please try again!(controller)');
     } finally {

@@ -6,19 +6,19 @@ import 'package:red_zone/utils/constants/sizes.dart';
 class TVerticalDisasterShimmer extends StatelessWidget {
   const TVerticalDisasterShimmer({super.key});
 
-  final int itemCount = 2;
+  final int itemCount = 1;
 
   @override
   Widget build(BuildContext context) {
     return TGridLayout(
         itemCount: itemCount,
         itemBuilder: (_, __) => const SizedBox(
-              width: 180,
+              width: double.infinity,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   // Image
-                  TShimmerEffect(width: 180, height: 180),
+                  TShimmerEffect(width: double.infinity, height: 370),
                   SizedBox(height: TSizes.spaceBtwItems),
 
                   // Text
