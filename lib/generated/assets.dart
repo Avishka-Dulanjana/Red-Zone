@@ -51,6 +51,8 @@ class Assets {
   static const String logosGoogleIcon = 'assets/images/logos/google-icon.png';
   static const String logosRedzoneDark = 'assets/images/logos/redzone-dark.png';
   static const String logosRedzoneLight = 'assets/images/logos/redzone-light.png';
+  static const String logosRedzoneLogoBlack = 'assets/images/logos/redzone_logo_black.png';
+  static const String logosRedzoneLogoWhite = 'assets/images/logos/redzone_logo_white.png';
   static const String logosTStoreSplashLogoBlack = 'assets/images/logos/t-store-splash-logo-black.png';
   static const String logosTStoreSplashLogoWhite = 'assets/images/logos/t-store-splash-logo-white.png';
   static const String onBoardingImagesSammyLineDelivery = 'assets/images/on_boarding_images/sammy-line-delivery.gif';

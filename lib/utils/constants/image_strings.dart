@@ -3,8 +3,8 @@ class TImages {
   static const String darkRedZoneLogo = 'assets/images/logos/redzone-dark.png';
 
   // -- App Logos
-  static const String darkAppLogo = "assets/images/logos/t-store-splash-logo-black.png";
-  static const String lightAppLogo = "assets/images/logos/t-store-splash-logo-white.png";
+  static const String darkAppLogo = "assets/images/logos/redzone_logo_black.png";
+  static const String lightAppLogo = "assets/images/logos/redzone_logo_white.png";
 
   // -- Social Logos
   static const String google = "assets/images/logos/google-icon.png";

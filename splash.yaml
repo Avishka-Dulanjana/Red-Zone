@@ -1,13 +1,13 @@
 flutter_native_splash:
   color: "#FFFFFF"
   color_dark: "#272727"
-  image: assets/images/logos/t-store-splash-logo-black.png
-  image_dark: assets/images/logos/t-store-splash-logo-white.png
+  image: assets/images/logos/redzone_logo_black.png
+  image_dark: assets/images/logos/redzone_logo_white.png
 
   android_12:
     color: "#FFFFFF"
     color_dark: "#272727"
-    image: assets/images/logos/t-store-splash-logo-black.png
-    image_dark: assets/images/logos/t-store-splash-logo-white.png
+    image: assets/images/logos/redzone_logo_black.png
+    image_dark: assets/images/logos/redzone_logo_white.png
 
   web: false
