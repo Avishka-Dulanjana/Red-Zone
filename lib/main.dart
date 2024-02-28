@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
+import 'package:red_zone/data/repositories/disaster_prediction/disaster_prediction_repository.dart';
 import 'package:red_zone/features/disaster_main/controller/disaster_controller.dart';
 import 'package:red_zone/features/disaster_main/controller/disaster_fetch_controller.dart';
 import 'package:red_zone/features/previous_disaster/controller/prediction_controller.dart';
@@ -34,6 +35,11 @@ Future<void> main() async {
   // Initialize the Firebase Disaster fetch Controller
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform).then(
     (FirebaseApp value) => Get.put(DisasterFetchController()),
+  );
+
+  // Initialize the Firebase Disaster fetch Controller
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform).then(
+    (FirebaseApp value) => Get.put(DisasterPredictionRepository()),
   );
 
   // Load all the Material Design / Theme / Localizations / Bindings

@@ -77,10 +77,6 @@ class DisasterController extends GetxController {
       final List<String> imageUrls = [];
       for (final imagePath in disasterImages) {
         final imageUrl = await disasterRepository.uploadDisasterImage('disaster_images', XFile(imagePath));
-        // imageUrls.add({
-        //   'imageId': 'image_${imageUrls.length + 1}', // Generate unique ID for each image
-        //   'imageUrl': imageUrl,
-        // });
         imageUrls.add(imageUrl);
       }
 
