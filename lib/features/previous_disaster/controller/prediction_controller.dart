@@ -49,25 +49,3 @@ class PredictionController extends GetxController {
     }
   }
 }
-
-//Future<void> _launchUrl() async {
-//       final Uri _url = Uri.parse('https://firebasestorage.googleapis.com/v0/b/eredzone-bd711.appspot.com/o/flood_risk_maps%2Fflood%2FApril.html?alt=media&token=7016d46c-be8a-4c01-9990-7ed4ddb2ce62');
-//
-//       if (!await launchUrl(_url)) {
-//         throw 'Could not launch $_url';
-//       }
-//     }
-
-// Future<void> _launchUrl(String url) async {
-//   try {
-//     final encodedUrl = Uri.parse(url);
-//     if (await canLaunchUrl(encodedUrl)) {
-//       await launchUrl(encodedUrl);
-//     } else {
-//       throw 'Could not launch $url';
-//     }
-//   } catch (e) {
-//     print('Error launching URL: $e');
-//     rethrow;
-//   }
-// }

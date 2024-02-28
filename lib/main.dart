@@ -4,7 +4,6 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:red_zone/data/repositories/disaster_prediction/disaster_prediction_repository.dart';
 import 'package:red_zone/features/disaster_main/controller/disaster_controller.dart';
 import 'package:red_zone/features/disaster_main/controller/disaster_fetch_controller.dart';
-import 'package:red_zone/features/previous_disaster/controller/prediction_controller.dart';
 import 'data/repositories/authentication/authentication_repository.dart';
 import 'firebase_options.dart';
 import 'package:get/get.dart';
@@ -42,6 +41,5 @@ Future<void> main() async {
     (FirebaseApp value) => Get.put(DisasterPredictionRepository()),
   );
 
-  // Load all the Material Design / Theme / Localizations / Bindings
   runApp(const App());
 }
