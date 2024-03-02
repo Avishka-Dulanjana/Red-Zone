@@ -6,7 +6,7 @@ import 'package:red_zone/features/personalization/screens/settings/settings.dart
 import 'package:red_zone/utils/constants/colors.dart';
 import 'package:red_zone/utils/helpers/helper_functions.dart';
 
-import 'features/disaster_main/screens/emergency_contacts/emergency_contacts.dart';
+import 'features/emergency_contacts/screens/emergency_contacts.dart';
 import 'features/previous_disaster/screens/previous_disasters/previous_disasters.dart';
 
 class NavigationMenu extends StatelessWidget {
