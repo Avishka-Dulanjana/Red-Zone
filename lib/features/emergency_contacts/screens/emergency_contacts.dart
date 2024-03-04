@@ -10,6 +10,7 @@ import '../../../common/widgets/custom_shapes/containers/search_container.dart';
 import '../../../common/widgets/products/cart/cart_menu_icon.dart';
 import '../../../utils/constants/colors.dart';
 import '../../../utils/constants/sizes.dart';
+import '../../chat_message/screen/chat_screen.dart';
 
 class EmergencyContacts extends StatelessWidget {
   const EmergencyContacts({Key? key}) : super(key: key);
@@ -23,7 +24,7 @@ class EmergencyContacts extends StatelessWidget {
       appBar: TAppBar(
         title: Text('Emergency Contacts', style: Theme.of(context).textTheme.headlineMedium),
         actions: [
-          TCartCounterIcon(onPressed: () {}, iconColor: dark ? TColors.white : TColors.dark),
+          TCartCounterIcon(onPressed: () => Get.to(const ChatScreen()), iconColor: dark ? TColors.white : TColors.dark),
         ],
       ),
       body: Obx(() {

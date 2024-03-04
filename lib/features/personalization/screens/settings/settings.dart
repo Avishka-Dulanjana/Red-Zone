@@ -42,13 +42,10 @@ class SettingsScreen extends StatelessWidget {
                   /// --Account Settings
                   const TSectionHeading(title: 'Account Settings', showActionButton: false),
                   const SizedBox(height: TSizes.spaceBtwItems),
-                  const TSettingsMenuTile(icon: Iconsax.safe_home, title: 'My Address', subtitle: 'Set shopping delivery address'),
-                  const TSettingsMenuTile(icon: Iconsax.shopping_cart, title: 'My Cart', subtitle: 'Set shopping delivery address'),
-                  const TSettingsMenuTile(icon: Iconsax.bag_tick, title: 'My Orders', subtitle: 'Set shopping delivery address'),
-                  const TSettingsMenuTile(icon: Iconsax.bank, title: 'Bank Account', subtitle: 'Set shopping delivery address'),
-                  const TSettingsMenuTile(icon: Iconsax.discount_shape, title: 'My Coupons', subtitle: 'Set shopping delivery address'),
-                  const TSettingsMenuTile(icon: Iconsax.notification, title: 'Notifications', subtitle: 'Set shopping delivery address'),
-                  const TSettingsMenuTile(icon: Iconsax.security_time, title: 'Account Privacy', subtitle: 'Set shopping delivery address'),
+                  const TSettingsMenuTile(icon: Iconsax.safe_home, title: 'My Address', subtitle: 'Set your location address'),
+                  const TSettingsMenuTile(icon: Iconsax.shopping_cart, title: 'My Location', subtitle: 'Set your location address'),
+                  const TSettingsMenuTile(icon: Iconsax.bag_tick, title: 'My Posts', subtitle: 'Set your location address'),
+                  const TSettingsMenuTile(icon: Iconsax.bank, title: 'Bank Account', subtitle: 'Set your location address'),
 
                   /// -- App Settings
                   const SizedBox(height: TSizes.spaceBtwSections),

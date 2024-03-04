@@ -10,6 +10,8 @@ import '../../../../../common/widgets/shimmers/shimmer.dart';
 import '../../../../../utils/constants/text_strings.dart';
 import 'package:get/get.dart';
 
+import '../../../../chat_message/screen/chat_screen.dart';
+
 class THomeAppBar extends StatelessWidget {
   const THomeAppBar({
     super.key,
@@ -34,7 +36,7 @@ class THomeAppBar extends StatelessWidget {
           ),
         ],
       ),
-      actions: [TCartCounterIcon(onPressed: () {}, iconColor: TColors.white)],
+      actions: [TCartCounterIcon(onPressed: () => Get.to(const ChatScreen()), iconColor: TColors.white)],
     );
   }
 }

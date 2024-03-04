@@ -31,7 +31,7 @@ class ContactController extends GetxController {
       print('Contact List:$contacts');
 
       // Show success message
-      TLoaders.successSnackBar(title: 'Success', message: 'Contact data fetched successfully');
+      // TLoaders.successSnackBar(title: 'Success', message: 'Contact data fetched successfully');
     } catch (e) {
       TLoaders.errorSnackBar(title: 'Oh Snap', message: 'Something went wrong! Please try again!(controller)');
     } finally {
