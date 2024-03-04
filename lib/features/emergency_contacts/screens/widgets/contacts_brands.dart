@@ -44,9 +44,7 @@ class ContactsBrands extends StatelessWidget {
                 return FutureBuilder(
                     future: controller.getContactDetails(contact.emergencyServiceCategory),
                     builder: (context, snapshot) {
-                      return TContactShowcase(
-                        contact: contact,
-                      );
+                      return TContactShowcase(contact: contact);
                     });
               });
         });

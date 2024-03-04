@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
 import 'package:red_zone/common/widgets/custom_shapes/containers/circular_image.dart';
 import 'package:red_zone/common/widgets/images/rounded_container.dart';
+import 'package:red_zone/features/emergency_contacts/controller/contact_controller.dart';
 import 'package:red_zone/features/emergency_contacts/model/contact_model.dart';
 import 'package:red_zone/utils/constants/colors.dart';
 import 'package:red_zone/utils/constants/image_strings.dart';
@@ -25,7 +26,7 @@ class TEmergencyContactCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final dark = THelperFunctions.isDarkMode(context);
     return GestureDetector(
-      onTap: onTap,
+      onTap: () => ContactController.instance.launchDialPad(contact.contactNo),
       child: TRoundedContainer(
         showBorder: showBorder,
         boarderColor: Colors.transparent,

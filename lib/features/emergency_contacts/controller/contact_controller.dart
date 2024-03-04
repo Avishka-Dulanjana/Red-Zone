@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:red_zone/features/emergency_contacts/model/contact_model.dart';
 import 'package:red_zone/utils/constants/loaders.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../../data/repositories/contact/contact_repository.dart';
 
@@ -45,6 +46,16 @@ class ContactController extends GetxController {
     } catch (e) {
       TLoaders.errorSnackBar(title: 'Oh Snap', message: 'Something went wrong! Please try again!(controller)');
       return [];
+    }
+  }
+
+  // Function to launch the dial pad with the selected contact number
+  void launchDialPad(String phoneNumber) async {
+    final url = 'tel:$phoneNumber';
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
     }
   }
 }
