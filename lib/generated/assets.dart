@@ -49,6 +49,8 @@ class Assets {
   static const String fontsPoppinsSemiBoldItalic = 'assets/fonts/Poppins-SemiBoldItalic.ttf';
   static const String logosFacebookIcon = 'assets/images/logos/facebook-icon.png';
   static const String logosGoogleIcon = 'assets/images/logos/google-icon.png';
+  static const String logosPhone1 = 'assets/images/logos/phone_1.png';
+  static const String logosPhone2 = 'assets/images/logos/phone_2.png';
   static const String logosRedzoneDark = 'assets/images/logos/redzone-dark.png';
   static const String logosRedzoneLight = 'assets/images/logos/redzone-light.png';
   static const String logosRedzoneLogoBlack = 'assets/images/logos/redzone_logo_black.png';
