@@ -65,7 +65,7 @@ class MessageBubble extends StatelessWidget {
                     ),
                   Container(
                     decoration: BoxDecoration(
-                      color: isMe ? Colors.grey[300] : theme.colorScheme.secondary.withAlpha(200),
+                      color: isMe ? Colors.green[50] : TColors.primary,
                       borderRadius: BorderRadius.only(
                         topLeft: !isMe && isFirstInSequence ? Radius.zero : const Radius.circular(12),
                         topRight: isMe && isFirstInSequence ? Radius.zero : const Radius.circular(12),
@@ -86,7 +86,7 @@ class MessageBubble extends StatelessWidget {
                       message,
                       style: TextStyle(
                         height: 1.3,
-                        color: isMe ? TColors.black : theme.colorScheme.onSecondary,
+                        color: isMe ? TColors.black : TColors.light,
                       ),
                       softWrap: true,
                     ),
