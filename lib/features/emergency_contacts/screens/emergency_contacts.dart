@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:red_zone/common/widgets/appbar/appbar.dart';
 import 'package:red_zone/common/widgets/appbar/tabbar.dart';
+import 'package:red_zone/common/widgets/contact_cards/emergecy_contact_card.dart';
+import 'package:red_zone/common/widgets/images/rounded_container.dart';
+import 'package:red_zone/common/widgets/layout/grid_layout.dart';
+import 'package:red_zone/features/emergency_contacts/screens/widgets/category_tab.dart';
 
 import 'package:red_zone/utils/helpers/helper_functions.dart';
+import '../../../common/widgets/contact_cards/contact_show_case.dart';
 import '../../../common/widgets/custom_shapes/containers/search_container.dart';
 import '../../../common/widgets/products/cart/cart_menu_icon.dart';
 import '../../../utils/constants/colors.dart';
@@ -33,7 +38,7 @@ class EmergencyContacts extends StatelessWidget {
                 automaticallyImplyLeading: false,
                 backgroundColor: dark ? TColors.black : TColors.white,
                 flexibleSpace: Padding(
-                  padding: const EdgeInsets.all(16),
+                  padding: const EdgeInsets.all(20),
                   child: ListView(
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
@@ -58,7 +63,15 @@ class EmergencyContacts extends StatelessWidget {
               ),
             ];
           },
-          body: Container(),
+          body: TabBarView(
+            children: [
+              TCategoryTab(),
+              TCategoryTab(),
+              TCategoryTab(),
+              TCategoryTab(),
+              TCategoryTab(),
+            ],
+          ),
         ),
       ),
     );
