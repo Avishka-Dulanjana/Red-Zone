@@ -5,6 +5,7 @@ class DisasterModel {
   final String userId;
   final String disasterType;
   final String disasterProvince;
+  final String disasterDistrict;
   final String disasterDescription;
   List<String>? disasterImageUrls;
   final PlaceLocation disasterLocation;
@@ -15,6 +16,7 @@ class DisasterModel {
     required this.userId,
     required this.disasterType,
     required this.disasterProvince,
+    required this.disasterDistrict,
     required this.disasterDescription,
     required this.disasterImageUrls,
     required this.disasterLocation,
@@ -25,6 +27,7 @@ class DisasterModel {
         id: '',
         disasterType: '',
         disasterProvince: '',
+        disasterDistrict: '',
         disasterDescription: '',
         disasterImageUrls: [],
         disasterLocation: PlaceLocation(latitude: 0, longitude: 0, address: ''),
@@ -37,6 +40,7 @@ class DisasterModel {
       'userId': userId,
       'disasterType': disasterType,
       'disasterProvince': disasterProvince,
+      'disasterDistrict': disasterDistrict,
       'disasterDescription': disasterDescription,
       'disasterImageUrls': disasterImageUrls,
       'createdAt': createdAt,
@@ -53,6 +57,7 @@ class DisasterModel {
       userId: data['userId'] ?? '',
       disasterType: data['disasterType'] ?? '',
       disasterProvince: data['disasterProvince'] ?? '',
+      disasterDistrict: data['disasterDistrict'] ?? '',
       disasterDescription: data['disasterDescription'] ?? '',
       disasterImageUrls: List<String>.from(data['disasterImageUrls'] ?? []),
       createdAt: (data['createdAt'] as Timestamp?)?.toDate() ?? DateTime.now(),

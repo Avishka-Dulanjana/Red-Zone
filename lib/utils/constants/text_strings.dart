@@ -64,10 +64,12 @@ class TTexts {
   static const String addDisasterTitle = "Add New Disaster";
   static const String disasterType = "Disaster Type";
   static const String disasterProvince = "Province";
+  static const String disasterDistrict = "District";
   static const String description = "Description";
   static const String addDisaster = "Add Disaster";
   static const String selectOnCurrentLocation = "Current Location";
   static const String selectOnMap = "Select on Map";
   static const String month = "Month";
   static const String prediction = "Prediction";
+  static const String changeLocation = "Select on Map";
 }

@@ -66,6 +66,49 @@ class AddDisasterForm extends StatelessWidget {
                 .toList(),
           ),
         ),
+
+        // Dropdown District
+        Padding(
+          padding: const EdgeInsets.only(top: TSizes.spaceBtwInputFields),
+          child: DropdownButtonFormField(
+            validator: (value) => TValidator.validateEmptyText(TTexts.disasterDistrict, value),
+            decoration: const InputDecoration(labelText: TTexts.disasterDistrict, prefixIcon: Icon(Iconsax.sort_copy)),
+            onChanged: (value) {
+              DisasterController.instance.disasterDistrict.value = value.toString();
+            },
+            items: [
+              "Ampara",
+              "Anuradhapura",
+              "Badulla",
+              "Batticaloa",
+              "Colombo",
+              "Galle",
+              "Gampaha",
+              "Hambantota",
+              "Jaffna",
+              "Kalutara",
+              "Kandy",
+              "Kegalle",
+              "Kilinochchi",
+              "Kurunegala",
+              "Mannar",
+              "Matale",
+              "Matara",
+              "Monaragala",
+              "Mullaitivu",
+              "Nuwara Eliya",
+              "Polonnaruwa",
+              "Puttalam",
+              "Ratnapura",
+              "Trincomalee",
+              "Vavuniya"
+            ]
+                .map(
+                  (option) => DropdownMenuItem(value: option, child: Text(option)),
+                )
+                .toList(),
+          ),
+        ),
         const SizedBox(height: TSizes.spaceBtwInputFields),
 
         // Description
@@ -76,7 +119,7 @@ class AddDisasterForm extends StatelessWidget {
         DisasterImagePick(controller: controller),
         const SizedBox(height: TSizes.spaceBtwInputFields),
 
-        // Map details
+        // Map Selection
         const DisasterMapSelection(),
         const SizedBox(height: TSizes.spaceBtwInputFields),
 

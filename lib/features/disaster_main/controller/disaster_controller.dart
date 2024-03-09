@@ -27,6 +27,7 @@ class DisasterController extends GetxController {
   // Form Fields
   final disasterType = RxString('');
   final disasterProvince = RxString('');
+  final disasterDistrict = RxString('');
   final disasterDescription = TextEditingController();
   final disasterRepository = Get.put(DisasterRepository());
   final locationImage = RxString('');
@@ -64,6 +65,7 @@ class DisasterController extends GetxController {
         userId: userCredential!.uid,
         disasterType: disasterType.value,
         disasterProvince: disasterProvince.value,
+        disasterDistrict: disasterDistrict.value,
         disasterDescription: disasterDescription.text.trim(),
         disasterImageUrls: [],
         disasterLocation: pickedLocation.value ?? newGoogleMapLocation.value ?? PlaceLocation(latitude: 0, longitude: 0, address: ''),
@@ -96,6 +98,7 @@ class DisasterController extends GetxController {
       // Clear the form fields
       disasterType.value = '';
       disasterProvince.value = '';
+      disasterDistrict.value = '';
       disasterDescription.clear();
       disasterImages.clear();
       pickedLocation.value = null;
@@ -244,7 +247,7 @@ class DisasterController extends GetxController {
     }
   }
 
-  // Update the selected location
+  //Update the selected location
   void updateSelectedLocation(LatLng? pickedLocation) {
     if (pickedLocation != null) {
       // Assuming pickedLocation is an instance of LatLng
