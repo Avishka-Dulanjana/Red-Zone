@@ -8,7 +8,6 @@ import 'package:red_zone/features/disaster_main/models/disaster_model.dart';
 import 'package:red_zone/features/disaster_main/screens/disaster_details/disaster_detail.dart';
 import 'package:red_zone/utils/constants/colors.dart';
 import 'package:red_zone/utils/helpers/helper_functions.dart';
-import 'package:red_zone/utils/constants/image_strings.dart';
 import '../../../../utils/constants/sizes.dart';
 import '../../../styles/product_title_text.dart';
 import '../../../styles/shadows.dart';
