@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -15,6 +16,7 @@ import '../../../navigation_menu.dart';
 import '../../../utils/constants/image_strings.dart';
 import '../../../utils/helpers/network_manager.dart';
 import '../../../utils/popups/full_screen_loader.dart';
+import '../../personalization/models/user_model.dart';
 import '../models/disaster_model.dart';
 import '../screens/new_disaster/widgets/google_map_screen.dart'; // Import your GoogleMapScreen class
 
@@ -58,7 +60,15 @@ class DisasterController extends GetxController {
       return;
     }
 
+    // Check if images are selected
+    if (disasterImages.isEmpty) {
+      TFullScreenLoader.stopLoading();
+      TLoaders.warningSnackBar(title: 'No Images Selected', message: 'Please select at least one image.');
+      return;
+    }
+
     final userCredential = FirebaseAuth.instance.currentUser;
+
     try {
       final newDisaster = DisasterModel(
         id: '${userCredential?.uid}-${DateTime.now().millisecondsSinceEpoch}',
@@ -69,6 +79,7 @@ class DisasterController extends GetxController {
         disasterDescription: disasterDescription.text.trim(),
         disasterImageUrls: [],
         disasterLocation: pickedLocation.value ?? newGoogleMapLocation.value ?? PlaceLocation(latitude: 0, longitude: 0, address: ''),
+        user: UserModel.fromSnapshot((await FirebaseFirestore.instance.collection('Users').doc(userCredential.uid).get())),
       );
 
       print(newDisaster.toJson());
@@ -111,7 +122,7 @@ class DisasterController extends GetxController {
     }
   }
 
-  // Pick multiple images
+  //Pick multiple images
   Future<void> pickImages() async {
     try {
       final int currentImagesCount = disasterImages.length;

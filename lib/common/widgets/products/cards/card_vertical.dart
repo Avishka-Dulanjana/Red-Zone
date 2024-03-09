@@ -38,12 +38,19 @@ class TVerticalCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             ListTile(
-              leading: const TCircularImage(image: TImages.user, width: 50, height: 50, padding: 0),
-              title: TProductTitleText(title: disaster.disasterProvince, smallSize: true, maxLines: 1),
+              // User Profile Image
+              leading: TCircularImage(
+                image: disaster.user!.profilePicture,
+                width: 50,
+                height: 50,
+                padding: 0,
+                isNetworkImage: true,
+              ),
+              title: TProductTitleText(title: '${disaster.disasterType} in ${disaster.disasterProvince}', smallSize: false, maxLines: 1),
               subtitle: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Text(disaster.disasterType, overflow: TextOverflow.ellipsis),
+                  Text(disaster.user!.fullName, overflow: TextOverflow.ellipsis),
                   const SizedBox(width: 4),
                   const Icon(Iconsax.verify, color: TColors.primary, size: TSizes.iconXs),
                 ],

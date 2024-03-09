@@ -1,5 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+import '../../personalization/models/user_model.dart';
+
 class DisasterModel {
   final String id;
   final String userId;
@@ -10,6 +12,7 @@ class DisasterModel {
   List<String>? disasterImageUrls;
   final PlaceLocation disasterLocation;
   final DateTime createdAt;
+  UserModel? user;
 
   DisasterModel({
     required this.id,
@@ -21,6 +24,7 @@ class DisasterModel {
     required this.disasterImageUrls,
     required this.disasterLocation,
     DateTime? createdAt,
+    this.user,
   }) : createdAt = createdAt ?? DateTime.now();
 
   static DisasterModel empty() => DisasterModel(
@@ -33,6 +37,7 @@ class DisasterModel {
         disasterLocation: PlaceLocation(latitude: 0, longitude: 0, address: ''),
         userId: '',
         createdAt: DateTime.now(),
+        user: UserModel.empty(),
       );
 
   Map<String, dynamic> toJson() {
@@ -45,12 +50,14 @@ class DisasterModel {
       'disasterImageUrls': disasterImageUrls,
       'createdAt': createdAt,
       'disasterLocation': disasterLocation.toJson(),
+      'user': user!.toJson(),
     };
   }
 
   factory DisasterModel.fromSnapshot(DocumentSnapshot<Map<String, dynamic>> document) {
     if (document.data() == null) return DisasterModel.empty();
     final data = document.data()!;
+
     return DisasterModel(
       id: document.id,
       disasterLocation: PlaceLocation.fromJson(data['disasterLocation']),
@@ -61,6 +68,7 @@ class DisasterModel {
       disasterDescription: data['disasterDescription'] ?? '',
       disasterImageUrls: List<String>.from(data['disasterImageUrls'] ?? []),
       createdAt: (data['createdAt'] as Timestamp?)?.toDate() ?? DateTime.now(),
+      user: UserModel.fromSnapshot(data['user']),
     );
   }
 }

@@ -19,29 +19,67 @@
 //   Widget build(BuildContext context) {
 //     return GestureDetector(
 //       onTap: () {
-//         // Call pickImage method when the image button is pressed
-//         controller.pickImage();
+//         // Call pickImages method when the image button is pressed
+//         controller.pickImages();
 //       },
-//       child: Container(
-//         decoration: BoxDecoration(
-//           border: Border.all(color: Colors.grey),
-//           borderRadius: BorderRadius.circular(TSizes.cardRadiusLg),
-//         ),
-//         width: double.infinity,
-//         height: TSizes.disasterImageSize,
-//         child: Obx(() {
-//           // Check if an image is selected
-//           if (controller.disasterImage.value.isNotEmpty) {
-//             // Display the selected image
-//             return ClipRRect(
-//                 borderRadius: BorderRadius.circular(TSizes.cardRadiusLg),
-//                 child: Image.file(File(controller.disasterImage.value), width: double.infinity, height: TSizes.disasterImageSize, fit: BoxFit.cover));
-//           } else {
-//             // Display icon when no image is selected
-//             return const Icon(Iconsax.camera, size: TSizes.iconMd);
-//           }
-//         }),
-//       ),
+//       child: Obx(() {
+//         final List<String> disasterImages = controller.disasterImages.toList();
+//         return SizedBox(
+//           height: TSizes.disasterImageSize,
+//           child: GridView.builder(
+//             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+//               crossAxisCount: 3,
+//               crossAxisSpacing: 8.0,
+//               mainAxisSpacing: 8.0,
+//               childAspectRatio: 1.0,
+//             ),
+//             itemCount: disasterImages.length + 1, // Add 1 for the add button
+//             itemBuilder: (context, index) {
+//               if (index == disasterImages.length) {
+//                 // Add button
+//                 return Container(
+//                   decoration: BoxDecoration(
+//                     border: Border.all(color: Colors.grey),
+//                     borderRadius: BorderRadius.circular(TSizes.cardRadiusLg),
+//                   ),
+//                   width: double.infinity,
+//                   height: TSizes.disasterImageSize,
+//                   child: const Icon(Iconsax.camera, size: TSizes.iconMd),
+//                 );
+//               } else {
+//                 // Display selected image
+//                 return Stack(
+//                   children: [
+//                     ClipRRect(
+//                       borderRadius: BorderRadius.circular(TSizes.cardRadiusLg),
+//                       child: Image.file(
+//                         File(disasterImages[index]),
+//                         width: double.infinity,
+//                         height: double.infinity,
+//                         fit: BoxFit.cover,
+//                       ),
+//                     ),
+//                     Positioned(
+//                       top: 4,
+//                       right: 4,
+//                       child: GestureDetector(
+//                         onTap: () {
+//                           controller.disasterImages.removeAt(index);
+//                         },
+//                         child: CircleAvatar(
+//                           backgroundColor: Colors.black.withOpacity(0.6),
+//                           radius: 12,
+//                           child: const Icon(Icons.close, color: Colors.white, size: 16),
+//                         ),
+//                       ),
+//                     ),
+//                   ],
+//                 );
+//               }
+//             },
+//           ),
+//         );
+//       }),
 //     );
 //   }
 // }
@@ -57,9 +95,9 @@ import '../../../../controller/disaster_controller.dart';
 
 class DisasterImagePick extends StatelessWidget {
   const DisasterImagePick({
-    super.key,
+    Key? key,
     required this.controller,
-  });
+  }) : super(key: key);
 
   final DisasterController controller;
 

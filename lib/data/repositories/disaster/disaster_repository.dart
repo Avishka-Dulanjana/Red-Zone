@@ -8,6 +8,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:red_zone/features/disaster_main/models/disaster_model.dart';
 
+import '../../../features/personalization/models/user_model.dart';
 import '../../../utils/exceptions/firebase_auth_exceptions.dart';
 import '../../../utils/exceptions/firebase_exceptions.dart';
 import '../../../utils/exceptions/format_exceptions.dart';
@@ -76,7 +77,8 @@ class DisasterRepository extends GetxController {
   Future<List<DisasterModel>> getDisasterDetails() async {
     try {
       final snapShot = await _db.collection('Disasters').limit(10).get();
-      return snapShot.docs.map((e) => DisasterModel.fromSnapshot(e)).toList();
+      //return snapShot.docs.map((e) => DisasterModel.fromSnapshot(e)).toList();
+      return snapShot.docs.map((e) => _mapToDisasterModel(e)).toList();
     } on FirebaseAuthException catch (e) {
       throw TFirebaseAuthException(e.code).message;
     } on FirebaseException catch (e) {
@@ -89,4 +91,23 @@ class DisasterRepository extends GetxController {
       throw 'Something went wrong! Please try again!';
     }
   }
+}
+
+DisasterModel _mapToDisasterModel(DocumentSnapshot<Map<String, dynamic>> document) {
+  if (document.data() == null) return DisasterModel.empty();
+  final data = document.data()!;
+
+  return DisasterModel(
+    id: document.id,
+    disasterLocation: PlaceLocation.fromJson(data['disasterLocation']),
+    userId: data['userId'] ?? '',
+    disasterType: data['disasterType'] ?? '',
+    disasterProvince: data['disasterProvince'] ?? '',
+    disasterDistrict: data['disasterDistrict'] ?? '',
+    disasterDescription: data['disasterDescription'] ?? '',
+    disasterImageUrls: List<String>.from(data['disasterImageUrls'] ?? []),
+    createdAt: (data['createdAt'] as Timestamp?)?.toDate() ?? DateTime.now(),
+    // Parse user data from map
+    user: UserModel.fromJson(data['user'] ?? {}), // Assuming user data is stored under 'user' field
+  );
 }

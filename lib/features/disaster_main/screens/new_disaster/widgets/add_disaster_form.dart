@@ -115,8 +115,30 @@ class AddDisasterForm extends StatelessWidget {
         DisasterDescriptionField(controller: controller),
         const SizedBox(height: TSizes.spaceBtwInputFields),
 
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Add Disaster Images',
+              style: Theme.of(context).textTheme.titleMedium,
+            ),
+          ],
+        ),
+        const SizedBox(height: TSizes.spaceBtwInputFields),
+
         // Image on disaster
         DisasterImagePick(controller: controller),
+        const SizedBox(height: TSizes.spaceBtwInputFields),
+
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Add Disaster Location',
+              style: Theme.of(context).textTheme.titleMedium,
+            ),
+          ],
+        ),
         const SizedBox(height: TSizes.spaceBtwInputFields),
 
         // Map Selection
