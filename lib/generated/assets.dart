@@ -62,5 +62,8 @@ class Assets {
   static const String onBoardingImagesSammyLineSearching = 'assets/images/on_boarding_images/sammy-line-searching.gif';
   static const String onBoardingImagesSammyLineShopping = 'assets/images/on_boarding_images/sammy-line-shopping.gif';
   static const String productsImg = 'assets/images/products/img.png';
+  static const String reviewsReviewProfileImage1 = 'assets/images/reviews/review_profile_image_1.jpg';
+  static const String reviewsReviewProfileImage2 = 'assets/images/reviews/review_profile_image_2.jpeg';
+  static const String reviewsReviewProfileImage3 = 'assets/images/reviews/review_profile_image_3.jpeg';
   static const String userUser = 'assets/images/user/user.png';
 }

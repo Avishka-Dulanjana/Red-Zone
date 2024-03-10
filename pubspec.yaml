@@ -24,6 +24,8 @@ dependencies:
   shimmer: ^3.0.0
   image_picker: ^1.0.7
   webview_flutter: ^4.7.0
+  flutter_rating_bar: ^4.0.1
+  readmore: ^2.2.0
 
   # Icons
   cupertino_icons: ^1.0.2
@@ -69,6 +71,7 @@ flutter:
     - assets/images/user/
     - assets/images/banners/
     - assets/images/products/
+    - assets/images/reviews/
 
   #--------------- LOCAL FONTS ------------------#
   fonts:
