@@ -33,6 +33,13 @@ class DisasterDetails extends StatelessWidget {
                 ],
               ),
             ),
+            const SizedBox(height: TSizes.spaceBtwItems),
+
+            // Disaster Details
+
+            const SizedBox(height: TSizes.spaceBtwItems),
+
+            // Reviews
             const Divider(),
             const SizedBox(height: TSizes.spaceBtwItems),
             Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [

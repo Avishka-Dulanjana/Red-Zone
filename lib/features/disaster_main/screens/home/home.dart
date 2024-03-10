@@ -84,10 +84,14 @@ class HomeScreen extends StatelessWidget {
 
             // Slider
             Padding(
-              padding: const EdgeInsets.all(TSizes.defaultSpace),
+              padding: const EdgeInsets.all(1),
               child: Column(
                 children: [
-                  const TSlider(banners: [TImages.bannersRedZone_01, TImages.bannersRedZone_02, TImages.bannersRedZone_03]),
+                  Padding(
+                      padding: const EdgeInsets.all(8),
+                      child: const TSlider(
+                        banners: [TImages.bannersRedZone_01, TImages.bannersRedZone_02, TImages.bannersRedZone_03],
+                      )),
                   const SizedBox(height: TSizes.spaceBtwSections),
 
                   /// -- TODO: Disaster Cards --
@@ -98,9 +102,13 @@ class HomeScreen extends StatelessWidget {
                       if (controller.disasterList.isEmpty) {
                         return Center(child: Text('No Disasters Found', style: Theme.of(context).textTheme.bodyMedium));
                       }
+
+                      // Reverse the list before passing it to TGridLayout
+                      final reversedList = controller.disasterList.reversed.toList();
+
                       return TGridLayout(
                         itemCount: controller.disasterList.length,
-                        itemBuilder: (_, index) => TVerticalCard(disaster: controller.disasterList[index]),
+                        itemBuilder: (_, index) => TVerticalCard(disaster: reversedList[index]),
                       );
                     },
                   ),

@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
+import 'package:intl/intl.dart';
 
 import 'package:red_zone/common/widgets/images/rounded_container.dart';
 import 'package:red_zone/features/disaster_main/models/disaster_model.dart';
@@ -23,11 +24,15 @@ class TVerticalCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final dark = THelperFunctions.isDarkMode(context);
 
+    String formattedDate = DateFormat('yyyy-MM-dd').format(disaster.createdAt);
+    String formattedTime = DateFormat('HH:mm a').format(disaster.createdAt);
+    String formattedDateTime = '$formattedDate at $formattedTime';
+
     return GestureDetector(
       onTap: () => Get.to(() => DisasterDetails(disaster: disaster)),
       child: Container(
         width: double.infinity,
-        padding: const EdgeInsets.all(8),
+        padding: const EdgeInsets.all(1),
         decoration: BoxDecoration(
           boxShadow: [TShadowStyle.verticalShadow],
           borderRadius: BorderRadius.circular(TSizes.productImageRadius),
@@ -46,14 +51,23 @@ class TVerticalCard extends StatelessWidget {
                 isNetworkImage: true,
               ),
               title: TProductTitleText(title: '${disaster.disasterType} in ${disaster.disasterProvince}', smallSize: false, maxLines: 1),
-              subtitle: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Text(disaster.user!.fullName, overflow: TextOverflow.ellipsis),
-                  const SizedBox(width: 4),
-                  const Icon(Iconsax.verify, color: TColors.primary, size: TSizes.iconXs),
-                ],
-              ),
+              subtitle: Column(mainAxisAlignment: MainAxisAlignment.start, crossAxisAlignment: CrossAxisAlignment.start, children: [
+                Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(disaster.user!.fullName, overflow: TextOverflow.ellipsis),
+                    const SizedBox(width: 4),
+                    const Icon(Iconsax.verify, color: TColors.primary, size: TSizes.iconXs),
+                  ],
+                ),
+                const SizedBox(height: 4),
+                Text(
+                  formattedDateTime,
+                  style: Theme.of(context).textTheme.labelSmall,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ]),
+              //trailing: Text(formattedDate, overflow: TextOverflow.ellipsis),
             ),
             const SizedBox(height: 8),
             TRoundedContainer(
@@ -73,7 +87,7 @@ class TVerticalCard extends StatelessWidget {
                 ],
               ),
             ),
-            const SizedBox(height: 8),
+            const SizedBox(height: 14),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
