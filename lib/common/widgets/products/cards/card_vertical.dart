@@ -87,7 +87,7 @@ class TVerticalCard extends StatelessWidget {
                 ],
               ),
             ),
-            const SizedBox(height: 14),
+            const SizedBox(height: 8),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -112,12 +112,13 @@ class TVerticalCard extends StatelessWidget {
                   style: OutlinedButton.styleFrom(
                     shape: const StadiumBorder(),
                     minimumSize: const Size(150, 50),
-                    padding: const EdgeInsets.all(8),
+                    padding: const EdgeInsets.all(2),
                   ),
                   child: const Text('Preview'),
                 ),
               ],
             ),
+            const SizedBox(height: 8),
           ],
         ),
       ),
