@@ -26,10 +26,6 @@ class TRatingAndShare extends StatelessWidget {
         ),
         IconButton(onPressed: () {}, icon: const Icon(Icons.share, size: TSizes.iconMd)),
       ],
-      // - username
-      // - disaster details
-      // - Location
-      // - reviews
     );
   }
 }

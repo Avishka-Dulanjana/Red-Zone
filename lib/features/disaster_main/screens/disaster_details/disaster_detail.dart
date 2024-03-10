@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
+
 import 'package:red_zone/common/widgets/custom_shapes/containers/section_heading.dart';
 import 'package:red_zone/features/disaster_main/models/disaster_model.dart';
 import 'package:red_zone/features/disaster_main/screens/disaster_details/widgets/disaster_details_widgets/disaster_detail_image_slider.dart';
+import 'package:red_zone/features/disaster_main/screens/disaster_details/widgets/disaster_details_widgets/disaster_details_contents.dart';
 import 'package:red_zone/features/disaster_main/screens/disaster_details/widgets/disaster_details_widgets/rating_share_widget.dart';
-
 import '../../../../utils/constants/sizes.dart';
 import '../../../product_review/screen/product_reviews.dart';
 
@@ -33,9 +34,11 @@ class DisasterDetails extends StatelessWidget {
                 ],
               ),
             ),
-            const SizedBox(height: TSizes.spaceBtwItems),
 
+            const Divider(),
+            const SizedBox(height: TSizes.spaceBtwItems),
             // Disaster Details
+            TDisasterDetails(disaster: disaster),
 
             const SizedBox(height: TSizes.spaceBtwItems),
 

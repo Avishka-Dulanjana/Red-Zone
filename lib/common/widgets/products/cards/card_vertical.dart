@@ -50,7 +50,7 @@ class TVerticalCard extends StatelessWidget {
                 padding: 0,
                 isNetworkImage: true,
               ),
-              title: TProductTitleText(title: '${disaster.disasterType} in ${disaster.disasterProvince}', smallSize: false, maxLines: 1),
+              title: TProductTitleText(title: '${disaster.disasterType} in ${disaster.disasterDistrict}, ${disaster.disasterProvince}', smallSize: false, maxLines: 1),
               subtitle: Column(mainAxisAlignment: MainAxisAlignment.start, crossAxisAlignment: CrossAxisAlignment.start, children: [
                 Row(
                   mainAxisSize: MainAxisSize.min,
@@ -67,7 +67,6 @@ class TVerticalCard extends StatelessWidget {
                   overflow: TextOverflow.ellipsis,
                 ),
               ]),
-              //trailing: Text(formattedDate, overflow: TextOverflow.ellipsis),
             ),
             const SizedBox(height: 8),
             TRoundedContainer(
