@@ -64,7 +64,14 @@ class DisasterController extends GetxController {
     // Check if images are selected
     if (disasterImages.isEmpty) {
       TFullScreenLoader.stopLoading();
-      TLoaders.warningSnackBar(title: 'No Images Selected', message: 'Please select at least one image.');
+      TLoaders.warningSnackBar(title: 'No Images Selected', message: 'Please select at least one disaster image.');
+      return;
+    }
+
+    // Check if the map location is empty
+    if (pickedLocation.value == null) {
+      TFullScreenLoader.stopLoading();
+      TLoaders.warningSnackBar(title: 'Map Location Required', message: 'Please select a disaster map location.');
       return;
     }
 

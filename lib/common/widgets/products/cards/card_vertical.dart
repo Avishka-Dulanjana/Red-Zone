@@ -105,9 +105,7 @@ class TVerticalCard extends StatelessWidget {
                 ),
                 const SizedBox(width: 8),
                 OutlinedButton(
-                  onPressed: () {
-                    // Implement Preview functionality
-                  },
+                  onPressed: () => Get.to(() => DisasterDetails(disaster: disaster)),
                   style: OutlinedButton.styleFrom(
                     shape: const StadiumBorder(),
                     minimumSize: const Size(150, 50),
