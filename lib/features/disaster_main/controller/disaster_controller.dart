@@ -18,7 +18,7 @@ import '../../../utils/helpers/network_manager.dart';
 import '../../../utils/popups/full_screen_loader.dart';
 import '../../personalization/models/user_model.dart';
 import '../models/disaster_model.dart';
-import '../screens/new_disaster/widgets/google_map_screen.dart'; // Import your GoogleMapScreen class
+import '../screens/new_disaster/widgets/google_map_screen.dart';
 
 class DisasterController extends GetxController {
   static DisasterController get instance => Get.find();
@@ -34,6 +34,7 @@ class DisasterController extends GetxController {
   final disasterRepository = Get.put(DisasterRepository());
   final locationImage = RxString('');
   final pickedLocation = Rx<PlaceLocation?>(null);
+  var isLoading = false.obs;
 
   // List to hold selected image paths
   final RxList<String> disasterImages = RxList<String>();
@@ -86,7 +87,6 @@ class DisasterController extends GetxController {
 
       // Upload images and get URLs
 
-      // final List<Map<String, String>> imageUrls = [];
       final List<String> imageUrls = [];
       for (final imagePath in disasterImages) {
         final imageUrl = await disasterRepository.uploadDisasterImage('disaster_images', XFile(imagePath));
@@ -114,8 +114,11 @@ class DisasterController extends GetxController {
       disasterImages.clear();
       pickedLocation.value = null;
 
+      // Reset form key
+      addDisasterFormKey.currentState!.reset();
+
       // Move to Previous Screen
-      Get.off(() => const NavigationMenu());
+      Get.offAll(() => NavigationMenu(key: UniqueKey()));
     } catch (e) {
       TFullScreenLoader.stopLoading();
       TLoaders.errorSnackBar(title: 'Data not saved', message: e.toString());
@@ -246,6 +249,9 @@ class DisasterController extends GetxController {
       print(newGoogleMapLocation.value?.longitude);
       print(newGoogleMapLocation.value?.latitude);
 
+      // Set loading state to true while fetching address
+      isLoading.value = true;
+
       final url = Uri.parse('https://maps.googleapis.com/maps/api/geocode/json?latlng=$lat,$lng&key=AIzaSyBt4iFeic3dBUU-GJNBWNJLqQ3xNOiuZfI');
 
       final response = await http.get(url);
@@ -253,8 +259,14 @@ class DisasterController extends GetxController {
       final address = resData['results'][0]['formatted_address'];
 
       newGoogleMapLocation.value = PlaceLocation(latitude: lat, longitude: lng, address: address);
+
+      // Set loading state to false after fetching address
+      isLoading.value = false;
+
       googleLocationImage.value =
           'https://maps.googleapis.com/maps/api/staticmap?center=$lat,$lng&zoom=16&size=600x300&maptype=roadmap&markers=color:red%7Clabel:A%7C$lat,$lng&key=AIzaSyBt4iFeic3dBUU-GJNBWNJLqQ3xNOiuZfI';
+
+      locationImage.value = googleLocationImage.value; // Update locationImage with new image URL
     }
   }
 

@@ -10,7 +10,7 @@ import 'features/emergency_contacts/screens/emergency_contacts.dart';
 import 'features/previous_disaster/screens/previous_disasters/previous_disasters.dart';
 
 class NavigationMenu extends StatelessWidget {
-  const NavigationMenu({super.key});
+  const NavigationMenu({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

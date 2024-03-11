@@ -104,11 +104,13 @@ class HomeScreen extends StatelessWidget {
                       }
 
                       // Reverse the list before passing it to TGridLayout
-                      final reversedList = controller.disasterList.reversed.toList();
+                      //final reversedList = controller.disasterList.reversed.toList();
+                      controller.disasterList.sort((a, b) => b.createdAt.compareTo(a.createdAt));
 
                       return TGridLayout(
                         itemCount: controller.disasterList.length,
-                        itemBuilder: (_, index) => TVerticalCard(disaster: reversedList[index]),
+                        //itemBuilder: (_, index) => TVerticalCard(disaster: reversedList[index]),
+                        itemBuilder: (_, index) => TVerticalCard(disaster: controller.disasterList[index]),
                       );
                     },
                   ),
