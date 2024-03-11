@@ -249,7 +249,6 @@ import 'package:red_zone/data/repositories/user/user_repository.dart';
 
 import 'package:red_zone/features/authentication/screens/login/login.dart';
 import 'package:red_zone/features/authentication/screens/onboarding/onboarding.dart';
-import 'package:red_zone/features/disaster_main/screens/home/home.dart';
 import 'package:red_zone/navigation_menu.dart';
 import '../../../admin_navigation_menu.dart';
 import '../../../features/authentication/screens/signup/verify_email.dart';

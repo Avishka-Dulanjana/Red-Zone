@@ -6,9 +6,6 @@ import 'package:red_zone/features/personalization/screens/settings/settings.dart
 import 'package:red_zone/utils/constants/colors.dart';
 import 'package:red_zone/utils/helpers/helper_functions.dart';
 
-import 'features/emergency_contacts/screens/emergency_contacts.dart';
-import 'features/previous_disaster/screens/previous_disasters/previous_disasters.dart';
-
 class AdminNavigationMenu extends StatelessWidget {
   const AdminNavigationMenu({Key? key}) : super(key: key);
 
