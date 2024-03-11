@@ -12,27 +12,27 @@ import 'package:location/location.dart';
 import 'package:http/http.dart' as http;
 
 import '../../../admin_navigation_menu.dart';
-import '../../../data/repositories/disaster/disaster_repository.dart';
+import '../../../data/repositories/admin_panel/admin_previous_disaster/admin_previous_disaster_repository.dart';
 import '../../../navigation_menu.dart';
 import '../../../utils/constants/image_strings.dart';
 import '../../../utils/helpers/network_manager.dart';
 import '../../../utils/popups/full_screen_loader.dart';
 import '../../personalization/models/user_model.dart';
-import '../models/disaster_model.dart';
-import '../screens/new_disaster/widgets/google_map_screen.dart';
+import '../model/previous_disaster_model.dart';
+import '../screens/admin_previous_disaster/widgets/admin_previous_disaster_google_map.dart';
 
-class DisasterController extends GetxController {
-  static DisasterController get instance => Get.find();
+class AdminPreviousDisasterController extends GetxController {
+  static AdminPreviousDisasterController get instance => Get.find();
 
   final disasterLoading = false.obs;
-  Rx<DisasterModel> disaster = DisasterModel.empty().obs;
+  Rx<PreviousDisasterModel> disaster = PreviousDisasterModel.empty().obs;
 
   // Form Fields
   final disasterType = RxString('');
   final disasterProvince = RxString('');
   final disasterDistrict = RxString('');
   final disasterDescription = TextEditingController();
-  final disasterRepository = Get.put(DisasterRepository());
+  final disasterRepository = Get.put(AdminPreviousDisasterRepository());
   final locationImage = RxString('');
   final pickedLocation = Rx<PlaceLocation?>(null);
   var isLoading = false.obs;
@@ -79,7 +79,7 @@ class DisasterController extends GetxController {
     final userCredential = FirebaseAuth.instance.currentUser;
 
     try {
-      final newDisaster = DisasterModel(
+      final newDisaster = PreviousDisasterModel(
         id: '${userCredential?.uid}-${DateTime.now().millisecondsSinceEpoch}',
         userId: userCredential!.uid,
         disasterType: disasterType.value,
@@ -97,7 +97,7 @@ class DisasterController extends GetxController {
 
       final List<String> imageUrls = [];
       for (final imagePath in disasterImages) {
-        final imageUrl = await disasterRepository.uploadDisasterImage('disaster_images', XFile(imagePath));
+        final imageUrl = await disasterRepository.uploadDisasterImage('previous_disaster_images', XFile(imagePath));
         imageUrls.add(imageUrl);
       }
 
@@ -126,18 +126,7 @@ class DisasterController extends GetxController {
       addDisasterFormKey.currentState!.reset();
 
       // Move to Previous Screen
-      Get.offAll(() => const NavigationMenu());
-
-      // Navigate based on user role
-      // WidgetsBinding.instance.addPostFrameCallback((_) {
-      //   if (userCredential.email == 'avishkadulanjana377@gmail.com') {
-      //     // Admin user
-      //     Get.offAll(() => const AdminNavigationMenu());
-      //   } else {
-      //     // Regular user
-      //     Get.offAll(() => const NavigationMenu());
-      //   }
-      // });
+      Get.offAll(() => AdminNavigationMenu(key: UniqueKey()));
     } catch (e) {
       TFullScreenLoader.stopLoading();
       TLoaders.errorSnackBar(title: 'Data not saved', message: e.toString());
@@ -234,7 +223,7 @@ class DisasterController extends GetxController {
     required void Function(LatLng?) onLocationPicked,
     required void Function() onSaveCustomMarkerCallback,
   }) {
-    Get.to(() => GoogleMapScreen(
+    Get.to(() => AdminPreviousDisasterGoogleMapScreen(
           isSelecting: true,
           onSaveCustomMarkerCallback: onSaveCustomMarker,
           onLocationPicked: (PlaceLocation? pickedLocation) {
