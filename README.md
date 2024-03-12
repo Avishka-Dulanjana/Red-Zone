@@ -134,3 +134,57 @@ flutter pub add google_sign_in
 ```agsl
 keytool -list -v -keystore "C:\Users\Avishka Dulanjana\.android\debug.keystore" -alias androiddebugkey -storepass android -keypass android
 ```
+
+# Push Notification Setup
+
+### Need to add this packages
+
+```agsl
+flutter pub add firebase_messaging
+npm install -g firebase-tools
+```
+
+## Then firebase connect to the project
+
+```agsl
+1. You have to go to firebase and enable messaging and functions
+2. functions enable as you PAY AS GO feature and enable functions feature to your flutter project
+3. Then you can use it after few steps follows
+```
+
+#### This code use to add nessassary files to the project as use Javascrip with node modules =>
+
+```agsl
+firebase init  
+```
+#### Javascript code for chat push notification index.js on functions file
+```agsl
+const functions = require("firebase-functions");
+const admin = require("firebase-admin");
+
+admin.initializeApp();
+
+// Cloud Firestore triggers ref: https://firebase.google.com/docs/functions/firestore-events
+exports.myFunction = functions.firestore
+// This "Chat" is firebase database Table name
+  .document("Chat/{messageId}")
+  .onCreate((snapshot, context) => {
+    // Return this function's promise, so this ensures the firebase function
+    // will keep running, until the notification is scheduled.
+    return admin.messaging().sendToTopic("Chat", {
+      // Sending a notification message.
+      notification: {
+      // This is Chat Table datas waht you want to show
+        title: snapshot.data()["username"],
+        body: snapshot.data()["text"],
+        clickAction: "FLUTTER_NOTIFICATION_CLICK",
+      },
+    });
+  });
+
+```
+#### This code use after function write and deploy it to firebase =>
+
+```agsl
+firebase deploy 
+```
