@@ -126,18 +126,18 @@ class DisasterController extends GetxController {
       addDisasterFormKey.currentState!.reset();
 
       // Move to Previous Screen
-      Get.offAll(() => const NavigationMenu());
+      //Get.offAll(() => const NavigationMenu());
 
       // Navigate based on user role
-      // WidgetsBinding.instance.addPostFrameCallback((_) {
-      //   if (userCredential.email == 'avishkadulanjana377@gmail.com') {
-      //     // Admin user
-      //     Get.offAll(() => const AdminNavigationMenu());
-      //   } else {
-      //     // Regular user
-      //     Get.offAll(() => const NavigationMenu());
-      //   }
-      // });
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (userCredential.email == 'avishkadulanjana377@gmail.com') {
+          // Admin user
+          Get.offAll(() => const AdminNavigationMenu());
+        } else {
+          // Regular user
+          Get.offAll(() => const NavigationMenu());
+        }
+      });
     } catch (e) {
       TFullScreenLoader.stopLoading();
       TLoaders.errorSnackBar(title: 'Data not saved', message: e.toString());
