@@ -70,7 +70,7 @@ class DisasterController extends GetxController {
     }
 
     // Check if the map location is empty
-    if (pickedLocation.value == null) {
+    if (pickedLocation.value == null && newGoogleMapLocation.value == null) {
       TFullScreenLoader.stopLoading();
       TLoaders.warningSnackBar(title: 'Map Location Required', message: 'Please select a disaster map location.');
       return;

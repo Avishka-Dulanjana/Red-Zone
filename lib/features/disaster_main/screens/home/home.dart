@@ -218,7 +218,7 @@ class HomeScreen extends StatelessWidget {
                       banners: [TImages.bannersRedZone_01, TImages.bannersRedZone_02, TImages.bannersRedZone_03],
                     ),
                   ),
-                  const SizedBox(height: TSizes.spaceBtwSections),
+                  const SizedBox(height: TSizes.spaceBtwSections / 8),
 
                   /// -- TODO: Disaster Cards --
                   Obx(

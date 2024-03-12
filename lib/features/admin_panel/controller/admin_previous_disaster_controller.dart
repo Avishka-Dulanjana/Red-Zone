@@ -13,7 +13,6 @@ import 'package:http/http.dart' as http;
 
 import '../../../admin_navigation_menu.dart';
 import '../../../data/repositories/admin_panel/admin_previous_disaster/admin_previous_disaster_repository.dart';
-import '../../../navigation_menu.dart';
 import '../../../utils/constants/image_strings.dart';
 import '../../../utils/helpers/network_manager.dart';
 import '../../../utils/popups/full_screen_loader.dart';
@@ -70,7 +69,7 @@ class AdminPreviousDisasterController extends GetxController {
     }
 
     // Check if the map location is empty
-    if (pickedLocation.value == null) {
+    if (pickedLocation.value == null && newGoogleMapLocation.value == null) {
       TFullScreenLoader.stopLoading();
       TLoaders.warningSnackBar(title: 'Map Location Required', message: 'Please select a disaster map location.');
       return;
