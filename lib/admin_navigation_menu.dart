@@ -7,6 +7,7 @@ import 'package:red_zone/utils/constants/colors.dart';
 import 'package:red_zone/utils/helpers/helper_functions.dart';
 
 import 'features/admin_panel/screens/admin_disaster_home/admin_disaster_home.dart';
+import 'features/admin_panel/screens/admin_emergency_contacts/admin_emergency_contact_screen.dart';
 
 class AdminNavigationMenu extends StatelessWidget {
   const AdminNavigationMenu({Key? key}) : super(key: key);
@@ -44,7 +45,7 @@ class AdminNavigationController extends GetxController {
   final screens = [
     const HomeScreen(),
     const AdminDisasterHomeScreen(),
-    Container(color: Colors.red),
+    const AdminEmergencyContactsScreen(),
     const SettingsScreen(),
   ];
 }

@@ -204,7 +204,7 @@ class TVerticalCard extends StatelessWidget {
                   maxLines: 2, // Limit to two lines
                 ),
               ),
-              const SizedBox(height: 8),
+              const SizedBox(height: 5),
               TRoundedDisasterImage(
                 imageUrl: disaster.disasterImageUrls?.isNotEmpty == true ? disaster.disasterImageUrls!.first : '',
                 applyImageRadius: true,
@@ -213,7 +213,7 @@ class TVerticalCard extends StatelessWidget {
                 height: 300,
                 fit: BoxFit.cover,
               ),
-              const SizedBox(height: 16),
+              const SizedBox(height: 5),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -230,7 +230,7 @@ class TVerticalCard extends StatelessWidget {
                     icon: const Icon(Iconsax.heart),
                     label: const Text('Like'),
                   ),
-                  const SizedBox(width: 8),
+                  const SizedBox(width: 16),
                   OutlinedButton(
                     onPressed: () => Get.to(() => DisasterDetails(disaster: disaster)),
                     style: OutlinedButton.styleFrom(

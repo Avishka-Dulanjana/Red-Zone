@@ -198,7 +198,7 @@ class TAdminPreviousDisasterVerticalCard extends StatelessWidget {
                   ],
                 ),
               ),
-              const SizedBox(height: 8),
+              const SizedBox(height: 5),
               Container(
                 height: 40, // Set a fixed height for the description container
                 child: Text(
@@ -216,7 +216,7 @@ class TAdminPreviousDisasterVerticalCard extends StatelessWidget {
                 height: 300,
                 fit: BoxFit.cover,
               ),
-              const SizedBox(height: 16),
+              const SizedBox(height: 8),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [

@@ -12,11 +12,11 @@ import '../../../utils/helpers/helper_functions.dart';
 
 class TEmergencyContactCard extends StatelessWidget {
   const TEmergencyContactCard({
-    super.key,
+    Key? key,
     this.onTap,
     required this.showBorder,
     required this.contact,
-  });
+  }) : super(key: key);
 
   final ContactModel contact;
   final bool showBorder;
@@ -43,8 +43,9 @@ class TEmergencyContactCard extends StatelessWidget {
                 overlayColor: dark ? TColors.white : TColors.black,
               ),
             ),
-            const SizedBox(width: TSizes.spaceBtwItems / 2),
+            const SizedBox(width: TSizes.spaceBtwItems / 4),
             Expanded(
+              // Wrap the department name row in a Flexible widget
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisSize: MainAxisSize.min,
@@ -54,15 +55,20 @@ class TEmergencyContactCard extends StatelessWidget {
                       Text(contact.contactNo, style: Theme.of(context).textTheme.headlineSmall),
                     ],
                   ),
-                  Row(
-                    children: [
-                      Text(
-                        '${contact.departmentName} ',
-                        overflow: TextOverflow.ellipsis,
-                        style: Theme.of(context).textTheme.labelLarge,
-                      ),
-                      const Icon(Iconsax.verify, color: TColors.primary, size: 16),
-                    ],
+                  // Department name row wrapped in a Flexible widget
+                  Flexible(
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: Text(
+                            '${contact.departmentName} ',
+                            overflow: TextOverflow.ellipsis,
+                            style: Theme.of(context).textTheme.labelLarge,
+                          ),
+                        ),
+                        const Icon(Iconsax.verify, color: TColors.primary, size: 16),
+                      ],
+                    ),
                   ),
                 ],
               ),

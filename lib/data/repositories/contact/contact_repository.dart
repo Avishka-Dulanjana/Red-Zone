@@ -51,4 +51,21 @@ class ContactRepository extends GetxController {
       throw 'Something went wrong! Please try again!';
     }
   }
+
+  // Function to save new disaster record to firestore.
+  Future<void> saveEmergencyContact(ContactModel contactModel) async {
+    try {
+      return await _db.collection('Contacts').doc(contactModel.id).set(contactModel.toJson());
+    } on FirebaseAuthException catch (e) {
+      throw TFirebaseAuthException(e.code).message;
+    } on FirebaseException catch (e) {
+      throw TFirebaseException(e.code).message;
+    } on FormatException catch (_) {
+      throw const TFormatException();
+    } on PlatformException catch (e) {
+      throw TPlatformException(e.code).message;
+    } catch (e) {
+      throw 'Something went wrong! Please try again!';
+    }
+  }
 }

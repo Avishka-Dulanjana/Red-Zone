@@ -10,6 +10,9 @@ class ContactController extends GetxController {
 
   final isLoading = false.obs;
   final contactRepository = Get.put(ContactRepository());
+  final disasterDistrict = RxString('');
+
+  final Rx<ContactModel> selectedContact = ContactModel.empty().obs;
 
   RxList<ContactModel> contactList = <ContactModel>[].obs;
 
@@ -29,9 +32,6 @@ class ContactController extends GetxController {
       contactList.assignAll(contacts);
 
       print('Contact List:$contacts');
-
-      // Show success message
-      // TLoaders.successSnackBar(title: 'Success', message: 'Contact data fetched successfully');
     } catch (e) {
       TLoaders.errorSnackBar(title: 'Oh Snap', message: 'Something went wrong! Please try again!(controller)');
     } finally {
