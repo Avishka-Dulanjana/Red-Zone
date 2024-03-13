@@ -42,10 +42,10 @@ class SettingsScreen extends StatelessWidget {
                   /// --Account Settings
                   const TSectionHeading(title: 'Account Settings', showActionButton: false),
                   const SizedBox(height: TSizes.spaceBtwItems),
-                  const TSettingsMenuTile(icon: Iconsax.safe_home, title: 'My Address', subtitle: 'Set your location address'),
-                  const TSettingsMenuTile(icon: Iconsax.shopping_cart, title: 'My Location', subtitle: 'Set your location address'),
-                  const TSettingsMenuTile(icon: Iconsax.bag_tick, title: 'My Posts', subtitle: 'Set your location address'),
-                  const TSettingsMenuTile(icon: Iconsax.bank, title: 'Bank Account', subtitle: 'Set your location address'),
+                  const TSettingsMenuTile(icon: Iconsax.settings_copy, title: 'Settings and Privacy', subtitle: 'Change your privacy settings'),
+                  const TSettingsMenuTile(icon: Iconsax.location, title: 'My Location', subtitle: 'Set your location'),
+                  const TSettingsMenuTile(icon: Iconsax.card_add, title: 'My Posts', subtitle: 'Preview your posts'),
+                  const TSettingsMenuTile(icon: Iconsax.support, title: 'Help and Support', subtitle: '24/7 support and help'),
 
                   /// -- App Settings
                   const SizedBox(height: TSizes.spaceBtwSections),

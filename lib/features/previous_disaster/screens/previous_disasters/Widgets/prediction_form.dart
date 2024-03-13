@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
+import 'package:red_zone/utils/helpers/helper_functions.dart';
 
 import '../../../../../utils/constants/colors.dart';
 import '../../../../../utils/constants/sizes.dart';
@@ -15,23 +16,21 @@ class PredictionForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final predictionController = Get.put(PredictionController()); // Use PredictionController
+    final predictionController = Get.put(PredictionController());
 
     return Form(
       child: Column(
         children: [
-          Text(
-            ' Monthly Disaster Risk Predictions with AI',
-            style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                  decoration: TextDecoration.underline,
-                  decorationColor: Colors.white,
-                  decorationThickness: 1.5,
-                ),
-          ),
+          Text(' Monthly Disaster Risk Predictions with AI',
+              style: Theme.of(context)
+                  .textTheme
+                  .titleMedium
+                  ?.copyWith(decoration: TextDecoration.underline, overflow: TextOverflow.ellipsis, decorationColor: Colors.white, decorationThickness: 1.5, color: TColors.white)),
           const SizedBox(height: TSizes.spaceBtwItems),
           DropdownButtonFormField(
             validator: (value) => TValidator.validateEmptyText(TTexts.disasterType, value),
-            decoration: const InputDecoration(labelText: TTexts.disasterType, prefixIcon: Icon(Iconsax.sort_copy, color: TColors.white)),
+            decoration: const InputDecoration(
+                labelText: TTexts.disasterType, labelStyle: TextStyle(color: TColors.white, fontWeight: FontWeight.bold, fontSize: 16), prefixIcon: Icon(Iconsax.sort_copy, color: TColors.white)),
             onChanged: (value) {
               predictionController.setDisasterType(value!); // Set the selected disaster type
             },
@@ -44,7 +43,8 @@ class PredictionForm extends StatelessWidget {
           const SizedBox(height: TSizes.spaceBtwItems),
           DropdownButtonFormField(
             validator: (value) => TValidator.validateEmptyText(TTexts.month, value),
-            decoration: const InputDecoration(labelText: TTexts.month, prefixIcon: Icon(Iconsax.sort_copy, color: TColors.white)),
+            decoration: const InputDecoration(
+                labelText: TTexts.month, labelStyle: TextStyle(color: TColors.white, fontWeight: FontWeight.bold, fontSize: 16), prefixIcon: Icon(Iconsax.sort_copy, color: TColors.white)),
             onChanged: (value) {
               predictionController.setMonth(value!); // Set the selected month
             },
