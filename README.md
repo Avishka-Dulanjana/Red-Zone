@@ -17,7 +17,10 @@ samples, guidance on mobile development, and a full API reference.
 
 # Project Start 2024.01.23
 
+### Native Splash Screen setup
+
 ```agsl
+ flutter pub add flutter_native_splash
  flutter pub run flutter_native_splash:create --path=splash.yaml
 ```
 
