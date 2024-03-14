@@ -68,7 +68,7 @@ class RegisteredUsersScreen extends StatelessWidget {
                       title: Text(user.fullName),
                       subtitle: Text(user.email),
                       trailing: IconButton(
-                        icon: Icon(Icons.message),
+                        icon: const Icon(Icons.message),
                         onPressed: () {
                           // Handle message button pressed
                           // For example, navigate to a chat screen with this user
