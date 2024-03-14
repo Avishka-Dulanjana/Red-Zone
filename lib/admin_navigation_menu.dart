@@ -8,6 +8,7 @@ import 'package:red_zone/utils/helpers/helper_functions.dart';
 
 import 'features/admin_panel/screens/admin_disaster_home/admin_disaster_home.dart';
 import 'features/admin_panel/screens/admin_emergency_contacts/admin_emergency_contact_screen.dart';
+import 'features/admin_panel/screens/admin_profile/admin_settings.dart';
 
 class AdminNavigationMenu extends StatelessWidget {
   const AdminNavigationMenu({Key? key}) : super(key: key);
@@ -46,6 +47,6 @@ class AdminNavigationController extends GetxController {
     const HomeScreen(),
     const AdminDisasterHomeScreen(),
     const AdminEmergencyContactsScreen(),
-    const SettingsScreen(),
+    const AdminSettingsScreen(),
   ];
 }
