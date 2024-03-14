@@ -77,7 +77,6 @@ class DisasterRepository extends GetxController {
   Future<List<DisasterModel>> getDisasterDetails() async {
     try {
       final snapShot = await _db.collection('Disasters').limit(10).get();
-      //return snapShot.docs.map((e) => DisasterModel.fromSnapshot(e)).toList();
       return snapShot.docs.map((e) => _mapToDisasterModel(e)).toList();
     } on FirebaseAuthException catch (e) {
       throw TFirebaseAuthException(e.code).message;

@@ -54,6 +54,20 @@ class DisasterModel {
     };
   }
 
+  factory DisasterModel.fromJson(Map<String, dynamic> json) {
+    return DisasterModel(
+      id: json['id'],
+      userId: json['userId'],
+      disasterType: json['disasterType'],
+      disasterProvince: json['disasterProvince'],
+      disasterDistrict: json['disasterDistrict'],
+      disasterDescription: json['disasterDescription'],
+      disasterImageUrls: json['disasterImageUrls'] != null ? List<String>.from(json['disasterImageUrls']) : null,
+      disasterLocation: PlaceLocation.fromJson(json['disasterLocation']),
+      createdAt: (json['createdAt'] as Timestamp?)?.toDate() ?? DateTime.now(),
+    );
+  }
+
   factory DisasterModel.fromSnapshot(DocumentSnapshot<Map<String, dynamic>> document) {
     if (document.data() == null) return DisasterModel.empty();
     final data = document.data()!;

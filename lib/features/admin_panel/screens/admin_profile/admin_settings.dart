@@ -46,7 +46,7 @@ class AdminSettingsScreen extends StatelessWidget {
                   const SizedBox(height: TSizes.spaceBtwItems),
                   TSettingsMenuTile(icon: Iconsax.settings_copy, title: 'Settings and Privacy', subtitle: 'Change your privacy settings', onTap: () => Get.to(() => const ProfileScreen())),
                   TSettingsMenuTile(icon: Iconsax.user, title: 'All Registered Users', subtitle: 'Remove or banned users', onTap: () => Get.to(() => const RegisteredUsersScreen())),
-                  TSettingsMenuTile(icon: Iconsax.card_add, title: 'All Posts List', subtitle: 'Posts deleted or banned', onTap: () => Get.to(() => const AllPostsListScreen())),
+                  TSettingsMenuTile(icon: Iconsax.card_add, title: 'All Posts List', subtitle: 'Posts deleted or banned', onTap: () => Get.to(() => AllPostsListScreen())),
                   const TSettingsMenuTile(icon: Iconsax.support, title: 'Help and Support', subtitle: '24/7 support and help'),
 
                   /// -- App Settings
