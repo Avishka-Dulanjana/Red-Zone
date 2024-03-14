@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
-import 'package:red_zone/features/disaster_main/screens/home/home.dart';
-import 'package:red_zone/features/personalization/screens/settings/settings.dart';
 import 'package:red_zone/utils/constants/colors.dart';
 import 'package:red_zone/utils/helpers/helper_functions.dart';
 
 import 'features/admin_panel/screens/admin_disaster_home/admin_disaster_home.dart';
 import 'features/admin_panel/screens/admin_emergency_contacts/admin_emergency_contact_screen.dart';
+import 'features/admin_panel/screens/admin_home/admin_home_screen.dart';
 import 'features/admin_panel/screens/admin_profile/admin_settings.dart';
 
 class AdminNavigationMenu extends StatelessWidget {
@@ -44,7 +43,7 @@ class AdminNavigationController extends GetxController {
   final Rx<int> selectedIndex = 0.obs;
 
   final screens = [
-    const HomeScreen(),
+    const AdminHomeScreen(),
     const AdminDisasterHomeScreen(),
     const AdminEmergencyContactsScreen(),
     const AdminSettingsScreen(),

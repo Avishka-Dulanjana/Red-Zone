@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
 import 'package:red_zone/common/widgets/appbar/appbar.dart';
 import 'package:red_zone/common/widgets/custom_shapes/containers/section_heading.dart';
 import 'package:red_zone/utils/constants/sizes.dart';
 import 'package:get/get.dart';
 
+import '../../../../common/widgets/admin_panel/admin_setting_menu_tile.dart';
 import '../../../../common/widgets/custom_shapes/containers/primary_header_container.dart';
 import '../../../../common/widgets/list_tiles/settings_menu_tile.dart';
 import '../../../../common/widgets/list_tiles/user_profile.dart';
@@ -53,32 +55,23 @@ class SettingsScreen extends StatelessWidget {
                   const SizedBox(height: TSizes.spaceBtwSections),
                   const TSettingsMenuTile(icon: Iconsax.document_upload, title: 'Load Data', subtitle: 'Upload data to your cloud firebase'),
 
-                  TSettingsMenuTile(
-                    icon: Iconsax.location,
+                  const AdminSettingsSwitch(
+                    icon: Icons.location_on,
                     title: 'Geo Location',
                     subtitle: 'Set recommended location',
-                    trailing: Switch(
-                      value: true,
-                      onChanged: (value) {},
-                    ),
+                    switchKey: 'geo_location',
                   ),
-                  TSettingsMenuTile(
-                    icon: Iconsax.security_user,
+                  const AdminSettingsSwitch(
+                    icon: Icons.security,
                     title: 'Safe Mode',
                     subtitle: 'Set recommended location',
-                    trailing: Switch(
-                      value: false,
-                      onChanged: (value) {},
-                    ),
+                    switchKey: 'safe_mode',
                   ),
-                  TSettingsMenuTile(
-                    icon: Iconsax.image,
+                  const AdminSettingsSwitch(
+                    icon: Icons.image,
                     title: 'HD Image Quality',
                     subtitle: 'Set recommended location',
-                    trailing: Switch(
-                      value: false,
-                      onChanged: (value) {},
-                    ),
+                    switchKey: 'hd_image_quality',
                   ),
                   const SizedBox(
                     height: TSizes.spaceBtwSections,
@@ -97,6 +90,52 @@ class SettingsScreen extends StatelessWidget {
             )
           ],
         ),
+      ),
+    );
+  }
+}
+
+class AdminSettingsSwitch extends StatefulWidget {
+  final IconData icon;
+  final String title;
+  final String subtitle;
+  final String switchKey;
+
+  const AdminSettingsSwitch({
+    required this.icon,
+    required this.title,
+    required this.subtitle,
+    required this.switchKey,
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  _AdminSettingsSwitchState createState() => _AdminSettingsSwitchState();
+}
+
+class _AdminSettingsSwitchState extends State<AdminSettingsSwitch> {
+  late bool value;
+
+  @override
+  void initState() {
+    super.initState();
+    value = GetStorage().read(widget.switchKey) ?? false;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return TSettingsMenuTile(
+      icon: widget.icon,
+      title: widget.title,
+      subtitle: widget.subtitle,
+      trailing: Switch(
+        value: value,
+        onChanged: (newValue) {
+          setState(() {
+            value = newValue;
+          });
+          GetStorage().write(widget.switchKey, newValue);
+        },
       ),
     );
   }

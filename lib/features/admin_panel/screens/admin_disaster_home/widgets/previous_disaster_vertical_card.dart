@@ -226,7 +226,7 @@ class TAdminPreviousDisasterVerticalCard extends StatelessWidget {
                     },
                     style: ElevatedButton.styleFrom(
                       shape: const StadiumBorder(),
-                      backgroundColor: TColors.primary,
+                      backgroundColor: Colors.red.shade800,
                       minimumSize: const Size(150, 50),
                       padding: const EdgeInsets.all(8),
                     ),

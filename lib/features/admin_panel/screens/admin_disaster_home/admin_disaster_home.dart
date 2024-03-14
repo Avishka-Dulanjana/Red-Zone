@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:red_zone/features/admin_panel/screens/admin_disaster_home/widgets/previous_disaster_vertical_card.dart';
 import 'package:red_zone/utils/device/device_utility.dart';
 
-import '../../../../common/widgets/custom_shapes/containers/primary_header_container.dart';
+import '../../../../common/widgets/admin_panel/admin_primary_header_container.dart';
 import '../../../../common/widgets/layout/grid_layout.dart';
 import '../../../../common/widgets/shimmers/vertical_disaster_shimmer.dart';
 import '../../../../utils/constants/colors.dart';
@@ -41,7 +41,7 @@ class AdminDisasterHomeScreen extends StatelessWidget {
         child: Column(
           children: [
             // Header
-            TPrimaryHeaderContainer(
+            TAdminPrimaryHeaderContainer(
               child: Column(
                 children: [
                   // AppBar
@@ -61,7 +61,7 @@ class AdminDisasterHomeScreen extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            'Previous Disaster Reports',
+                            'Add Previous Disaster Reports',
                             style: TextStyle(
                               color: TColors.darkerGrey,
                               fontSize: Theme.of(context).textTheme.bodySmall!.fontSize,
