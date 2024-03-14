@@ -11,6 +11,8 @@ import '../../../../common/widgets/list_tiles/user_profile.dart';
 import '../../../../data/repositories/authentication/authentication_repository.dart';
 import '../../../../utils/constants/colors.dart';
 import '../../../personalization/screens/profile/profile.dart';
+import 'all_posts_list/all_posts_list.dart';
+import 'all_registered_users/registered_users.dart';
 
 class AdminSettingsScreen extends StatelessWidget {
   const AdminSettingsScreen({super.key});
@@ -42,9 +44,9 @@ class AdminSettingsScreen extends StatelessWidget {
                   /// --Account Settings
                   const TSectionHeading(title: 'Account Settings', showActionButton: false),
                   const SizedBox(height: TSizes.spaceBtwItems),
-                  const TSettingsMenuTile(icon: Iconsax.settings_copy, title: 'Settings and Privacy', subtitle: 'Change your privacy settings'),
-                  const TSettingsMenuTile(icon: Iconsax.user, title: 'All Registered Users', subtitle: 'Remove or banned users'),
-                  const TSettingsMenuTile(icon: Iconsax.card_add, title: 'All Posts List', subtitle: 'Posts deleted or banned'),
+                  TSettingsMenuTile(icon: Iconsax.settings_copy, title: 'Settings and Privacy', subtitle: 'Change your privacy settings', onTap: () => Get.to(() => const ProfileScreen())),
+                  TSettingsMenuTile(icon: Iconsax.user, title: 'All Registered Users', subtitle: 'Remove or banned users', onTap: () => Get.to(() => const RegisteredUsersScreen())),
+                  TSettingsMenuTile(icon: Iconsax.card_add, title: 'All Posts List', subtitle: 'Posts deleted or banned', onTap: () => Get.to(() => const AllPostsListScreen())),
                   const TSettingsMenuTile(icon: Iconsax.support, title: 'Help and Support', subtitle: '24/7 support and help'),
 
                   /// -- App Settings
