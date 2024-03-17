@@ -8,6 +8,7 @@ import '../../../../../common/widgets/shimmers/shimmer.dart';
 import '../../../../../utils/constants/text_strings.dart';
 import 'package:get/get.dart';
 
+import '../../../../admin_panel/screens/admin_chat/chat_screen.dart';
 import '../../../../chat_message/screen/chat_screen.dart';
 
 class THomeAppBar extends StatelessWidget {

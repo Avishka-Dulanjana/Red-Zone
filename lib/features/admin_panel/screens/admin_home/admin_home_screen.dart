@@ -125,6 +125,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:red_zone/features/admin_panel/screens/admin_home/widgets/admin_home_appbar.dart';
 import 'package:red_zone/features/disaster_main/controller/disasters/disaster_fetch_controller.dart';
 import 'package:red_zone/features/disaster_main/screens/home/widgets/home_appbar.dart';
 import 'package:red_zone/features/disaster_main/screens/home/widgets/slider.dart';
@@ -172,7 +173,7 @@ class AdminHomeScreen extends StatelessWidget {
               child: Column(
                 children: [
                   // AppBar
-                  const THomeAppBar(),
+                  const TAdminHomeAppBar(),
                   const SizedBox(height: TSizes.spaceBtwSections),
 
                   Padding(

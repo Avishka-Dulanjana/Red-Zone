@@ -10,6 +10,7 @@ import '../../../../common/widgets/shimmers/vertical_disaster_shimmer.dart';
 import '../../../../utils/constants/colors.dart';
 import '../../../../utils/constants/sizes.dart';
 import '../../controller/previous_disaster/previous_disaster_fetch_controller.dart';
+import '../admin_home/widgets/admin_home_appbar.dart';
 import '../admin_previous_disaster/add_previous_disaster.dart';
 import 'package:red_zone/features/disaster_main/screens/home/widgets/home_appbar.dart';
 
@@ -45,7 +46,7 @@ class AdminDisasterHomeScreen extends StatelessWidget {
               child: Column(
                 children: [
                   // AppBar
-                  const THomeAppBar(),
+                  const TAdminHomeAppBar(),
                   const SizedBox(height: TSizes.spaceBtwSections),
 
                   Padding(

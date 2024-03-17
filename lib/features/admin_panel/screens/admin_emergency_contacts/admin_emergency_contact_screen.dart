@@ -11,7 +11,7 @@ import '../../../../common/widgets/products/cart/cart_menu_icon.dart';
 import '../../../../utils/constants/colors.dart';
 import '../../../../utils/constants/sizes.dart';
 import '../../../../utils/device/device_utility.dart';
-import '../../../chat_message/screen/chat_screen.dart';
+import '../admin_chat/chat_screen.dart';
 
 class AdminEmergencyContactsScreen extends StatelessWidget {
   const AdminEmergencyContactsScreen({Key? key}) : super(key: key);
@@ -25,7 +25,7 @@ class AdminEmergencyContactsScreen extends StatelessWidget {
       appBar: TAppBar(
         title: Text('Emergency Contacts', style: Theme.of(context).textTheme.headlineMedium),
         actions: [
-          TCartCounterIcon(onPressed: () => Get.to(const ChatScreen()), iconColor: dark ? TColors.white : TColors.dark),
+          TCartCounterIcon(onPressed: () => Get.to(const AdminChatScreen()), iconColor: dark ? TColors.white : TColors.dark),
         ],
       ),
       body: Obx(() {
