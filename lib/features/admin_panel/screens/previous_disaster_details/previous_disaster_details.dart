@@ -23,6 +23,7 @@ class AdminPreviousDisasterDetails extends StatelessWidget {
         child: Column(
           children: [
             // Disaster Image Slider
+
             TPreviousDisasterImageSlider(disaster: disaster),
 
             // Disaster Details
