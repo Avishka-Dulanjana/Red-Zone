@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:red_zone/features/product_review/screen/widgets/progress_indicator_and_rating.dart';
+import 'package:red_zone/features/disaster_review/screen/widgets/progress_indicator_and_rating.dart';
 
 class TOverallDisasterRating extends StatelessWidget {
   const TOverallDisasterRating({

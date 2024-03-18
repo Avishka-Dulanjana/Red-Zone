@@ -8,7 +8,7 @@ import 'package:red_zone/features/admin_panel/screens/previous_disaster_details/
 import 'package:red_zone/features/admin_panel/screens/previous_disaster_details/widgets/previous_disaster_map.dart';
 import 'package:red_zone/features/disaster_main/screens/disaster_details/widgets/disaster_details_widgets/rating_share_widget.dart';
 import '../../../../utils/constants/sizes.dart';
-import '../../../product_review/screen/product_reviews.dart';
+import '../../../disaster_review/screen/product_reviews.dart';
 import '../../model/previous_disaster_model.dart';
 
 class AdminPreviousDisasterDetails extends StatelessWidget {

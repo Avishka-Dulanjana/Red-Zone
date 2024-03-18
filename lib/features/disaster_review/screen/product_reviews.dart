@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:red_zone/common/widgets/appbar/appbar.dart';
-import 'package:red_zone/features/product_review/screen/widgets/rating_progress_indicator.dart';
-import 'package:red_zone/features/product_review/screen/widgets/user_review_card.dart';
+import 'package:red_zone/features/disaster_review/screen/widgets/rating_progress_indicator.dart';
+import 'package:red_zone/features/disaster_review/screen/widgets/user_review_card.dart';
 import 'package:red_zone/utils/constants/sizes.dart';
 
 import '../../../common/widgets/products/ratings/rating_indicator.dart';

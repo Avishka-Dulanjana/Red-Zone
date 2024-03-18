@@ -9,7 +9,7 @@ import 'package:red_zone/features/disaster_main/screens/disaster_details/widgets
 import 'package:red_zone/features/disaster_main/screens/disaster_details/widgets/disaster_details_widgets/disaster_map.dart';
 import 'package:red_zone/features/disaster_main/screens/disaster_details/widgets/disaster_details_widgets/rating_share_widget.dart';
 import '../../../../utils/constants/sizes.dart';
-import '../../../product_review/screen/product_reviews.dart';
+import '../../../disaster_review/screen/product_reviews.dart';
 
 class DisasterDetails extends StatelessWidget {
   const DisasterDetails({super.key, required this.disaster});
