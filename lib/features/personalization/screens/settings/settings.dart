@@ -12,6 +12,7 @@ import '../../../../common/widgets/list_tiles/settings_menu_tile.dart';
 import '../../../../common/widgets/list_tiles/user_profile.dart';
 import '../../../../data/repositories/authentication/authentication_repository.dart';
 import '../../../../utils/constants/colors.dart';
+import '../../../help_and_support/screen/help_and_support.dart';
 import '../my_posts/user_all_posts.dart';
 import '../profile/profile.dart';
 
@@ -48,7 +49,7 @@ class SettingsScreen extends StatelessWidget {
                   TSettingsMenuTile(icon: Iconsax.settings_copy, title: 'Settings and Privacy', subtitle: 'Change your privacy settings', onTap: () => Get.to(() => const ProfileScreen())),
                   TSettingsMenuTile(icon: Iconsax.card_add, title: 'My Posts', subtitle: 'Preview your all posts and delete', onTap: () => Get.to(() => const UserAllPostsListScreen())),
                   const TSettingsMenuTile(icon: Iconsax.location, title: 'My Location', subtitle: 'Set your location'),
-                  const TSettingsMenuTile(icon: Iconsax.support, title: 'Help and Support', subtitle: '24/7 support and help'),
+                  TSettingsMenuTile(icon: Iconsax.support, title: 'Help and Support', subtitle: '24/7 support and help', onTap: () => Get.to(() => const HelpAndSupportScreen())),
 
                   /// -- App Settings
                   const SizedBox(height: TSizes.spaceBtwSections),

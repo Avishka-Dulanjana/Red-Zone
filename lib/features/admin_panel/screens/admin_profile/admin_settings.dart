@@ -11,6 +11,7 @@ import '../../../../common/widgets/admin_panel/admin_setting_menu_tile.dart';
 import '../../../../common/widgets/list_tiles/user_profile.dart';
 import '../../../../data/repositories/authentication/authentication_repository.dart';
 import '../../../../utils/constants/colors.dart';
+import '../../../help_and_support/screen/help_and_support.dart';
 import '../../../personalization/screens/profile/profile.dart';
 import 'all_posts_list/all_posts_list.dart';
 import 'all_registered_users/registered_users.dart';
@@ -47,8 +48,8 @@ class AdminSettingsScreen extends StatelessWidget {
                   const SizedBox(height: TSizes.spaceBtwItems),
                   TAdminSettingsMenuTile(icon: Iconsax.settings_copy, title: 'Settings and Privacy', subtitle: 'Change your privacy settings', onTap: () => Get.to(() => const ProfileScreen())),
                   TAdminSettingsMenuTile(icon: Iconsax.user, title: 'All Registered Users', subtitle: 'Remove or banned users', onTap: () => Get.to(() => const RegisteredUsersScreen())),
-                  TAdminSettingsMenuTile(icon: Iconsax.card_add, title: 'All Posts List', subtitle: 'Posts deleted or banned', onTap: () => Get.to(() => AllPostsListScreen())),
-                  const TAdminSettingsMenuTile(icon: Iconsax.support, title: 'Help and Support', subtitle: '24/7 support and help'),
+                  TAdminSettingsMenuTile(icon: Iconsax.card_add, title: 'All Posts List', subtitle: 'Posts deleted or banned', onTap: () => Get.to(() => const AllPostsListScreen())),
+                  TAdminSettingsMenuTile(icon: Iconsax.support, title: 'Help and Support', subtitle: '24/7 support and help', onTap: () => Get.to(() => const HelpAndSupportScreen())),
 
                   /// -- App Settings
                   const SizedBox(height: TSizes.spaceBtwSections),

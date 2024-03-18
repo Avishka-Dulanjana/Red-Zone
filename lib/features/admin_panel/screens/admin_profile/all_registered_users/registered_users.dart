@@ -7,6 +7,7 @@ import '../../../../../common/widgets/products/cart/cart_menu_icon.dart';
 import '../../../../../utils/constants/colors.dart';
 import '../../../../chat_message/screen/chat_screen.dart';
 import '../../../controller/all_registered_users_controller/all_registered_users_controller.dart';
+import '../../admin_chat/chat_screen.dart';
 
 class RegisteredUsersScreen extends StatelessWidget {
   const RegisteredUsersScreen({Key? key}) : super(key: key);
@@ -21,7 +22,7 @@ class RegisteredUsersScreen extends StatelessWidget {
         showBackArrow: true,
         title: Text('All Registered Users', style: Theme.of(context).textTheme.headlineMedium),
         actions: [
-          TCartCounterIcon(onPressed: () => Get.to(const ChatScreen()), iconColor: dark ? TColors.white : TColors.dark),
+          TCartCounterIcon(onPressed: () => Get.to(const AdminChatScreen()), iconColor: dark ? TColors.white : TColors.dark),
         ],
       ),
       body: Obx(() {
