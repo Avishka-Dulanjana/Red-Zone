@@ -53,7 +53,7 @@ class EmergencyContactsController extends GetxController {
 
     try {
       final newContact = ContactModel(
-        id: '${userCredential?.uid}-${DateTime.now().millisecondsSinceEpoch}',
+        id: '${userCredential?.uid} - ${DateTime.now().millisecondsSinceEpoch}',
         emergencyServiceCategory: emergencyServiceCategory.value,
         departmentName: departmentName.text.trim(),
         contactNo: contactNo.text.trim(),

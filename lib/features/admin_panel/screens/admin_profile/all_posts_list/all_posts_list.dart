@@ -55,11 +55,11 @@ class AllPostsListScreen extends StatelessWidget {
                 final disaster = controller.disasterList[index];
                 return Dismissible(
                   key: Key(disaster.id), // Unique key for each dismissible item
-                  direction: DismissDirection.startToEnd,
+                  direction: DismissDirection.endToStart,
                   background: Container(
                     color: Colors.red,
                     padding: const EdgeInsets.symmetric(horizontal: 20),
-                    alignment: Alignment.centerLeft,
+                    alignment: Alignment.centerRight,
                     child: const Icon(Icons.delete, color: Colors.white),
                   ),
                   confirmDismiss: (_) async => await _showConfirmationDialog(context),

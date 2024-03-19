@@ -20,7 +20,7 @@ class RegisteredUsersScreen extends StatelessWidget {
     return Scaffold(
       appBar: TAppBar(
         showBackArrow: true,
-        title: Text('All Registered Users', style: Theme.of(context).textTheme.headlineMedium),
+        title: const Text('All Registered Users'),
         actions: [
           TCartCounterIcon(onPressed: () => Get.to(const AdminChatScreen()), iconColor: dark ? TColors.white : TColors.dark),
         ],
@@ -36,8 +36,13 @@ class RegisteredUsersScreen extends StatelessWidget {
                   final UserModel user = users[index];
                   return Dismissible(
                     key: UniqueKey(),
-                    background: Container(color: Colors.red),
-                    direction: DismissDirection.startToEnd,
+                    background: Container(
+                      color: Colors.red,
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      alignment: Alignment.centerRight,
+                      child: const Icon(Icons.delete, color: Colors.white),
+                    ),
+                    direction: DismissDirection.endToStart,
                     confirmDismiss: (direction) async {
                       return await showDialog(
                         context: context,
@@ -69,7 +74,7 @@ class RegisteredUsersScreen extends StatelessWidget {
                       title: Text(user.fullName),
                       subtitle: Text(user.email),
                       trailing: IconButton(
-                        icon: const Icon(Icons.message),
+                        icon: const Icon(Icons.swipe_left),
                         onPressed: () {
                           // Handle message button pressed
                           // For example, navigate to a chat screen with this user
