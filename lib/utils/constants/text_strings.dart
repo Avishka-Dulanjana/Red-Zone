@@ -70,6 +70,6 @@ class TTexts {
   static const String selectOnCurrentLocation = "Current Location";
   static const String selectOnMap = "Select on Map";
   static const String month = "Month";
-  static const String prediction = "Prediction";
+  static const String prediction = "Predicting Result...";
   static const String changeLocation = "Select on Map";
 }

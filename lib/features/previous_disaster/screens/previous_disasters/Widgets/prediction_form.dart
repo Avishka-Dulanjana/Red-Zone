@@ -20,12 +20,10 @@ class PredictionForm extends StatelessWidget {
 
     return Form(
       child: Column(
-        children: [
-          Text(' Monthly Disaster Risk Predictions with AI',
-              style: Theme.of(context)
-                  .textTheme
-                  .titleMedium
-                  ?.copyWith(decoration: TextDecoration.underline, overflow: TextOverflow.ellipsis, decorationColor: Colors.white, decorationThickness: 1.5, color: TColors.white)),
+        children: <Widget>[
+          Text(' Upcoming Disaster Risk Predictions Powered by AI ', style: Theme.of(context).textTheme.headlineSmall),
+          const SizedBox(height: TSizes.spaceBtwItems / 4),
+          const Divider(color: TColors.grey),
           const SizedBox(height: TSizes.spaceBtwItems),
           DropdownButtonFormField(
             validator: (value) => TValidator.validateEmptyText(TTexts.disasterType, value),
@@ -65,6 +63,14 @@ class PredictionForm extends StatelessWidget {
                 predictionController.launchPrediction(); // Call the launchPrediction method from PredictionController
               },
               child: const Text(TTexts.prediction, style: TextStyle(color: TColors.black)),
+            ),
+          ),
+          const SizedBox(height: TSizes.spaceBtwItems),
+          Center(
+            child: Text(
+              'Get instant district-wise disaster risk predictions powered by AI technology. Stay informed and prepared with just one click.',
+              style: Theme.of(context).textTheme.labelSmall?.copyWith(color: TColors.white),
+              textAlign: TextAlign.center,
             ),
           ),
           const SizedBox(height: TSizes.spaceBtwInputFields),
