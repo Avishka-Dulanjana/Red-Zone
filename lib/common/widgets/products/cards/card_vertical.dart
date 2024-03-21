@@ -133,7 +133,6 @@ import 'package:red_zone/common/widgets/custom_shapes/containers/circular_image.
 import 'package:red_zone/common/widgets/images/rounded_disaster_image.dart';
 import 'package:red_zone/utils/constants/colors.dart';
 import 'package:red_zone/utils/constants/sizes.dart';
-import '../../../../features/disaster_like_feature/controller/disater_like_controller.dart';
 import '../../../../features/disaster_main/models/disaster_model.dart';
 import '../../../../features/disaster_main/screens/disaster_details/disaster_detail.dart';
 import '../../../../features/disaster_main/screens/home/widgets/like_preview_buttons.dart';
@@ -145,8 +144,6 @@ class TVerticalCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final likeController = Get.put(LikeController());
-
     String formattedDate = DateFormat('yyyy-MM-dd').format(disaster.createdAt);
     String formattedTime = DateFormat('HH:mm a').format(disaster.createdAt);
     String formattedDateTime = '$formattedDate at $formattedTime';
@@ -215,7 +212,7 @@ class TVerticalCard extends StatelessWidget {
                 fit: BoxFit.cover,
               ),
               const SizedBox(height: 5),
-              LikePreviewButtons(likeController: likeController, disaster: disaster),
+              LikePreviewButtons(disaster: disaster),
             ],
           ),
         ),

@@ -1,31 +1,75 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 
 import '../../../../../utils/constants/colors.dart';
-import '../../../../disaster_like_feature/controller/disater_like_controller.dart';
 import '../../../models/disaster_model.dart';
 import '../../disaster_details/disaster_detail.dart';
 
 class LikePreviewButtons extends StatefulWidget {
   const LikePreviewButtons({
     Key? key,
-    required this.likeController,
     required this.disaster,
   }) : super(key: key);
 
-  final LikeController likeController;
   final DisasterModel disaster;
 
   @override
-  _LikePreviewButtonsState createState() => _LikePreviewButtonsState();
+  LikePreviewButtonsState createState() => LikePreviewButtonsState();
 }
 
-class _LikePreviewButtonsState extends State<LikePreviewButtons> {
+class LikePreviewButtonsState extends State<LikePreviewButtons> {
+  int _likeCount = 0;
+  bool _isLiked = false;
+
   @override
   void initState() {
     super.initState();
-    widget.likeController.updateLikeCount(widget.disaster.id);
+    _getLikeCount();
+    _checkIfLiked();
+  }
+
+  void _getLikeCount() {
+    FirebaseFirestore.instance.collection('Likes').where('postId', isEqualTo: widget.disaster.id).get().then((querySnapshot) {
+      setState(() {
+        _likeCount = querySnapshot.size;
+      });
+    });
+  }
+
+  void _checkIfLiked() {
+    FirebaseFirestore.instance.collection('Likes').where('postId', isEqualTo: widget.disaster.id).where('userId', isEqualTo: FirebaseAuth.instance.currentUser!.uid).get().then((querySnapshot) {
+      setState(() {
+        _isLiked = querySnapshot.size > 0;
+      });
+    });
+  }
+
+  void _toggleLike() {
+    if (_isLiked) {
+      FirebaseFirestore.instance.collection('Likes').where('postId', isEqualTo: widget.disaster.id).where('userId', isEqualTo: FirebaseAuth.instance.currentUser!.uid).get().then((querySnapshot) {
+        querySnapshot.docs.forEach((doc) {
+          doc.reference.delete();
+        });
+        setState(() {
+          _likeCount--;
+          _isLiked = false;
+        });
+      });
+    } else {
+      FirebaseFirestore.instance.collection('Likes').add({
+        'postId': widget.disaster.id,
+        'userId': FirebaseAuth.instance.currentUser!.uid,
+        'likedAt': DateTime.now(),
+        'userName': FirebaseAuth.instance.currentUser!.displayName ?? '',
+      }).then((_) {
+        setState(() {
+          _likeCount++;
+          _isLiked = true;
+        });
+      });
+    }
   }
 
   @override
@@ -36,31 +80,23 @@ class _LikePreviewButtonsState extends State<LikePreviewButtons> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           ElevatedButton.icon(
-            onPressed: () {
-              widget.likeController.toggleLike(widget.disaster);
-            },
+            onPressed: _toggleLike,
             style: ElevatedButton.styleFrom(
               shape: const StadiumBorder(),
-              backgroundColor: widget.likeController.getLikeState(widget.disaster.id).value ? null : TColors.primary,
+              backgroundColor: _isLiked ? null : TColors.primary,
               minimumSize: const Size(150, 50),
               padding: const EdgeInsets.all(8),
             ),
-            icon: Obx(() {
-              return Icon(
-                widget.likeController.getLikeState(widget.disaster.id).value ? Icons.favorite : Icons.favorite,
-                color: widget.likeController.getLikeState(widget.disaster.id).value ? Colors.red : Colors.white,
-              );
-            }),
-            label: Obx(() {
-              final bool isLiked = widget.likeController.getLikeState(widget.disaster.id).value;
-              final String likeText = isLiked ? 'Unlike (${widget.likeController.likeCount.value})' : 'Like ';
-              return Text(
-                likeText,
-                style: TextStyle(
-                  color: isLiked ? Colors.white : null,
-                ),
-              );
-            }),
+            icon: Icon(
+              _isLiked ? Icons.favorite : Icons.favorite_border,
+              color: _isLiked ? Colors.red : Colors.white,
+            ),
+            label: Text(
+              _isLiked ? 'Unlike ($_likeCount)' : 'Like',
+              style: TextStyle(
+                color: _isLiked ? Colors.white : null,
+              ),
+            ),
           ),
           const SizedBox(width: 16),
           ElevatedButton(
