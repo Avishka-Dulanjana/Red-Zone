@@ -21,7 +21,7 @@ class UserReviewCard extends StatelessWidget {
           children: [
             Row(
               children: [
-                const CircleAvatar(backgroundImage: AssetImage(TImages.userProfileImage1)),
+                const CircleAvatar(backgroundImage: AssetImage(TImages.userProfileImage2)),
                 const SizedBox(width: TSizes.spaceBtwItems),
                 Text('Avishka Dulanjana', style: Theme.of(context).textTheme.titleLarge),
               ],
