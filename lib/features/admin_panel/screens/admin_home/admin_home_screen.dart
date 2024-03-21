@@ -125,6 +125,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:red_zone/data/repositories/disaster_like/disaster_like_repository.dart';
 import 'package:red_zone/features/admin_panel/screens/admin_home/widgets/admin_home_appbar.dart';
 import 'package:red_zone/features/disaster_main/controller/disasters/disaster_fetch_controller.dart';
 import 'package:red_zone/features/disaster_main/screens/home/widgets/home_appbar.dart';
@@ -139,6 +140,7 @@ import 'package:red_zone/utils/constants/colors.dart';
 import 'package:red_zone/utils/constants/sizes.dart';
 
 import '../../../../common/widgets/admin_panel/admin_primary_header_container.dart';
+import '../../../disaster_like_feature/controller/disater_like_controller.dart';
 import '../../../disaster_main/models/disaster_model.dart';
 
 class AdminHomeScreen extends StatelessWidget {
@@ -150,8 +152,7 @@ class AdminHomeScreen extends StatelessWidget {
     final scrollController = ScrollController();
 
     // Refresh function to be called when user scrolls to the top
-    void refreshPage() {
-      // Implement your refresh logic here
+    void refreshPage() async {
       controller.fetchDisasterList();
     }
 
