@@ -24,7 +24,7 @@ class AdminAddEmergencyContactsScreen extends StatelessWidget {
               const SizedBox(height: TSizes.spaceBtwSections),
 
               // Form
-              AddEmergencyContactsForm(),
+              const AddEmergencyContactsForm(),
             ],
           ),
         ),

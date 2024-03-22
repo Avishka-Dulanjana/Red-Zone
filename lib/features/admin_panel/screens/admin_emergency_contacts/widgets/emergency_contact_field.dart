@@ -19,7 +19,8 @@ class EmergencyContactField extends StatelessWidget {
       validator: (value) => TValidator.validateEmptyText('Emergency Contact', value),
       expands: false,
       maxLines: 2,
-      decoration: const InputDecoration(labelText: 'Emergency Contact', prefixIcon: Icon(Iconsax.user_edit)),
+      keyboardType: TextInputType.phone,
+      decoration: const InputDecoration(labelText: 'Emergency Contact', prefixIcon: Icon(Icons.contacts)),
     );
   }
 }

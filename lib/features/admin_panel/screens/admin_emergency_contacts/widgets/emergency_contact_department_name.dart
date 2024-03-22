@@ -20,7 +20,7 @@ class EmergencyContactDepartmentNameField extends StatelessWidget {
       validator: (value) => TValidator.validateEmptyText('Emergency Contact Department', value),
       expands: false,
       maxLines: 2,
-      decoration: const InputDecoration(labelText: 'Emergency Contact Department', prefixIcon: Icon(Iconsax.user_edit)),
+      decoration: const InputDecoration(labelText: 'Emergency Contact Department', prefixIcon: Icon(Icons.emergency)),
     );
   }
 }

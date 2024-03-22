@@ -34,13 +34,13 @@ class AddEmergencyContactsForm extends StatelessWidget {
         ),
         const SizedBox(height: TSizes.spaceBtwInputFields),
 
-        // Department Name
+        // Emergency Contact Department Name
         EmergencyContactDepartmentNameField(
           controller: controller,
         ),
         const SizedBox(height: TSizes.spaceBtwInputFields),
 
-        // Description
+        // Emergency Contact Number
         EmergencyContactField(controller: controller),
         const SizedBox(height: TSizes.spaceBtwInputFields),
 
