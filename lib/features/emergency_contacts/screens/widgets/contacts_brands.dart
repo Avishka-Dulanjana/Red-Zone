@@ -21,7 +21,6 @@ class ContactsBrands extends StatelessWidget {
     return FutureBuilder(
         future: controller.getContactDetails(contacts.emergencyServiceCategory),
         builder: (context, snapshot) {
-          // Handle Loader No Records or Error message
           const loader = Column(children: [
             TVerticalDisasterShimmer(),
             SizedBox(height: TSizes.spaceBtwItems),
