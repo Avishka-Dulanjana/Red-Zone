@@ -10,13 +10,13 @@ class TTexts {
   static const String cancel = "Cancel";
 
   // -- OnBoarding Texts
-  static const String onBoardingTitle1 = "Choose your product";
-  static const String onBoardingTitle2 = "Select Payment Method";
-  static const String onBoardingTitle3 = "Deliver at your door step";
+  static const String onBoardingTitle1 = "Stay Alert to Disasters";
+  static const String onBoardingTitle2 = "Community Connection: Always Stay Linked";
+  static const String onBoardingTitle3 = "Empower Mutual Support";
 
-  static const String onBoardingSubTitle1 = "Welcome to a World of Limitless Choices - Your Perfect Product Awaits!";
-  static const String onBoardingSubTitle2 = "For Seamless Transactions, Choose Your Payment Path - Your Convenience, Our Priority!";
-  static const String onBoardingSubTitle3 = "From Our Doorstep to Yours - Swift, Secure, and Contactless Delivery!";
+  static const String onBoardingSubTitle1 = "Welcome to RedZone! Stay informed and prepared with real-time updates and valuable resources to navigate through any disaster.";
+  static const String onBoardingSubTitle2 = "Your gateway to staying connected with your community, fostering resilience, and supporting each other through every challenge.";
+  static const String onBoardingSubTitle3 = "Let's work together to uplift one another, ensuring that we're always there to lend a helping hand when it's needed most.";
 
   // -- Authentication Forms
   static const String firstName = "First Name";

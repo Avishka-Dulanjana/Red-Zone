@@ -58,8 +58,10 @@ class Assets {
   static const String logosTStoreSplashLogoBlack = 'assets/images/logos/t-store-splash-logo-black.png';
   static const String logosTStoreSplashLogoWhite = 'assets/images/logos/t-store-splash-logo-white.png';
   static const String onBoardingImagesSammyLineDelivery = 'assets/images/on_boarding_images/sammy-line-delivery.gif';
+  static const String onBoardingImagesSammyLineManLeaning = 'assets/images/on_boarding_images/sammy-line-man-leaning.gif';
   static const String onBoardingImagesSammyLineNoConnection = 'assets/images/on_boarding_images/sammy-line-no-connection.gif';
   static const String onBoardingImagesSammyLineSearching = 'assets/images/on_boarding_images/sammy-line-searching.gif';
+  static const String onBoardingImagesSammyLineServiceSupport = 'assets/images/on_boarding_images/sammy-line-service-support.gif';
   static const String onBoardingImagesSammyLineShopping = 'assets/images/on_boarding_images/sammy-line-shopping.gif';
   static const String productsImg = 'assets/images/products/img.png';
   static const String reviewsReviewProfileImage1 = 'assets/images/reviews/review_profile_image_1.jpg';
