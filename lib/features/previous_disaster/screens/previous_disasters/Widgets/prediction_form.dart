@@ -32,7 +32,7 @@ class PredictionForm extends StatelessWidget {
             onChanged: (value) {
               predictionController.setDisasterType(value!); // Set the selected disaster type
             },
-            items: ["Flood", "Land Slide", "Earthquake", "Tsunami", "Storm"]
+            items: ["Flood", "Drought", "Earthquake", "Tsunami", "Storm"]
                 .map(
                   (option) => DropdownMenuItem(value: option, child: Text(option)),
                 )
