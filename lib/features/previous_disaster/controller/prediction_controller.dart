@@ -22,7 +22,7 @@ class PredictionController extends GetxController {
     final String selectedMonth = month.value;
 
     try {
-      // Fetch HTML file URL from Firestore based on the selected disaster type and month
+      // Fetch HTML file URL from Fire store based on the selected disaster type and month
       final String? url = await DisasterPredictionRepository.instance.getMonthUrl(disaster, selectedMonth);
 
       // If URL is available, launch it
